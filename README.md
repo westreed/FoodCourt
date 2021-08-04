@@ -19,3 +19,7 @@ Test Run Command
 * react-native-qrcode-scanner
 * react-native-camera
 * react-native-firebase
+
+## Study Link
+* [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
+* [성공적인 Git Branch 관리모델](http://amazingguni.github.io/blog/2016/03/git-branch-%EA%B7%9C%EC%B9%99)
