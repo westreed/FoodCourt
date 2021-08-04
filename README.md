@@ -13,3 +13,9 @@ This repository was used as a graduation project and submitted before an intervi
 
 Test Run Command
 `npm run android` `react-native run-android`
+
+## Used module
+* react-navigation
+* react-native-qrcode-scanner
+* react-native-camera
+* react-native-firebase
