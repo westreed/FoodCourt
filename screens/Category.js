@@ -65,7 +65,7 @@ const Category = ({ route, navigation }) => {
                 <TouchableOpacity //back button
                     style={{
                         width: 30,
-                        left: SIZES.padding,
+                        left: SIZES.padding/2,
                         justifyContent: 'center'
                     }}
                     onPress={() => navigation.goBack()}
@@ -82,17 +82,19 @@ const Category = ({ route, navigation }) => {
                 <View
                     style={{
                         flex:1,
-                        right: SIZES.padding,
-                        alignItems: 'center',
-                        justifyContent: 'center'
+                        left: SIZES.padding,
+                        //right: SIZES.padding,
+                        //alignItems: 'center',
+                        justifyContent: 'center',
+                        //backgroundColor: COLORS.gray2
                     }}
                 >
                     <View
                         style={{
                             height: 30,
-                            alignItems: 'center',
+                            //alignItems: 'center',
                             justifyContent: 'center',
-                            paddingHorizontal: SIZES.padding,
+                            //paddingHorizontal: SIZES.padding,
                             //backgroundColor: COLORS.gray2
                         }}
                     >
