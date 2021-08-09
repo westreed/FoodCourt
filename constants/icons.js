@@ -13,7 +13,7 @@ export const search = require("../assets/icons/search-svgrepo-com.png");
 export const setting2 = require("../assets/icons/setting-svgrepo-com.png");
 export const setting = require("../assets/icons/settings-adjust-svgrepo-com.png");
 export const shopping = require("../assets/icons/shopping-bag.png");
-export const up_arrow = require("../assets/icons/up-arrow-svgrepo-com.png");
+export const right_arrow = require("../assets/icons/right-arrow.png");
 
 export default {
     back_arrow,
@@ -29,5 +29,5 @@ export default {
     search,
     setting,
     shopping,
-    up_arrow
+    right_arrow
 }
