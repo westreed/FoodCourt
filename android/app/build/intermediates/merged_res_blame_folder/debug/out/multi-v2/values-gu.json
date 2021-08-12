@@ -4,7 +4,7 @@
             "outputFile": "C:\\Programming\\React Native\\FoodCourt\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-gu\\values-gu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\80dc6a7f174481fe25dcedc41ed68001\\core-1.1.0\\res\\values-gu\\values-gu.xml",
+                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\11a797cebefefed665d4013bac2be5f6\\core-1.2.0\\res\\values-gu\\values-gu.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -38,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\80e5d0ed6b9a943bf2a9b1012d164ae7\\jetified-play-services-basement-17.1.1\\res\\values-gu\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "205",
-                        "endOffsets": "452"
-                    },
-                    "to": {
-                        "startLines": "37",
-                        "startColumns": "4",
-                        "startOffsets": "3928",
-                        "endColumns": "205",
-                        "endOffsets": "4129"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\9417d41dde92678ab8488ec0684ca850\\jetified-play-services-base-17.1.0\\res\\values-gu\\values.xml",
+                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\539b7be7a2b3a05a04064c89f6e7b6d2\\jetified-play-services-base-17.5.0\\res\\values-gu\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -69,6 +52,23 @@
                         "startOffsets": "2788,2898,3096,3223,3337,3534,3658,3799,4134,4341,4451,4646,4773,4975,5155,5246,5342",
                         "endColumns": "109,197,126,113,196,123,140,128,206,109,194,126,201,179,90,95,110",
                         "endOffsets": "2893,3091,3218,3332,3529,3653,3794,3923,4336,4446,4641,4768,4970,5150,5241,5337,5448"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\819ec8c6af10e4a00a056b819af593de\\jetified-play-services-basement-17.5.0\\res\\values-gu\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "205",
+                        "endOffsets": "452"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "3928",
+                        "endColumns": "205",
+                        "endOffsets": "4129"
                     }
                 }
             ]

@@ -20,6 +20,8 @@ Test Run Command
 * react-native-qrcode-scanner
 * react-native-camera
 * react-native-firebase
+* @react-native-firebase/app
+* @react-native-firebase/auth
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)

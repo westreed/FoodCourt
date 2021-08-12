@@ -4,6 +4,7 @@ import Search from './Search'
 import Order from './Order'
 import Setting from './Setting'
 import QRScan from './QRScan'
+import Login from './Login'
 
 export {
     Home,
@@ -11,5 +12,6 @@ export {
     Search,
     Order,
     Setting,
-    QRScan
+    QRScan,
+    Login,
 }

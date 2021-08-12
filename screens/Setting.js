@@ -10,8 +10,11 @@ import {
 } from "react-native";
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants'
+import firebase from '../firebaseConfig';
 
 const Setting = ({ navigation }) => {
+
+    const [displayName, setDisplayName] = React.useState(null)
 
     function renderHeader() {
         return (
@@ -24,30 +27,68 @@ const Setting = ({ navigation }) => {
             </View>
         )
     }
+
+    function renderLogin() {
+        const user = firebase.auth().currentUser;
+        console.debug(user)
+        if(user){ //로그인했을 때
+            return (
+                <View style={{ paddingHorizontal: SIZES.padding }}>
+                    <View style={{ marginVertical: 4 }}>
+                        <TouchableOpacity //profile
+                            style={{height: 50, flexDirection: 'row', alignItems: 'center'}}
+                            onPress={() => navigation.goBack()}
+                        >
+                            <Image
+                                source={icons.profile}
+                                resizeMode="contain"
+                                style={{width: 50, height: 50}}
+                            />
+                            <Text style={{ paddingLeft: SIZES.padding/2, paddingRight: SIZES.padding, ...FONTS.h2 }}>로그인 / 회원가입</Text>
+                            <View style={{position: 'absolute', right: 0}}>
+                                <Image
+                                    source={icons.right_arrow}
+                                    resizeMode="contain"
+                                    style={{width: 25, height: 25}}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ marginBottom: SIZES.padding*3, height: 1, backgroundColor:COLORS.gray1 }}></View>
+                </View>
+            )
+        }
+        else{
+            return (
+                <View style={{ paddingHorizontal: SIZES.padding }}>
+                    <View style={{ marginVertical: 4 }}>
+                        <TouchableOpacity //profile
+                            style={{height: 50, flexDirection: 'row', alignItems: 'center'}}
+                            onPress={() => navigation.navigate("Login")}
+                        >
+                            <Image
+                                source={icons.profile}
+                                resizeMode="contain"
+                                style={{width: 50, height: 50}}
+                            />
+                            <Text style={{ paddingLeft: SIZES.padding/2, paddingRight: SIZES.padding, ...FONTS.h2 }}>로그인 / 회원가입</Text>
+                            <View style={{position: 'absolute', right: 0}}>
+                                <Image
+                                    source={icons.right_arrow}
+                                    resizeMode="contain"
+                                    style={{width: 25, height: 25}}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ marginBottom: SIZES.padding*3, height: 1, backgroundColor:COLORS.gray1 }}></View>
+                </View>
+            )
+        }
+    }
     function renderContent() {
         return (
             <View style={{ paddingHorizontal: SIZES.padding }}>
-                <View style={{ marginVertical: 4 }}>
-                    <TouchableOpacity //profile
-                        style={{height: 50, flexDirection: 'row', alignItems: 'center'}}
-                        onPress={() => navigation.goBack()}
-                    >
-                        <Image
-                            source={icons.profile}
-                            resizeMode="contain"
-                            style={{width: 50, height: 50}}
-                        />
-                        <Text style={{ paddingLeft: SIZES.padding/2, paddingRight: SIZES.padding, ...FONTS.h2 }}>로그인 / 회원가입</Text>
-                        <View style={{position: 'absolute', right: 0}}>
-                            <Image
-                                source={icons.right_arrow}
-                                resizeMode="contain"
-                                style={{width: 25, height: 25}}
-                            />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ marginBottom: SIZES.padding*3, height: 1, backgroundColor:COLORS.gray1 }}></View>
                 <View style={{ height: 1, backgroundColor:COLORS.gray1 }}></View>
                 <View style={{ marginVertical: 4 }}>
                     <TouchableOpacity //profile
@@ -116,6 +157,7 @@ const Setting = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
+            {renderLogin()}
             {renderContent()}
         </SafeAreaView>
     )
