@@ -3,7 +3,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 
 import Tabs from "./navigation/tabs"
-import { Search, Category, Order, Setting, QRScan } from './screens'
+import { Search, Category, Order, Setting, QRScan, Login } from './screens'
 
 const Stack = createStackNavigator();
 
@@ -22,6 +22,7 @@ const App = () => {
                 <Stack.Screen name="Order" component={Order} />
                 <Stack.Screen name="Setting" component={Setting} />
                 <Stack.Screen name="QRScan" component={QRScan} />
+                <Stack.Screen name="Login" component={Login} />
             </Stack.Navigator>
         </NavigationContainer>
     )

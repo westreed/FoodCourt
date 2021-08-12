@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import org.reactnative.maskedview.RNCMaskedViewPackage;
 // @react-native-firebase/app
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+// @react-native-firebase/auth
+import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 // @react-native-firebase/firestore
 import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 // react-native-camera
@@ -76,6 +78,7 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new RNCMaskedViewPackage(),
       new ReactNativeFirebaseAppPackage(),
+      new ReactNativeFirebaseAuthPackage(),
       new ReactNativeFirebaseFirestorePackage(),
       new RNCameraPackage(),
       new RNGestureHandlerPackage(),
