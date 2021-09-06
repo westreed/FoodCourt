@@ -42,3 +42,4 @@ Test Run Command
 * [React Native Firebase Docu](https://rnfirebase.io/)
 * [React Native AutoLogin & AutoLogout](https://wordbe.tistory.com/entry/React-Native-Auth-%EC%9E%90%EB%8F%99%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%9E%90%EB%8F%99%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83)
 * [React Naitve Firebase Login Authentication Code](https://github.com/itzpradip/react-native-firebase-social-app)
+* [React Firebase Login Persistence](https://velog.io/@cyongchoi/Firebase-%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-1)
