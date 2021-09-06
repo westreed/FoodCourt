@@ -19,14 +19,14 @@ const Home = ({ navigation }) => {
     //const ref = firestore().collection('foodCourtMenu').doc('category');
     //const categoryData = firestore().collection('foodCourtMenu').doc('category');
     //const [loading, setLoading] = React.useState(true)
-    const [categories, setCategories] = React.useState(null)
-    const [foodList, setFoodList] = React.useState(null)
-    const [refresh, setRefresh] = React.useState(true) //스크롤을 아래로 쭉 땡겨서 refresh할 때
+    const [categories, setCategories] = React.useState(null);
+    const [foodList, setFoodList] = React.useState(null);
+    const [refresh, setRefresh] = React.useState(true); //스크롤을 아래로 쭉 땡겨서 refresh할 때
 
     useEffect(() => {
         if(refresh == true){
             console.log("useEffect 작동", refresh);
-            const subscriber = firestore()
+            firestore()
                 .collection('foodCourtMenu')
                 .doc('36lsMCTfg3IdYIBzOjeL')
                 .onSnapshot(documentSnapshot => {
@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
                         setCategories(documentSnapshot.get('Category'));
                     }
                 });
-                const subscriber2 = firestore()
+                firestore()
                 .collection('foodCourtMenu')
                 .doc('foodMenuList')
                 .onSnapshot(documentSnapshot => {

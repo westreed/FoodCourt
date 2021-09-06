@@ -14,7 +14,7 @@ import firebase from '../firebaseConfig';
 
 const Setting = ({ navigation }) => {
 
-    const [displayName, setDisplayName] = React.useState(null)
+    const [displayName, setDisplayName] = React.useState(null);
 
     function renderHeader() {
         return (
@@ -44,7 +44,7 @@ const Setting = ({ navigation }) => {
                                 resizeMode="contain"
                                 style={{width: 50, height: 50}}
                             />
-                            <Text style={{ paddingLeft: SIZES.padding/2, paddingRight: SIZES.padding, ...FONTS.h2 }}>로그인 / 회원가입</Text>
+                            <Text style={{ paddingLeft: SIZES.padding/2, paddingRight: SIZES.padding, ...FONTS.h2 }}>로그인상태 {user.id}</Text>
                             <View style={{position: 'absolute', right: 0}}>
                                 <Image
                                     source={icons.right_arrow}
