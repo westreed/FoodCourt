@@ -8,6 +8,7 @@ import { Search, Category, Order, Setting, QRScan, Login } from './screens'
 const Stack = createStackNavigator();
 
 const App = () => {
+    
     return (
         <NavigationContainer>
             <Stack.Navigator

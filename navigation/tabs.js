@@ -3,7 +3,7 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator, BottomTabBar} from "@react-navigation/bottom-tabs"
 import {isIphoneX} from "react-native-iphone-x-helper";
 
-import {Home, Search, Order, Setting, Categories } from "../screens";
+import {Home, Search, Order, Setting, Category } from "../screens";
 import {COLORS, icons} from "../constants"
 
 const Tab = createBottomTabNavigator();
