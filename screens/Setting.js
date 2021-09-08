@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     SafeAreaView,
     View,
@@ -10,18 +10,21 @@ import {
 } from "react-native";
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants'
+import auth from '@react-native-firebase/auth';
+import {AuthContext} from '../navigation/AuthProvider';
 import firebase from '../firebaseConfig';
 
 const Setting = ({ navigation }) => {
 
     const [displayName, setDisplayName] = React.useState(null);
+    const {user, logout} = useContext(AuthContext);
 
     function renderHeader() {
         return (
             <View style={{ flexDirection: 'row', top:"5%", paddingBottom:"10%" }}>
                 <View style={{ flex:1, left: SIZES.padding/2 }}>
                     <View style={{height: 30}}>
-                        <Text style={{ ...FONTS.h2 }}>더보기</Text>
+                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>더보기</Text>
                     </View>
                 </View>
             </View>
@@ -29,7 +32,7 @@ const Setting = ({ navigation }) => {
     }
 
     function renderLogin() {
-        const user = firebase.auth().currentUser;
+        //const user = auth().currentUser;
         console.debug(user)
         if(user){ //로그인했을 때
             return (
@@ -37,7 +40,7 @@ const Setting = ({ navigation }) => {
                     <View style={{ marginVertical: 4 }}>
                         <TouchableOpacity //profile
                             style={{height: 50, flexDirection: 'row', alignItems: 'center'}}
-                            onPress={() => navigation.goBack()}
+                            onPress={() => logout()}
                         >
                             <Image
                                 source={icons.profile}
@@ -168,16 +171,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white2
     },
-    shadow: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 1,
-    }
 })
 
 export default Setting;

@@ -8,6 +8,8 @@ MERGED from C:\Programming\React Native\FoodCourt\android\app\src\main\AndroidMa
 MERGED from [com.facebook.flipper:flipper:0.75.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\e1d669587456380c8d4e62dfc92484ee\jetified-flipper-0.75.1\AndroidManifest.xml:8:1-18:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.75.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\e615367cba6d37165295db0ac8691771\jetified-flipper-network-plugin-0.75.1\AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.75.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\c02d4d7db539412ee6d5e9e7455f76bf\jetified-flipper-fresco-plugin-0.75.1\AndroidManifest.xml:8:1-15:12
+MERGED from [:react-native-community_blur] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\blur\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-community_checkbox] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\checkbox\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-community_masked-view] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\masked-view\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-firebase_auth] C:\Programming\React Native\FoodCourt\node_modules\@react-native-firebase\auth\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:react-native-firebase_firestore] C:\Programming\React Native\FoodCourt\node_modules\@react-native-firebase\firestore\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
@@ -53,6 +55,7 @@ MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] C:\Users\nks96\.gradl
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\34509534d074f4a2ee4310c9df995de5\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\6825810b1265af64127a63ce937f0eb6\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\1c7b30d600fe1b4a44f027f3958914d0\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.eightbitlab:blurview:1.6.3] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\3dc0cb6f76eb77767e09d21c4e9f68ce\jetified-blurview-1.6.3\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.exifinterface:exifinterface:1.3.2] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\f2e3ea628e4ccb91cd2f230c0df9cfc8\exifinterface-1.3.2\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\492b5917a575563d9324a93290bc4f97\jetified-play-services-auth-19.2.0\AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-vision:17.0.2] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\9294447a59caadec7567cdcf61243a70\jetified-play-services-vision-17.0.2\AndroidManifest.xml:2:1-9:12
@@ -180,6 +183,8 @@ MERGED from [com.facebook.soloader:soloader:0.10.1] C:\Users\nks96\.gradle\cache
 MERGED from [com.facebook.soloader:soloader:0.10.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\15d8c773228ed4f10068cde62f5e667a\jetified-soloader-0.10.1\AndroidManifest.xml:11:5-20
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\121c1b7561d49d1b372ceeda497bdd1c\material-1.1.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\121c1b7561d49d1b372ceeda497bdd1c\material-1.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.eightbitlab:blurview:1.6.3] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\3dc0cb6f76eb77767e09d21c4e9f68ce\jetified-blurview-1.6.3\AndroidManifest.xml:9:5-20
+MERGED from [com.eightbitlab:blurview:1.6.3] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\3dc0cb6f76eb77767e09d21c4e9f68ce\jetified-blurview-1.6.3\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\492b5917a575563d9324a93290bc4f97\jetified-play-services-auth-19.2.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\492b5917a575563d9324a93290bc4f97\jetified-play-services-auth-19.2.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-vision:17.0.2] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\9294447a59caadec7567cdcf61243a70\jetified-play-services-vision-17.0.2\AndroidManifest.xml:7:5-20
@@ -274,6 +279,10 @@ MERGED from [com.facebook.flipper:flipper-network-plugin:0.75.1] C:\Users\nks96\
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.75.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\e615367cba6d37165295db0ac8691771\jetified-flipper-network-plugin-0.75.1\AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.75.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\c02d4d7db539412ee6d5e9e7455f76bf\jetified-flipper-fresco-plugin-0.75.1\AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.75.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\c02d4d7db539412ee6d5e9e7455f76bf\jetified-flipper-fresco-plugin-0.75.1\AndroidManifest.xml:11:5-13:41
+MERGED from [:react-native-community_blur] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\blur\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-community_blur] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\blur\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-community_checkbox] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\checkbox\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_checkbox] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\checkbox\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\masked-view\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] C:\Programming\React Native\FoodCourt\node_modules\@react-native-community\masked-view\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-firebase_auth] C:\Programming\React Native\FoodCourt\node_modules\@react-native-firebase\auth\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
@@ -364,6 +373,8 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\nks
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\6825810b1265af64127a63ce937f0eb6\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\1c7b30d600fe1b4a44f027f3958914d0\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\1c7b30d600fe1b4a44f027f3958914d0\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.eightbitlab:blurview:1.6.3] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\3dc0cb6f76eb77767e09d21c4e9f68ce\jetified-blurview-1.6.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.eightbitlab:blurview:1.6.3] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\3dc0cb6f76eb77767e09d21c4e9f68ce\jetified-blurview-1.6.3\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.exifinterface:exifinterface:1.3.2] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\f2e3ea628e4ccb91cd2f230c0df9cfc8\exifinterface-1.3.2\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.exifinterface:exifinterface:1.3.2] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\f2e3ea628e4ccb91cd2f230c0df9cfc8\exifinterface-1.3.2\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\492b5917a575563d9324a93290bc4f97\jetified-play-services-auth-19.2.0\AndroidManifest.xml:20:5-44

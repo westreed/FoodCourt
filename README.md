@@ -30,6 +30,8 @@ Test Run Command
 * @react-native-firebase/app
 * @react-native-firebase/auth
 * @react-native-community/masked-view
+* @react-native-community/checkbox
+* @react-native-community/blur
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)

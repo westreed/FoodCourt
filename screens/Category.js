@@ -7,7 +7,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
-    FlatList
+    FlatList,
+    ActivityIndicator
 } from "react-native";
 
 import firestore from '@react-native-firebase/firestore';
@@ -98,7 +99,7 @@ const Category = ({ route, navigation }) => {
                             //backgroundColor: COLORS.gray2
                         }}
                     >
-                        <Text style={{ ...FONTS.h2 }}>{categories?.name}</Text>
+                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>{categories?.name}</Text>
                     </View>
                 </View>
             </View>
@@ -223,6 +224,9 @@ const Category = ({ route, navigation }) => {
                 <View style={{width:"100%", height:1, backgroundColor:COLORS.gray3}}></View>
             </View>
         )
+        if (refresh) {
+            return <ActivityIndicator />;
+        }
         return (
             <View>
                 <FlatList
@@ -256,16 +260,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white2
     },
-    shadow: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 1,
-    }
 })
 
 export default Category;

@@ -66,7 +66,7 @@ const Home = ({ navigation }) => {
             <View style={{flexDirection: 'column', height: "30%", backgroundColor: COLORS.blue1}}>
                 <View style={{ flex: 2, alignItems: 'center', flexDirection: 'row'}}>
                     <View style={{flex: 1, alignItems: 'center', left: 20}}>
-                        <Text style={{...FONTS.h2, color:COLORS.white}}>순천대학교 푸드코트</Text>
+                        <Text style={{...FONTS.h2, color:COLORS.white, fontWeight: 'bold'}}>순천대학교 푸드코트</Text>
                     </View>
                     <TouchableOpacity
                         style={{right: 20}}
@@ -158,7 +158,7 @@ const Home = ({ navigation }) => {
         }
         return (
             <View style={{marginTop: "4%", marginLeft: "4%", marginRight: "4%", marginBottom:250}}>
-                <Text style={{paddingBottom: 10, ...FONTS.h3}}>MENU</Text>
+                <Text style={{paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>MENU</Text>
                 <View style={{alignItems: "center"}}>
                     <FlatList
                         data={categories}
@@ -190,16 +190,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white2
     },
-    shadow: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 1,
-    }
 })
 
 export default Home;
