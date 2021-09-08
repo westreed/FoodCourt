@@ -8,7 +8,6 @@ import {COLORS, icons} from "../constants"
 
 const Tab = createBottomTabNavigator();
 
-
 const CustomTabBar = (props) => {
     if (isIphoneX()) {
         return (

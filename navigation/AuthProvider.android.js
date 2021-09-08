@@ -1,6 +1,11 @@
 import React, {createContext, useState} from 'react';
+import {
+    Alert
+} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+
+import firebase from '../firebaseConfig';
 
 export const AuthContext = createContext();
 
@@ -8,19 +13,34 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
 
     return (
-            <AuthContext.Provider
-                value={{
-                    user,
-                    setUser,
-                    login: async (email, password) => {
-                    try {
-                        await auth().signInWithEmailAndPassword(email, password);
-                    } catch (e) {
-                        console.log(e);
+        <AuthContext.Provider
+            value={{
+                user,
+                setUser,
+                login: async (email, password) => {
+                    if (email == '' || password == ''){
+                        Alert.alert(
+                            "로그인", "이메일과 비밀번호를 입력하세요.",[
+                                { text: "확인", onPress: () => console.log("그렇다는데") }
+                            ],
+                            { cancelable: false }
+                        );
                     }
-                    },
+                    else{
+                        try {
+                            await auth().signInWithEmailAndPassword(email, password);
+                        } catch (e) {
+                            console.log(e);
+                            Alert.alert(
+                                "로그인", e.message,
+                                [{ text: "확인", onPress: () => console.log("그렇다는데") }],
+                                { cancelable: false }
+                            );
+                        }
+                    }
+                },
 
-                    register: async (email, password) => {
+                register: async (email, password) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password)
                         .then(() => {
@@ -46,16 +66,18 @@ export const AuthProvider = ({children}) => {
                     } catch (e) {
                         console.log(e);
                     }
-                    },
-                    logout: async () => {
+                },
+                logout: async () => {
                     try {
                         await auth().signOut();
+                        console.log('logout');
                     } catch (e) {
                         console.log(e);
                     }
+                    console.log('로그아웃 시도는 한듯..?');
                 },
             }}>
-            {children}
+        {children}
         </AuthContext.Provider>
     );
 };
