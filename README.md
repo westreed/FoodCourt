@@ -15,8 +15,10 @@ Test Run Command
 `npm run android` `react-native run-android`
 
 ## Current Task
-1. Building Firebase Login function.
+1. ~Building Firebase Login Screen.~
 2. ~Improving the screen structure by building a login function.~
+3. Building the Signup Screen.
+4. Building the Profile Settings Screen.
 
 ## Used module
 * react-navigation
