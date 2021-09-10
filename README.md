@@ -16,7 +16,7 @@ Test Run Command
 
 ## Current Task
 1. Building Firebase Login function.
-2. Improving the screen structure by building a login function.
+2. ~Improving the screen structure by building a login function.~
 
 ## Used module
 * react-navigation
