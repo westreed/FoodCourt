@@ -32,6 +32,8 @@ Test Run Command
 * @react-native-community/masked-view
 * @react-native-community/checkbox
 * @react-native-community/blur
+* react-native-svg
+* react-native-svg-transformer
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
