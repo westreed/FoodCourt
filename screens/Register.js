@@ -13,7 +13,8 @@ import {
 import CheckBox from '@react-native-community/checkbox';
 import { BlurView } from "@react-native-community/blur";
 import CheckButton from '../components/CheckButton';
-import { icons, images, SIZES, COLORS, FONTS } from '../constants';
+import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
+import { images, SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
 const Register = ({ navigation }) => {
@@ -39,14 +40,7 @@ const Register = ({ navigation }) => {
                     }}
                     onPress={() => navigation.goBack()}
                 >
-                    <Image
-                        source={icons.back_arrow}
-                        resizeMode="contain"
-                        style={{
-                            width: 30,
-                            height: 30
-                        }}
-                    />
+                    <BackArrowSvg width={30} height={30} fill={'#000'}/>
                 </TouchableOpacity>
                 <View style={{ flex:1, left: SIZES.padding, }}>
                     <View style={{height: 30}}>

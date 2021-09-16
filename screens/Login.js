@@ -11,7 +11,8 @@ import {
 
 // import firebase from '../firebaseConfig';
 import FormButton from '../components/FormButton';
-import { icons, images, SIZES, COLORS, FONTS } from '../constants';
+import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
+import { images, SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
 const Login = ({ navigation }) => {
@@ -31,14 +32,7 @@ const Login = ({ navigation }) => {
                     }}
                     onPress={() => navigation.goBack()}
                 >
-                    <Image
-                        source={icons.back_arrow}
-                        resizeMode="contain"
-                        style={{
-                            width: 30,
-                            height: 30
-                        }}
-                    />
+                    <BackArrowSvg width={30} height={30} fill={'#000'}/>
                 </TouchableOpacity>
                 <View style={{ flex:1, left: SIZES.padding }}>
                     <View style={{height: 30}}>
@@ -81,7 +75,7 @@ const Login = ({ navigation }) => {
                 <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
                     <FormButton 
                         buttonTitle="로그인"
-                        onPress={() => login(email, password)}
+                        onPress={() => login(email, password, navigation)}
                     />
                 </View>
                 <View style={{paddingHorizontal: SIZES.padding}}>

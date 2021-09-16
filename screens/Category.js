@@ -12,7 +12,8 @@ import {
 } from "react-native";
 
 import firestore from '@react-native-firebase/firestore';
-import { icons, images, SIZES, COLORS, FONTS } from '../constants'
+import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
+import { images, SIZES, COLORS, FONTS } from '../constants'
 
 const itemWidth = 78;
 const Category = ({ route, navigation }) => {
@@ -71,14 +72,7 @@ const Category = ({ route, navigation }) => {
                     }}
                     onPress={() => navigation.goBack()}
                 >
-                    <Image
-                        source={icons.back_arrow}
-                        resizeMode="contain"
-                        style={{
-                            width: 30,
-                            height: 30
-                        }}
-                    />
+                    <BackArrowSvg width={30} height={30} fill={'#000'}/>
                 </TouchableOpacity>
                 <View
                     style={{
@@ -199,7 +193,7 @@ const Category = ({ route, navigation }) => {
                             marginRight: 10,
                         }}>
                             <Image
-                                source={item.icon}
+                                source={{ uri : item.icon }}
                                 resizeMode="cover"
                                 style={{
                                     borderRadius: 20,
@@ -228,7 +222,7 @@ const Category = ({ route, navigation }) => {
             return <ActivityIndicator />;
         }
         return (
-            <View>
+            <View style={{marginBottom:100}}>
                 <FlatList
                     data={selectFood}
                     horizontal={false}

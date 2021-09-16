@@ -19,6 +19,7 @@ MERGED from [:react-native-gesture-handler] C:\Programming\React Native\FoodCour
 MERGED from [:react-native-permissions] C:\Programming\React Native\FoodCourt\node_modules\react-native-permissions\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] C:\Programming\React Native\FoodCourt\node_modules\react-native-safe-area-context\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] C:\Programming\React Native\FoodCourt\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-svg] C:\Programming\React Native\FoodCourt\node_modules\react-native-svg\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:firebase-analytics:19.0.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\47a22d42accc6fe24601a71e457e4f8a\jetified-firebase-analytics-19.0.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\a3b83f9f60e311655205c272a719d00f\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -301,6 +302,8 @@ MERGED from [:react-native-safe-area-context] C:\Programming\React Native\FoodCo
 MERGED from [:react-native-safe-area-context] C:\Programming\React Native\FoodCourt\node_modules\react-native-safe-area-context\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] C:\Programming\React Native\FoodCourt\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-screens] C:\Programming\React Native\FoodCourt\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-svg] C:\Programming\React Native\FoodCourt\node_modules\react-native-svg\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-svg] C:\Programming\React Native\FoodCourt\node_modules\react-native-svg\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-analytics:19.0.0] C:\Users\nks96\.gradle\caches\transforms-2\files-2.1\47a22d42accc6fe24601a71e457e4f8a\jetified-firebase-analytics-19.0.0\AndroidManifest.xml:5:5-44

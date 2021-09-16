@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) => {
             value={{
                 user,
                 setUser,
-                login: async (email, password) => {
+                login: async (email, password, navigation) => {
                     if (email == '' || password == ''){
                         Alert.alert(
                             "로그인", "이메일과 비밀번호를 입력하세요.",[
@@ -29,6 +29,12 @@ export const AuthProvider = ({children}) => {
                     else{
                         try {
                             await auth().signInWithEmailAndPassword(email, password);
+                            Alert.alert(
+                                "로그인", "로그인에 성공했습니다.",[
+                                    { text: "확인", onPress: () => navigation.goBack() }
+                                ],
+                                { cancelable: false }
+                            );
                         } catch (e) {
                             console.log(e);
                             Alert.alert(
@@ -70,11 +76,15 @@ export const AuthProvider = ({children}) => {
                 logout: async () => {
                     try {
                         await auth().signOut();
-                        console.log('logout');
+                        Alert.alert(
+                            "로그아웃", "정상적으로 로그아웃이 되었어요!",[
+                                { text: "확인" }
+                            ],
+                            { cancelable: false }
+                        );
                     } catch (e) {
                         console.log(e);
                     }
-                    console.log('로그아웃 시도는 한듯..?');
                 },
             }}>
         {children}
