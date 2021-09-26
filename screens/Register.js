@@ -14,6 +14,8 @@ import CheckBox from '@react-native-community/checkbox';
 import { BlurView } from "@react-native-community/blur";
 import CheckButton from '../components/CheckButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
+import CheckSvg from '../assets/icons/check-circle-svgrepo-com.svg';
+import CircleSvg from '../assets/icons/circle-svgrepo-com.svg';
 import { images, SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
@@ -26,6 +28,11 @@ const Register = ({ navigation }) => {
     const [isSelected4, setSelection4] = React.useState(false);
     const [isSelected, setSelection] = React.useState(false);
     const [allSelected, setAllSelection] = React.useState(false);
+
+    const [isName, setIsName] = React.useState('');
+    const [isEmail, setIsEmail] = React.useState('');
+    const [isPassword, setIsPassword] = React.useState('');
+    const [isCheckPass, setIsCheckPass] = React.useState('');
 
     const [isModal, setIsModal] = React.useState(false);
 
@@ -137,11 +144,13 @@ const Register = ({ navigation }) => {
                         blurAmount={20}
                         reducedTransparencyFallbackColor="white"
                     >
-                        {/* <View style={{justifyContent: 'center', paddingHorizontal: SIZES.padding, height: SIZES.height/2, backgroundColor: COLORS.blue1 }}>
-                            <Text style={{ marginTop: SIZES.padding, marginHorizontal: SIZES.padding, color: COLORS.white, ...FONTS.body2 }}>이용약관</Text>
-                        </View> */}
+                        <View style={{height: SIZES.height/2, width: SIZES.width/2 }}>
+                            <View style={{ backgroundColor: COLORS.blue1 }}>
+                                <Text>이용약관</Text>
+                            </View>
+                        </View>
                         <TouchableOpacity
-                            style={styles.absolute}
+                            style={{...styles.absolute}}
                             onPress={() => {
                                 setIsModal(false)
                             }}
@@ -156,7 +165,73 @@ const Register = ({ navigation }) => {
     function renderRegister(){
         return(
             <View>
-                <Text>동의 후 회원가입단계</Text>
+                {/* 내용 */}
+                <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding, alignItems: 'center',}}>
+                    <Text style={{...FONTS.h0}}>정보입력</Text>
+                </View>
+
+                <View style={{ marginTop:"5%", paddingHorizontal: SIZES.padding}}>
+                    <View style={styles.checkboxContainer2}>
+                        {isName ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
+                        <Text style={styles.label1}>이름</Text>
+                    </View>
+                    <TextInput
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        value={String(isName)}
+                        onChangeText={text => setIsName(text)}
+                        placeholder="이름을 입력해주세요."
+                        multiline={false}
+                    />
+                </View>
+                <View style={{ marginTop:"5%", paddingHorizontal: SIZES.padding}}>
+                    <View style={styles.checkboxContainer2}>
+                        {isEmail ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
+                        <Text style={styles.label1}>학교이메일</Text>
+                    </View>
+                    <TextInput
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        value={String(isEmail)}
+                        onChangeText={text => setIsEmail(text)}
+                        placeholder="학교이메일을 입력해주세요."
+                        multiline={false}
+                    />
+                </View>
+                <View style={{ marginTop:"5%", paddingHorizontal: SIZES.padding}}>
+                    <View style={styles.checkboxContainer2}>
+                        {(8 <= isPassword.length && isPassword.length <= 20) ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
+                        <Text style={styles.label1}>비밀번호 (8~20글자, 영문, 숫자, 특수문자)</Text>
+                    </View>
+                    <TextInput
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        value={String(isPassword)}
+                        onChangeText={text => setIsPassword(text)}
+                        secureTextEntry={true}
+                        placeholder="비밀번호를 입력해주세요."
+                        multiline={false}
+                    />
+                </View>
+                <View style={{ marginTop:"5%", paddingHorizontal: SIZES.padding}}>
+                    <View style={styles.checkboxContainer2}>
+                        {(isPassword == isCheckPass && isCheckPass.length > 0) ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
+                        <Text style={styles.label1}>비밀번호 확인</Text>
+                    </View>
+                    <TextInput
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        value={String(isCheckPass)}
+                        onChangeText={text => setIsCheckPass(text)}
+                        secureTextEntry={true}
+                        placeholder="비밀번호를 한번더 입력해주세요."
+                        multiline={false}
+                    />
+                </View>
+                <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
+                    <CheckButton
+                        buttonTitle="다음으로"
+                        check1={isSelected1}
+                        check2={isSelected2}
+                        onPress={() => setAgree(true)}
+                    />
+                </View>
             </View>
         )
     }
@@ -177,6 +252,9 @@ const styles = StyleSheet.create({
     checkboxContainer: {
         flexDirection: "row",
         marginBottom: 10,
+    },
+    checkboxContainer2: {
+        flexDirection: "row",
     },
     checkbox: {
         alignSelf: "center",
