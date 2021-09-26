@@ -53,4 +53,4 @@ Test Run Command
 * [JavaScript Syntax](https://blex.me/@baealex/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8javascript-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95-%EC%A0%95%EB%A6%AC)
 
 ## ScreenShot
-![텍스트](https://imgur.com/E3aWnv7)
+![텍스트](https://i.imgur.com/E3aWnv7.jpg)
