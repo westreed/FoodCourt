@@ -46,7 +46,7 @@ export const AuthProvider = ({children}) => {
                     }
                 },
 
-                register: async (email, password) => {
+                register: async (name, email, password) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password)
                         .then(() => {
@@ -54,8 +54,7 @@ export const AuthProvider = ({children}) => {
                         //with the appropriate details.
                         firestore().collection('users').doc(auth().currentUser.uid)
                         .set({
-                            fname: '',
-                            lname: '',
+                            name: name,
                             email: email,
                             createdAt: firestore.Timestamp.fromDate(new Date()),
                             userImg: null,
@@ -69,6 +68,12 @@ export const AuthProvider = ({children}) => {
                         .catch(error => {
                             console.log('Something went wrong with sign up: ', error);
                         });
+                        Alert.alert(
+                            "회원가입 성공", "성공적으로 회원가입되셨습니다, ", name, '님',[
+                                { text: "확인" }
+                            ],
+                            { cancelable: false }
+                        );
                     } catch (e) {
                         console.log(e);
                     }

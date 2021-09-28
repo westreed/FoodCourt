@@ -8,11 +8,14 @@ import {
     Image,
     TextInput,
     Modal,
+    Alert
 } from "react-native";
 
 import CheckBox from '@react-native-community/checkbox';
+import functions from '../constants/functions';
 import { BlurView } from "@react-native-community/blur";
 import CheckButton from '../components/CheckButton';
+import CheckButton2 from '../components/CheckButton2';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import CheckSvg from '../assets/icons/check-circle-svgrepo-com.svg';
 import CircleSvg from '../assets/icons/circle-svgrepo-com.svg';
@@ -29,6 +32,7 @@ const Register = ({ navigation }) => {
     const [isSelected, setSelection] = React.useState(false);
     const [allSelected, setAllSelection] = React.useState(false);
 
+    const {register} = useContext(AuthContext);
     const [isName, setIsName] = React.useState('');
     const [isEmail, setIsEmail] = React.useState('');
     const [isPassword, setIsPassword] = React.useState('');
@@ -185,7 +189,7 @@ const Register = ({ navigation }) => {
                 </View>
                 <View style={{ marginTop:"5%", paddingHorizontal: SIZES.padding}}>
                     <View style={styles.checkboxContainer2}>
-                        {isEmail ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
+                        {functions.checkCollegeEmail(isEmail) ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
                         <Text style={styles.label1}>학교이메일</Text>
                     </View>
                     <TextInput
@@ -198,7 +202,7 @@ const Register = ({ navigation }) => {
                 </View>
                 <View style={{ marginTop:"5%", paddingHorizontal: SIZES.padding}}>
                     <View style={styles.checkboxContainer2}>
-                        {(8 <= isPassword.length && isPassword.length <= 20) ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
+                        {functions.checkPassword(isPassword) ? <CheckSvg width={30} height={30} fill={COLORS.blue1} style={styles.checkbox}/> : <CircleSvg width={30} height={30} style={styles.checkbox}/>}
                         <Text style={styles.label1}>비밀번호 (8~20글자, 영문, 숫자, 특수문자)</Text>
                     </View>
                     <TextInput
@@ -225,11 +229,13 @@ const Register = ({ navigation }) => {
                     />
                 </View>
                 <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
-                    <CheckButton
+                    <CheckButton2
                         buttonTitle="다음으로"
-                        check1={isSelected1}
-                        check2={isSelected2}
-                        onPress={() => setAgree(true)}
+                        name={isName}
+                        email={isEmail}
+                        password={isPassword}
+                        checkpass={isCheckPass}
+                        onPress={() => register(isName, isEmail, isPassword)}
                     />
                 </View>
             </View>
