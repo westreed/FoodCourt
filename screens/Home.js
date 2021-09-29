@@ -5,15 +5,15 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    TouchableHighlight,
     Image,
     FlatList,
     ActivityIndicator
 } from "react-native";
-
+import TicketSvg from '../assets/icons/ticket-svgrepo-com.svg';
+import QRCodeSvg from '../assets/icons/qr-svgrepo-com.svg';
 import firestore from '@react-native-firebase/firestore';
-
-import { icons, images, SIZES, COLORS, FONTS } from '../constants'
-
+import { images, SIZES, COLORS, FONTS } from '../constants'
 
 const Home = ({ navigation }) => {
     //const ref = firestore().collection('foodCourtMenu').doc('category');
@@ -63,102 +63,123 @@ const Home = ({ navigation }) => {
     }
     function renderHeader() {
         return (
-            <View style={{flexDirection: 'column', height: "30%", backgroundColor: COLORS.blue1}}>
-                <View style={{ flex: 2, alignItems: 'center', flexDirection: 'row'}}>
+            <View style={{flexDirection: 'column', height: "20%", backgroundColor: COLORS.blue1, justifyContent: 'center', ...styles.shadow}}>
+                <View style={{alignItems: 'center', flexDirection: 'row'}}>
                     <View style={{flex: 1, alignItems: 'center', left: 20}}>
-                        <Text style={{...FONTS.h2, color:COLORS.white}}>순천대학교 푸드코트</Text>
+                        <Text style={{...FONTS.h2, color:COLORS.white, fontWeight: 'bold'}}>순천대학교 푸드코트</Text>
                     </View>
                     <TouchableOpacity
                         style={{right: 20}}
                         onPress={() => navigation.navigate("QRScan")}
                     >
-                        <View>
-                            <Image
-                                source={icons.qr_icon}
-                                resizeMode="contain"
-                                style={{
-                                    tintColor: COLORS.white,
-                                    width: 30,
-                                    height: 30
-                                }}
-                            />
-                        </View>
+                        <QRCodeSvg width={30} height={30} fill={COLORS.white}/>
                         </TouchableOpacity>
                 </View>
-                <View style={{flex: 1, justifyContent: "center"}}>
-                    <View style={{height:14, left: 20, right: 20, flexDirection: 'row'}}>
-                        <Image
-                            source={icons.megaphone}
-                            resizeMode="contain"
-                            style={{
-                                tintColor: COLORS.white,
-                                width: 12,
-                                height: 12
-                            }}
-                        />
-                        <Text style={{...FONTS.body5, color:COLORS.white}}> 순천대학교 소식</Text>
-                    </View>
-                    
-                </View>
-                <View style={{flex: 3}}>
-                    <Image
-                        source={images.title_image}
-                        resizeMode= "cover"
-                        style={{
-                            width: "100%",
-                            height: "100%"
-                        }}
-                    />
+                <View style={{alignItems: 'center'}}>
+                    <Text style={{...FONTS.h4, color:COLORS.white, fontWeight: 'bold'}}>2021 졸업작품 프로젝트</Text>
                 </View>
             </View>
         )
     }
 
     function renderMain(){
+        const ViewCategory = ({ category }) => {
+            console.log("check",category)
+            if (foodList){
+                let menu = foodList.filter(a => a.categories.includes(category.id))
+                console.log('menu ', menu)
+                if (menu.length > 0){
+                    if (menu.length <= 3){
+                        return (
+                            <View>
+                                {menu.map((item, index) => (
+                                    <View
+                                        key={`${index}`}
+                                        style={{paddingLeft: "8%", flexDirection: 'row'}}
+                                    >
+                                        <TicketSvg width={25} height={25} fill={COLORS.gray1} />
+                                        <Text style={{...FONTS.body3}}> {item.name} </Text>
+                                    </View>
+                                ))}
+                            </View>
+                        )
+                    }
+                    else{
+                        return (
+                            <View>
+                                {menu.map((item, index) => {
+                                    if (index <= 2) {
+                                        return(
+                                            <View
+                                                key={`${index}`}
+                                                style={{paddingLeft: "8%", flexDirection: 'row'}}
+                                            >
+                                                <TicketSvg width={25} height={25} fill={COLORS.gray1} />
+                                                <Text style={{...FONTS.body3}}> {item.name} </Text>
+                                            </View>
+                                        )
+                                    }
+                                })}
+                            </View>
+                        )
+                    }
+                }
+                else{
+                    return(
+                        <View style={{paddingLeft: "8%", flexDirection: 'row'}}>
+                            <TicketSvg width={25} height={25} fill={COLORS.gray1} />
+                            <Text style={{...FONTS.body3}}> 아직 메뉴가 없네요. </Text>
+                        </View>
+                    )
+                }
+            }
+            else{
+                return <ActivityIndicator />;
+            }
+        }
         const renderItem = ({ item }) => {
             return (
-                <TouchableOpacity
-                    style={{
-                        paddingLeft: "3%",
-                        paddingRight: "3%",
-                        paddingTop: "6%",
-                        paddingBottom: "6%",
-                        //backgroundColor: (selectedCategory?.id == item.id) ? COLORS.blue1 : COLORS.gray1,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        //backgroundColor: COLORS.gray1
-                    }}
-                    onPress={() => selectCategory(item)}
-                >
-                    <View
-                        style={{
-                            width: SIZES.width*24/100,
-                            height: SIZES.width*24/100,
-                            alignItems: "center",
-                            justifyContent: "center",
-                            //backgroundColor: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
-                        }}
-                    >
-                        <Image
-                            source={item.icon}
-                            resizeMode="cover"
+                <TouchableHighlight
+                    activeOpacity={0.5}
+                    underlayColor={COLORS.white2}
+                    style={{ paddingLeft: "3%", paddingRight: "3%", paddingTop: "2%", paddingBottom: "2%", alignItems: "center", justifyContent: "center",}}
+                    onPress={() => selectCategory(item)}>
+                    <View style={{borderRadius:10, backgroundColor: COLORS.white, ...styles.shadow2}}>
+                        <View
                             style={{
-                                borderRadius: 20,
-                                width: "100%",
-                                height: "100%"
+                                width: SIZES.width*90/100,
+                                height: SIZES.width*35/100,
+                                alignItems: "center",
+                                flexDirection: 'row',
                             }}
-                        />
-                        <Text style={{ marginTop: 5, ...FONTS.body3}}> {item.name} </Text>
+                        >
+                            <Image
+                                source={{uri : item.icon}}
+                                resizeMode="cover"
+                                style={{
+                                    marginLeft: 20,
+                                    borderRadius: 20,
+                                    width: SIZES.width*24/100,
+                                    height: SIZES.width*24/100,
+                                }}
+                            />
+                            <View style={{flexDirection: 'column'}}>
+                                <Text style={{...FONTS.h2, paddingLeft: "4%", fontWeight:'bold'}}> {item.name} </Text>
+                                <ViewCategory category={item} />
+                            </View>
+                        </View>
+                        
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             )
         }
+        
         if (refresh) {
             return <ActivityIndicator />;
         }
         return (
-            <View style={{marginTop: "4%", marginLeft: "4%", marginRight: "4%", marginBottom:250}}>
-                <Text style={{paddingBottom: 10, ...FONTS.h3}}>MENU</Text>
+            <View style={{marginTop: "4%", marginLeft: "4%", marginRight: "4%", marginBottom:200}}>
+                <Text style={{paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
                 <View style={{alignItems: "center"}}>
                     <FlatList
                         data={categories}
@@ -166,8 +187,8 @@ const Home = ({ navigation }) => {
                         showsVerticalScrollIndicator={false}
                         keyExtractor={item => `${item.id}`}
                         renderItem={renderItem}
-                        contentContainerStyle={{ paddingBottom: "8%" }}
-                        numColumns={3}
+                        //contentContainerStyle={{ paddingBottom: "8%" }}
+                        //numColumns={3}
                         refreshing={refresh}
                         onRefresh={() => {
                             setRefresh(true)
@@ -191,14 +212,26 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white2
     },
     shadow: {
+        shadowColor: COLORS.blue1,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 1.34,
+        shadowRadius: 3.27,
+
+        elevation: 10,
+    },
+    shadow2: {
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 3,
+            height: 2,
         },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 1,
+        shadowOpacity: 1.34,
+        shadowRadius: 3.27,
+
+        elevation: 5,
     }
 })
 

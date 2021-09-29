@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import {
     SafeAreaView,
     View,
@@ -7,89 +7,19 @@ import {
     TouchableOpacity,
     Image,
     TextInput,
-    Button,
 } from "react-native";
 
-import firebase from '../firebaseConfig'
-import { icons, images, SIZES, COLORS, FONTS } from '../constants'
+// import firebase from '../firebaseConfig';
+import FormButton from '../components/FormButton';
+import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
+import { images, SIZES, COLORS, FONTS } from '../constants';
+import {AuthContext} from '../navigation/AuthProvider';
 
 const Login = ({ navigation }) => {
 
-    const [displayName, setDisplayName] = React.useState('');
-    const [user, setUser] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [emailError, setEmailError] = React.useState('');
-    const [passwordError, setPasswordError] = React.useState('');
-    const [hasAccount, setHasAccount] = React.useState(false);
-
-    const clearInputs = () => {
-        setEmail('');
-        setPassword('');
-    }
-    
-    const clearErrors = () => {
-        setEmailError('');
-        setPasswordError('');
-    }
-
-    const handleLogin = () => {
-        console.debug("로그인시도 ", email, password)
-        clearErrors();
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(err => {
-                switch (err.code){
-                    case "auth/invalid-email":
-                    case "auth/user-disabled":
-                    case "auth/user-not-found":
-                        setEmailError(err.message);
-                        break;
-                    case "auth/wrong-password":
-                        setPasswordError(err.message);
-                        break;
-                }
-            });
-    };
-
-    const handleSignup = () => {
-        clearErrors();
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .catch(err => {
-                switch (err.code){
-                    case "auth/email-already-in-use":
-                    case "auth/invalid-email":
-                        setEmailError(err.message);
-                        break;
-                    case "auth/weak-password":
-                        setPasswordError(err.message);
-                        break;
-                }
-            });
-    };
-
-    const handleLogout = () => {
-        firebase.auth().signOut();
-    };
-
-    const authListener = () => {
-        firebase.auth().onAuthStateChanged((user) => {
-            if(user){
-                clearInputs();
-                setUser(user);
-                console.debug("로그인성공 ", user)
-            } else{
-                setUser('');
-            }
-        });
-    };
-
-    useEffect(() => {
-        authListener();
-    }, []);
+    const {login} = useContext(AuthContext);
 
     function renderHeader() {
         return (
@@ -102,18 +32,11 @@ const Login = ({ navigation }) => {
                     }}
                     onPress={() => navigation.goBack()}
                 >
-                    <Image
-                        source={icons.back_arrow}
-                        resizeMode="contain"
-                        style={{
-                            width: 30,
-                            height: 30
-                        }}
-                    />
+                    <BackArrowSvg width={30} height={30} fill={'#000'}/>
                 </TouchableOpacity>
                 <View style={{ flex:1, left: SIZES.padding }}>
                     <View style={{height: 30}}>
-                        <Text style={{ ...FONTS.h2 }}>로그인</Text>
+                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>로그인</Text>
                     </View>
                 </View>
             </View>  
@@ -133,35 +56,39 @@ const Login = ({ navigation }) => {
                 <View style={{marginVertical:SIZES.padding/2, paddingHorizontal: SIZES.padding}}>
                     <TextInput
                         style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
-                        value={{email}}
+                        value={String(email)}
                         onChangeText={text => setEmail(text)}
                         placeholder="학교이메일을 입력해주세요."
                         multiline={false}
                     />
                 </View>
-                <View>
-                    <Text>{emailError}</Text>
-                </View>
                 <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
                     <TextInput
                         style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
-                        value={{password}}
+                        value={String(password)}
                         onChangeText={text => setPassword(text)}
                         placeholder="비밀번호를 입력해주세요."
                         secureTextEntry={true}
                         multiline={false}
                     />
                 </View>
-                <View>
-                    <Text>{passwordError}</Text>
-                </View>
                 <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
-                    <Button
-                        onPress={() => handleLogin()}
-                        title="로그인"
-                        color={COLORS.blue1}
-                        accessibilityLabel="Learn more about this purple button"
-                        />
+                    <FormButton 
+                        buttonTitle="로그인"
+                        onPress={() => login(email, password, navigation)}
+                    />
+                </View>
+                <View style={{paddingHorizontal: SIZES.padding}}>
+                    <FormButton 
+                        buttonTitle="회원가입"
+                        onPress={() => navigation.navigate("Register")}
+                    />
+                </View>
+                <View style={{flexDirection: 'row', marginVertical:SIZES.padding/2, paddingHorizontal: SIZES.padding, justifyContent: 'center'}}>
+                    <Text style={{...FONTS.body4}}>계정을 잊으셨나요? </Text>
+                    <TouchableOpacity onPress={() => navigation.goBack()}><Text style={{...FONTS.body4, color:COLORS.orange }}>ID 찾기</Text></TouchableOpacity>
+                    <Text style={{...FONTS.body4}}> 또는 </Text>
+                    <TouchableOpacity onPress={() => navigation.goBack()}><Text style={{...FONTS.body4, color:COLORS.orange }}>비밀번호 찾기</Text></TouchableOpacity>
                 </View>
             </View>
         )
@@ -181,16 +108,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white2
     },
-    shadow: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 1,
-    }
 })
 
 export default Login;

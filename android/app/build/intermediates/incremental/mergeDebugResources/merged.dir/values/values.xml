@@ -123,6 +123,7 @@
     <color name="common_google_signin_btn_text_light_disabled">#1F000000</color>
     <color name="common_google_signin_btn_text_light_focused">#90000000</color>
     <color name="common_google_signin_btn_text_light_pressed">#DE000000</color>
+    <color name="default_overlay_color">#AAFFFFFF</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_dark_default_color_background">#121212</color>
     <color name="design_dark_default_color_error">#CF6679</color>
@@ -639,6 +640,8 @@
     <integer name="bottom_sheet_slide_duration">150</integer>
     <integer name="cancel_button_image_alpha">127</integer>
     <integer name="config_tooltipAnimTime">150</integer>
+    <integer name="default_blur_radius">15</integer>
+    <integer name="default_downsample_factor">8</integer>
     <integer name="design_snackbar_text_max_lines">2</integer>
     <integer name="design_tab_indicator_anim_duration_ms">300</integer>
     <integer name="google_play_services_version">12451000</integer>
@@ -5211,6 +5214,14 @@
       <enum name="BOTTOM_START" value="8388691"/>
     </attr>
   </declare-styleable>
+    <declare-styleable name="BlurView">
+        <attr format="color" name="blurOverlayColor"/>
+    </declare-styleable>
+    <declare-styleable name="BlurringView">
+        <attr format="integer" name="blurRadius"/>
+        <attr format="integer" name="downsampleFactor"/>
+        <attr format="color" name="overlayColor"/>
+    </declare-styleable>
     <declare-styleable name="BottomAppBar">
     <!-- Background for the BottomAppBar. -->
     <attr name="backgroundTint"/>

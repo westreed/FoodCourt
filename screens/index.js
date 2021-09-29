@@ -5,6 +5,7 @@ import Order from './Order'
 import Setting from './Setting'
 import QRScan from './QRScan'
 import Login from './Login'
+import Register from './Register'
 
 export {
     Home,
@@ -14,4 +15,5 @@ export {
     Setting,
     QRScan,
     Login,
+    Register,
 }
