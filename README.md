@@ -16,10 +16,13 @@ Test Run Command
 `npm run android` `react-native run-android`
 
 ## Current Task
-1. ~Building Firebase Login Screen.~
+1. ~Creating Firebase Login Screen.~
 2. ~Improving the screen structure by building a login function.~
-3. Building the Signup Screen.
-4. Building the Profile Settings Screen.
+3. Creating the Signup Screen.
+4. Creating the Profile Settings Screen.
+5. Create a Search Screen.
+6. Create a Order Screen.
+7. Fill in the contents of the Settings Screen.
 
 ## Used module
 * react-navigation
@@ -52,6 +55,7 @@ Test Run Command
 * [React Naitve Firebase Login Authentication Code](https://github.com/itzpradip/react-native-firebase-social-app)
 * [React Firebase Login Persistence](https://velog.io/@cyongchoi/Firebase-%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-1)
 * [JavaScript Syntax](https://blex.me/@baealex/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8javascript-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95-%EC%A0%95%EB%A6%AC)
+* [Firebase Auth ErrorCode](https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#error-codes_3)
 
 ## ScreenShot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)
