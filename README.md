@@ -25,7 +25,7 @@ Test Run Command
 7. Create a Order Screen.
 8. Fill in the contents of the Settings Screen.
 
-## Used module
+## Module in Use
 * react-navigation
 * @react-navigation/bottom-tabs
 * @react-navigation/native
