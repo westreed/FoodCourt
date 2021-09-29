@@ -7,11 +7,13 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
-    FlatList
+    FlatList,
+    ActivityIndicator
 } from "react-native";
 
 import firestore from '@react-native-firebase/firestore';
-import { icons, images, SIZES, COLORS, FONTS } from '../constants'
+import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
+import { images, SIZES, COLORS, FONTS } from '../constants'
 
 const itemWidth = 78;
 const Category = ({ route, navigation }) => {
@@ -70,14 +72,7 @@ const Category = ({ route, navigation }) => {
                     }}
                     onPress={() => navigation.goBack()}
                 >
-                    <Image
-                        source={icons.back_arrow}
-                        resizeMode="contain"
-                        style={{
-                            width: 30,
-                            height: 30
-                        }}
-                    />
+                    <BackArrowSvg width={30} height={30} fill={'#000'}/>
                 </TouchableOpacity>
                 <View
                     style={{
@@ -98,7 +93,7 @@ const Category = ({ route, navigation }) => {
                             //backgroundColor: COLORS.gray2
                         }}
                     >
-                        <Text style={{ ...FONTS.h2 }}>{categories?.name}</Text>
+                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>{categories?.name}</Text>
                     </View>
                 </View>
             </View>
@@ -198,7 +193,7 @@ const Category = ({ route, navigation }) => {
                             marginRight: 10,
                         }}>
                             <Image
-                                source={item.icon}
+                                source={{ uri : item.icon }}
                                 resizeMode="cover"
                                 style={{
                                     borderRadius: 20,
@@ -223,8 +218,11 @@ const Category = ({ route, navigation }) => {
                 <View style={{width:"100%", height:1, backgroundColor:COLORS.gray3}}></View>
             </View>
         )
+        if (refresh) {
+            return <ActivityIndicator />;
+        }
         return (
-            <View>
+            <View style={{marginBottom:100}}>
                 <FlatList
                     data={selectFood}
                     horizontal={false}
@@ -256,16 +254,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white2
     },
-    shadow: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 1,
-    }
 })
 
 export default Category;
