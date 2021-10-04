@@ -13,12 +13,9 @@ import {
 import TicketSvg from '../assets/icons/ticket-svgrepo-com.svg';
 import QRCodeSvg from '../assets/icons/qr-svgrepo-com.svg';
 import firestore from '@react-native-firebase/firestore';
-import { images, SIZES, COLORS, FONTS } from '../constants'
+import { SIZES, COLORS, FONTS } from '../constants'
 
 const Home = ({ navigation }) => {
-    //const ref = firestore().collection('foodCourtMenu').doc('category');
-    //const categoryData = firestore().collection('foodCourtMenu').doc('category');
-    //const [loading, setLoading] = React.useState(true)
     const [categories, setCategories] = React.useState(null);
     const [foodList, setFoodList] = React.useState(null);
     const [refresh, setRefresh] = React.useState(true); //스크롤을 아래로 쭉 땡겨서 refresh할 때
@@ -32,7 +29,6 @@ const Home = ({ navigation }) => {
                 .onSnapshot(documentSnapshot => {
                     console.log('Category exists: ', documentSnapshot.exists);
                     if(documentSnapshot.exists){
-                        //const fieldPath = new firebase.firestore.FieldPath('address', 'zip');
                         console.log('Category data: ', documentSnapshot.get('Category'));
                         setCategories(documentSnapshot.get('Category'));
                     }
@@ -48,12 +44,7 @@ const Home = ({ navigation }) => {
                         setFoodList(documentSnapshot.get('foodMenuList'));
                     }
                 });
-            //firestore().collection('foodCourtMenu').doc('foodMenuList').set({foodMenuList}).then(() => {console.log('User added!');});
             setRefresh(false)
-        }
-        // Stop listening for updates when no longer required
-        return () => {
-            console.log("Home useEffect return", refresh);
         }
     }, [refresh]);
 
@@ -84,10 +75,8 @@ const Home = ({ navigation }) => {
 
     function renderMain(){
         const ViewCategory = ({ category }) => {
-            console.log("check",category)
             if (foodList){
                 let menu = foodList.filter(a => a.categories.includes(category.id))
-                console.log('menu ', menu)
                 if (menu.length > 0){
                     if (menu.length <= 3){
                         return (

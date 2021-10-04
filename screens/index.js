@@ -6,6 +6,7 @@ import Setting from './Setting'
 import QRScan from './QRScan'
 import Login from './Login'
 import Register from './Register'
+import Certification from './Certification'
 
 export {
     Home,
@@ -16,4 +17,5 @@ export {
     QRScan,
     Login,
     Register,
+    Certification,
 }

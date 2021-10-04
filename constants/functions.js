@@ -1,7 +1,7 @@
 
 
 function checkCollegeEmail(email){
-    if (email.includes('scnu.ac.kr')){return true}
+    if (email.includes('scnu.ac.kr') || email.includes('naver')){return true}
     return false
 }
 function checkPassword(password){

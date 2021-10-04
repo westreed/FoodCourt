@@ -4,7 +4,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import auth from '@react-native-firebase/auth';
 import {AuthContext} from './AuthProvider';
 
-import { Search, Category, Order, Setting, QRScan, Login, Register } from '../screens';
+import { Search, Category, Order, Setting, QRScan, Login, Register, Certification } from '../screens';
 import Tabs from './tabs';
 
 
@@ -42,6 +42,7 @@ const Routes = () => {
                 <Stack.Screen name="QRScan" component={QRScan} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Register" component={Register} />
+                <Stack.Screen name="Certification" component={Certification} />
             </Stack.Navigator>
         </NavigationContainer>
     );
