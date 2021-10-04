@@ -5,7 +5,6 @@ import {
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-import firebase from '../firebaseConfig';
 
 export const AuthContext = createContext();
 
@@ -46,12 +45,22 @@ export const AuthProvider = ({children}) => {
                     }
                 },
 
-                register: async (name, email, password) => {
+                register: async (name, email, password, navigation) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password)
                         .then(() => {
                         //Once the user creation has happened successfully, we can add the currentUser into firestore
                         //with the appropriate details.
+                        let user = auth().currentUser
+                        user.sendEmailVerification()
+                        .then(() => {
+                            Alert.alert(
+                                "이메일 인증", "입력하신 이메일로 인증번호를 보냈어요!",[
+                                    { text: "확인", onPress: () => navigation.navigate("Certification") }
+                                ],
+                                { cancelable: false }
+                            );
+                        })
                         firestore().collection('users').doc(auth().currentUser.uid)
                         .set({
                             name: name,
@@ -68,12 +77,7 @@ export const AuthProvider = ({children}) => {
                         .catch(error => {
                             console.log('Something went wrong with sign up: ', error);
                         });
-                        Alert.alert(
-                            "회원가입 성공", "성공적으로 회원가입되셨습니다, ", name, '님',[
-                                { text: "확인" }
-                            ],
-                            { cancelable: false }
-                        );
+                        
                     } catch (e) {
                         console.log(e);
                     }
