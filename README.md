@@ -41,6 +41,7 @@ Test Run Command
 * @react-native-community/blur
 * react-native-svg
 * react-native-svg-transformer
+* react-native-keyboard-aware-scroll-view
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)

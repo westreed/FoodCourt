@@ -8,8 +8,9 @@ import {
     Image,
     TextInput,
     Modal,
-    Alert
+    Alert,
 } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import CheckBox from '@react-native-community/checkbox';
 import functions from '../constants/functions';
@@ -243,10 +244,10 @@ const Register = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <KeyboardAwareScrollView style={styles.container}>
             {renderHeader()}
             {agree ? renderRegister() : renderAgree()}
-        </SafeAreaView>
+        </KeyboardAwareScrollView>
     )
 }
 

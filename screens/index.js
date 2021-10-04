@@ -7,6 +7,7 @@ import QRScan from './QRScan'
 import Login from './Login'
 import Register from './Register'
 import Certification from './Certification'
+import Payment from './Payment'
 
 export {
     Home,
@@ -18,4 +19,5 @@ export {
     Login,
     Register,
     Certification,
+    Payment,
 }
