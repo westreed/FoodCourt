@@ -14,13 +14,22 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import firestore from '@react-native-firebase/firestore';
 import SearchSvg from '../assets/icons/search-svgrepo-com.svg'
 import MagnetSvg from '../assets/icons/magnet-svgrepo-com.svg'
+import RingSvg from '../assets/icons/spin5-svgrepo-com.svg'
 
-const Search = () => {
+const Search = ({ navigation }) => {
     const [searching, setSearching] = React.useState(false);
     const [searchText, setSearchText] = React.useState('');
 
     const [categoryFood, setCategoryFood] = React.useState([]); //카테고리 안 메뉴 데이터
     const [searchFood, setSearchFood] = React.useState('');
+
+    useEffect(() => {
+        //다시 이 화면이 활성화 됬을 때 작동함
+        navigation.addListener('focus', () => {
+            setSearching(false);
+            setSearchText('');
+        });
+    });
 
     function searchFunction(){
         console.log('categoryFood의 데이터');
@@ -142,6 +151,15 @@ const Search = () => {
                 <View style={{width:"100%", height:1, backgroundColor:COLORS.gray3}}></View>
             </View>
         )
+        if(searchFood.length == 0){
+            return (
+                <View style={{ marginTop:SIZES.padding*2, alignItems:'center'}}>
+                    <RingSvg width={30} height={30} fill={COLORS.gray1} style={{marginBottom:10}}/>
+                    <Text style={{...FONTS.h2, color:COLORS.orange}}>아쉽게도 검색한 메뉴는</Text>
+                    <Text style={{...FONTS.h2, color:COLORS.orange}}>없네요...</Text>
+                </View>
+            )
+        }
         return (
             <View style={{marginBottom:120}}>
                 <FlatList

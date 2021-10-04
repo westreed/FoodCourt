@@ -20,6 +20,8 @@ import CheckButton2 from '../components/CheckButton2';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import CheckSvg from '../assets/icons/check-circle-svgrepo-com.svg';
 import CircleSvg from '../assets/icons/circle-svgrepo-com.svg';
+import ShowSvg from '../assets/icons/bullseye-svgrepo-com.svg';
+import HideSvg from '../assets/icons/blocked-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
@@ -38,6 +40,8 @@ const Register = ({ navigation }) => {
     const [isEmail, setIsEmail] = React.useState('');
     const [isPassword, setIsPassword] = React.useState('');
     const [isCheckPass, setIsCheckPass] = React.useState('');
+
+    const [isHide, setIsHide] = React.useState(true);
 
     const [isModal, setIsModal] = React.useState(false);
 
@@ -210,10 +214,13 @@ const Register = ({ navigation }) => {
                         style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
                         value={String(isPassword)}
                         onChangeText={text => setIsPassword(text)}
-                        secureTextEntry={true}
+                        secureTextEntry={isHide}
                         placeholder="비밀번호를 입력해주세요."
                         multiline={false}
                     />
+                    <TouchableOpacity style={{position: 'absolute', top:50, left:SIZES.width-60}} onPress={() => setIsHide(!isHide)}>
+                        {isHide ? <ShowSvg width={20} height={20} fill={COLORS.gray1 }/> : <HideSvg width={20} height={20} fill={COLORS.gray1} />}
+                    </TouchableOpacity>
                 </View>
                 <View style={{ marginTop:"5%", paddingHorizontal: SIZES.padding}}>
                     <View style={styles.checkboxContainer2}>
