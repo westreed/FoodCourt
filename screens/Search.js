@@ -7,15 +7,41 @@ import {
     TouchableOpacity,
     Image,
     TextInput,
+    FlatList,
 } from "react-native";
 
 import { SIZES, COLORS, FONTS } from '../constants';
+import firestore from '@react-native-firebase/firestore';
 import SearchSvg from '../assets/icons/search-svgrepo-com.svg'
 import MagnetSvg from '../assets/icons/magnet-svgrepo-com.svg'
 
 const Search = () => {
     const [searching, setSearching] = React.useState(false);
     const [searchText, setSearchText] = React.useState('');
+
+    const [categoryFood, setCategoryFood] = React.useState([]); //카테고리 안 메뉴 데이터
+    const [searchFood, setSearchFood] = React.useState('');
+
+    function searchFunction(){
+        console.log('categoryFood의 데이터');
+        console.log(categoryFood);
+        if (searchText != ''){
+            console.log("검색 시작");
+            firestore()
+                .collection('foodCourtMenu')
+                .doc('foodMenuList')
+                .onSnapshot(documentSnapshot => {
+                    if(documentSnapshot.exists){
+                        setCategoryFood(documentSnapshot.get('foodMenuList'));
+                        setSearching(true)
+                    }
+                });
+            if(searching){
+                let menu = categoryFood.filter(a => (a.name.includes(searchText)));
+                setSearchFood(menu)
+            }
+        }
+    }
 
     function renderHeader(){
         return (
@@ -28,7 +54,7 @@ const Search = () => {
                     placeholder="검색할 내용을 입력하세요."
                     multiline={false}
                 />
-                <TouchableOpacity onPress={() => setSearching(true)}>
+                <TouchableOpacity onPress={() => searchFunction()}>
                     <SearchSvg width={30} height={30} fill={COLORS.blue1} style={{marginRight: 20,}} />
                 </TouchableOpacity>
                 </View>
@@ -44,9 +70,91 @@ const Search = () => {
             </View>
         )
     }
-    function renderSearch(){
+    function foodSoldout(item){
+        if(item.soldout == true){
+            return (
+                <View style={{
+                    position: "absolute",
+                    top: -8,
+                    height: SIZES.width*24/100+15,
+                    width: "100%",
+                    backgroundColor: 'rgba(179, 179, 179 ,0.5)'
+                }}>
+                    <View style={{
+                        flex: 1,
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}>
+                        <Text style={{...FONTS.body0, color:COLORS.red2}}>SOLD OUT</Text>
+                    </View>
+                </View>
+            )
+        }
+    }
+
+    function renderSearch() {
+        const renderItem = ({ item }) => (
+            <View>
+                <TouchableOpacity
+                    style={{
+                        height: SIZES.width*24/100,
+                        //alignItems: "center",
+                        justifyContent: "center",
+                        marginTop: 7,
+                        marginBottom: 7,
+                    }}
+                    //onPress={() => onSelectCategory(item)}
+                >
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: "center",
+                        }}
+                    >
+                        <View style={{
+                            width: SIZES.width*20/100,
+                            height: SIZES.width*20/100,
+                            marginRight: 10,
+                        }}>
+                            <Image
+                                source={{ uri : item.icon }}
+                                resizeMode="cover"
+                                style={{
+                                    borderRadius: 20,
+                                    width: "100%",
+                                    height: "100%"
+                                }}
+                            />
+                        </View>
+                        <View style={{
+                            flexDirection: 'column',
+                        }}>
+                            <Text style={{...FONTS.body2}}>
+                                {item.name}
+                            </Text>
+                            <Text style={{...FONTS.body2}}>
+                                {item.price}원
+                            </Text>
+                        </View>
+                    </View>
+                    {foodSoldout(item)}
+                </TouchableOpacity>
+                <View style={{width:"100%", height:1, backgroundColor:COLORS.gray3}}></View>
+            </View>
+        )
         return (
-            <Text>서치함수 작동</Text>
+            <View style={{marginBottom:120}}>
+                <FlatList
+                    data={searchFood}
+                    horizontal={false}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={renderItem}
+                    contentContainerStyle={{
+                        paddingHorizontal: 7,
+                    }}
+                />
+            </View>
         )
     }
     return (
