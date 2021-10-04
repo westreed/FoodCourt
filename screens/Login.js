@@ -12,7 +12,7 @@ import {
 // import firebase from '../firebaseConfig';
 import FormButton from '../components/FormButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
-import { images, SIZES, COLORS, FONTS } from '../constants';
+import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
 const Login = ({ navigation }) => {
