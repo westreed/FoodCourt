@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {
     SafeAreaView,
     View,
@@ -6,7 +6,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
-    FlatList
+    FlatList,
 } from "react-native";
 
 import RightArrowSvg from '../assets/icons/right-arrow-svgrepo-com.svg';
@@ -18,13 +18,36 @@ import ChatSvg from '../assets/icons/comment-outlined-svgrepo-com.svg';
 import PlaneSvg from '../assets/icons/paper-plane-outlined-svgrepo-com.svg';
 import MapSignSvg from '../assets/icons/map-signs-svgrepo-com.svg';
 
-import { images, SIZES, COLORS, FONTS } from '../constants'
+import { SIZES, COLORS, FONTS } from '../constants'
 import {AuthContext} from '../navigation/AuthProvider';
+import firestore from '@react-native-firebase/firestore';
 
 const Setting = ({ navigation }) => {
 
-    const [displayName, setDisplayName] = React.useState(null);
     const {user, logout} = useContext(AuthContext);
+    const [userData, setUserData] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+
+    useEffect(() => {
+        if(user){getUser();}
+        navigation.addListener("focus", () => setLoading(!loading));
+    }, [navigation, loading]);
+
+    const getUser = async() => {
+        await firestore()
+        .collection('users')
+        .doc(user.uid)
+        .get()
+        .then((documentSnapshot) => {
+            if( documentSnapshot.exists ) {
+                console.log('User Data', documentSnapshot.data());
+                setUserData(documentSnapshot.data());
+            }
+        })
+        .catch(error => {
+            console.log('getUser Error: ', error);
+        })
+    }
 
     function renderHeader() {
         return (
@@ -48,10 +71,10 @@ const Setting = ({ navigation }) => {
                             onPress={() => logout()}
                         >   
                             <View style={{flexDirection:'row'}}>
-                                <Text style={{ ...FONTS.h2, fontWeight:'bold', paddingRight:10 }}>{user.email}님</Text>
+                                <Text style={{ ...FONTS.h2, fontWeight:'bold', paddingRight:10 }}>{userData ? userData.name : '오류'} 님</Text>
                                 <SignOutSvg width={30} height={30} fill={COLORS.gray1}/>
                             </View>
-                            <View style={{width: "70%", height:5, backgroundColor: COLORS.blue1}}></View>
+                            <View style={{width: "50%", height:5, backgroundColor: COLORS.blue1}}></View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ top:-1, marginBottom: SIZES.padding*2, height: 1, backgroundColor:COLORS.gray1 }}></View>
@@ -141,7 +164,7 @@ const Setting = ({ navigation }) => {
                 <View style={{ marginVertical: 4 }}>
                     <TouchableOpacity //profile
                         style={{height: 50, flexDirection: 'row', alignItems: 'center'}}
-                        onPress={() => navigation.goBack()}
+                        onPress={() => console.log(user)}
                     >
                         <Text style={{ paddingLeft: SIZES.padding/2, paddingRight: SIZES.padding/2, ...FONTS.h2 }}>버전정보</Text>
                         <MapSignSvg width={30} height={30} fill={COLORS.gray1} />

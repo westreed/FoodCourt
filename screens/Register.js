@@ -19,7 +19,7 @@ import CheckButton2 from '../components/CheckButton2';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import CheckSvg from '../assets/icons/check-circle-svgrepo-com.svg';
 import CircleSvg from '../assets/icons/circle-svgrepo-com.svg';
-import { images, SIZES, COLORS, FONTS } from '../constants';
+import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
 const Register = ({ navigation }) => {
@@ -235,7 +235,7 @@ const Register = ({ navigation }) => {
                         email={isEmail}
                         password={isPassword}
                         checkpass={isCheckPass}
-                        onPress={() => register(isName, isEmail, isPassword)}
+                        onPress={() => register(isName, isEmail, isPassword, navigation)}
                     />
                 </View>
             </View>
