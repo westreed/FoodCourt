@@ -63,3 +63,4 @@ Test Run Command
 
 ## ScreenShot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)
+![회원가입 키보드](https://github.com/westreed/FoodCourt/blob/master/Register%20Keyboard%20Layout.gif)
