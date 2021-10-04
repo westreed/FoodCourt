@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 // import firebase from '../firebaseConfig';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormButton from '../components/FormButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
@@ -95,11 +96,11 @@ const Login = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <KeyboardAwareScrollView style={styles.container}>
             {renderHeader()}
             {renderTitle()}
             {renderLogin()}
-        </SafeAreaView>
+        </KeyboardAwareScrollView>
     )
 }
 
