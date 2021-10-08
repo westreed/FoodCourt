@@ -60,6 +60,8 @@ Test Run Command
 * [Firebase Auth ErrorCode](https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#error-codes_3)
 * [React Native Image-Modal](https://dev-yakuza.posstree.com/ko/react-native/react-native-image-modal/)
 * [React Native Mpas](https://dev-yakuza.posstree.com/ko/react-native/react-native-maps/)
+* [ppt제작용 색상추천 사이트](https://colors.lol/)
+* [ppt제작용 픽토그램 사이트](https://www.flaticon.com/)
 
 ## ScreenShot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)
