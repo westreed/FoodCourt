@@ -36,11 +36,27 @@ export const AuthProvider = ({children}) => {
                             );
                         } catch (e) {
                             console.log(e);
-                            Alert.alert(
-                                "로그인", e.message,
-                                [{ text: "확인", onPress: () => console.log("그렇다는데") }],
-                                { cancelable: false }
-                            );
+                            if (e.code == 'auth/invalid-email' || e.code == 'auth/user-not-found'){
+                                Alert.alert(
+                                    "로그인 실패", "가입되지 않은 이메일주소입니다.",
+                                    [{ text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
+                            else if (e.code == 'auth/wrong-password'){
+                                Alert.alert(
+                                    "로그인 실패", "잘못된 비밀번호입니다. 비밀번호를 잊은 경우, '비밀번호 찾기'를 이용하세요.",
+                                    [{ text: "비밀번호찾기", onPress: () => console.log("그렇다는데")}, { text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
+                            else if (e.code == 'auth/too-many-requests'){
+                                Alert.alert(
+                                    "로그인 실패", "짧은 시간 동안 너무 많은 로그인 실패가 있었습니다. 추후에 다시 시도하세요.",
+                                    [{ text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
                         }
                     }
                 },
@@ -76,6 +92,27 @@ export const AuthProvider = ({children}) => {
                         //we need to catch the whole sign up process if it fails too.
                         .catch(error => {
                             console.log('Something went wrong with sign up: ', error);
+                            if (error.code == 'auth/email-already-in-use'){
+                                Alert.alert(
+                                    "회원가입 실패", "해당 이메일은 이미 가입되어 있습니다.",
+                                    [{ text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
+                            else if (error.code == 'auth/invalid-email'){
+                                Alert.alert(
+                                    "회원가입 실패", "이메일주소 형식이 맞지 않습니다.",
+                                    [{ text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
+                            else if (error.code == 'auth/weak-password'){
+                                Alert.alert(
+                                    "회원가입 실패", "패스워드 양식이 맞지 않습니다.",
+                                    [{ text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
                         });
                         
                     } catch (e) {

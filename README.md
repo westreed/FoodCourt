@@ -18,10 +18,10 @@ Test Run Command
 ## Current Task
 1. ~Create a Firebase Login Screen.~
 2. ~Improving the screen structure by building a login function.~
-3. Create a Signup Screen.
+3. ~Create a Signup Screen.~
 4. Create a Profile Settings Screen.
 5. Create a Food Order Screen.
-6. Create a Search Screen.
+6. ~Create a Search Screen.~
 7. Create a Order Screen.
 8. Fill in the contents of the Settings Screen.
 
