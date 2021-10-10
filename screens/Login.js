@@ -87,8 +87,6 @@ const Login = ({ navigation }) => {
                 </View>
                 <View style={{flexDirection: 'row', marginVertical:SIZES.padding/2, paddingHorizontal: SIZES.padding, justifyContent: 'center'}}>
                     <Text style={{...FONTS.body4}}>계정을 잊으셨나요? </Text>
-                    <TouchableOpacity onPress={() => navigation.goBack()}><Text style={{...FONTS.body4, color:COLORS.orange }}>ID 찾기</Text></TouchableOpacity>
-                    <Text style={{...FONTS.body4}}> 또는 </Text>
                     <TouchableOpacity onPress={() => navigation.goBack()}><Text style={{...FONTS.body4, color:COLORS.orange }}>비밀번호 찾기</Text></TouchableOpacity>
                 </View>
             </View>

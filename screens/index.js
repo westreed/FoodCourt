@@ -8,6 +8,7 @@ import Login from './Login'
 import Register from './Register'
 import Certification from './Certification'
 import Payment from './Payment'
+import FindPassword from './FindPassword'
 
 export {
     Home,
@@ -20,4 +21,5 @@ export {
     Register,
     Certification,
     Payment,
+    FindPassword,
 }
