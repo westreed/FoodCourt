@@ -13,7 +13,12 @@ This repository was used as a graduation project and submitted before an intervi
 * Node.js
 
 Test Run Command
-`npm run android` `react-native run-android`
+```js
+npm run android
+```
+```js
+react-native run-android
+```
 
 ## Current Task
 1. ~Create a Firebase Login Screen.~
@@ -64,6 +69,7 @@ Test Run Command
 * [ppt제작용 픽토그램 사이트](https://www.flaticon.com/)
 * [JavaScript HashMap](https://m.blog.naver.com/PostView.nhn?blogId=newacadia&logNo=110147183901&proxyReferer=https:%2F%2Fwww.google.com%2F)
 * [HashMap으로 중복없는 쿠폰번호 생성하기](https://blog.naver.com/alwaysblue15/221782308244)
+* [React Native QRCode Generator](https://github.com/cssivision/react-native-qrcode)
 
 ## ScreenShot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)
