@@ -31,22 +31,22 @@ react-native run-android
 8. Fill in the contents of the Settings Screen.
 
 ## Module in Use
-* react-navigation
-* @react-navigation/bottom-tabs
-* @react-navigation/native
-* @react-navigation/stack
-* react-native-qrcode-scanner
-* react-native-camera
-* firebase
-* react-native-firebase
-* @react-native-firebase/app
-* @react-native-firebase/auth
-* @react-native-community/masked-view
-* @react-native-community/checkbox
-* @react-native-community/blur
-* react-native-svg
-* react-native-svg-transformer
-* react-native-keyboard-aware-scroll-view
+┌ react-navigation : RN 네비게이션 모듈로, 앱하단에 있는 네비게이션 바를 제작하는데 사용. <br>
+├ @react-navigation/bottom-tabs <br>
+├ @react-navigation/native <br>
+└ @react-navigation/stack <br>
+┌ react-native-qrcode-scanner : QR코드를 스캔할 수 있는 카메라 모듈. <br>
+└ react-native-camera : QR코드 스캐너 모듈을 사용하기 위한 종속모듈. <br>
+┌ firebase : 파이어베이스 모듈. <br>
+├ react-native-firebase <br>
+├ @react-native-firebase/app <br>
+└ @react-native-firebase/auth <br>
+┌ @react-native-community/masked-view <br>
+├ @react-native-community/checkbox : 체크박스를 구현하기 위한 모듈. <br>
+└ @react-native-community/blur : 화면을 블러처리하기 위한 모듈. <br>
+┌ react-native-svg : SVG 벡터 아이콘을 사용하기 위한 모듈. <br>
+└ react-native-svg-transformer : 종속모듈. <br>
+─ react-native-keyboard-aware-scroll-view : 키보드 소환시 스크롤 화면으로 전환해주는 모듈. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
