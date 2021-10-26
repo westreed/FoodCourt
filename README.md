@@ -49,6 +49,7 @@ react-native run-android
 ─ react-native-keyboard-aware-scroll-view : 키보드 소환시 스크롤 화면으로 전환해주는 모듈. <br>
 ─ react-native-naver-map : 네이버 지도 모듈. <br>
 ─ react-native-qrcode : QR코드 생성 모듈. 미지원이라 변경될 수 있음. <br>
+─ react-native-make : App 아이콘과 Splash 이미지를 관리하는 모듈. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
@@ -72,6 +73,8 @@ react-native run-android
 * [JavaScript HashMap](https://m.blog.naver.com/PostView.nhn?blogId=newacadia&logNo=110147183901&proxyReferer=https:%2F%2Fwww.google.com%2F)
 * [HashMap으로 중복없는 쿠폰번호 생성하기](https://blog.naver.com/alwaysblue15/221782308244)
 * [React Native QRCode Generator](https://github.com/cssivision/react-native-qrcode)
+* [React Native에서 App 아이콘 & Splash 이미지 만들기](https://dev-yakuza.posstree.com/ko/react-native/react-native-make/)
+* [App Splash 스크린](https://dev-yakuza.posstree.com/ko/react-native/react-native-splash-screen/)
 
 ## Screenshot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)
