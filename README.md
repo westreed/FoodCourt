@@ -32,9 +32,9 @@ react-native run-android
 
 ## Module in Use
 ┌ react-navigation : RN 네비게이션 모듈로, 앱하단에 있는 네비게이션 바를 제작하는데 사용. <br>
-├ @react-navigation/bottom-tabs <br>
 ├ @react-navigation/native <br>
-└ @react-navigation/stack <br>
+├ @react-navigation/bottom-tabs : 하단탭 제작을 위한 모듈. <br>
+└ @react-navigation/stack : 네비게이션을 스택구조로 구현해주는 모듈. <br>
 ┌ react-native-qrcode-scanner : QR코드를 스캔할 수 있는 카메라 모듈. <br>
 └ react-native-camera : QR코드 스캐너 모듈을 사용하기 위한 종속모듈. <br>
 ┌ firebase : 파이어베이스 모듈. <br>
