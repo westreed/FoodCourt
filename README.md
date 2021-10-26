@@ -47,6 +47,8 @@ react-native run-android
 ┌ react-native-svg : SVG 벡터 아이콘을 사용하기 위한 모듈. <br>
 └ react-native-svg-transformer : 종속모듈. <br>
 ─ react-native-keyboard-aware-scroll-view : 키보드 소환시 스크롤 화면으로 전환해주는 모듈. <br>
+─ react-native-naver-map : 네이버 지도 모듈. <br>
+─ react-native-qrcode : QR코드 생성 모듈. 미지원이라 변경될 수 있음. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
@@ -71,6 +73,6 @@ react-native run-android
 * [HashMap으로 중복없는 쿠폰번호 생성하기](https://blog.naver.com/alwaysblue15/221782308244)
 * [React Native QRCode Generator](https://github.com/cssivision/react-native-qrcode)
 
-## ScreenShot
+## Screenshot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)
 ![회원가입 키보드](https://github.com/westreed/FoodCourt/blob/master/Register%20Keyboard%20Layout.gif)
