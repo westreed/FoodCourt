@@ -9,8 +9,12 @@ const CheckButton3 = ({buttonTitle, navigation}) => {
     const {user} = useContext(AuthContext);
     
     function checkUser(){
-        
-        if(auth().currentUser.reload().emailVerified){return true}
+
+        auth().currentUser.reload();
+        auth().currentUser.getIdToken(true);
+
+        console.log('User : ', auth().currentUser);
+        if(auth().currentUser.emailVerified){return true}
         return false
     }
     return (
