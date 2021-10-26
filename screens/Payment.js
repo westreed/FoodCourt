@@ -15,6 +15,7 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
 const Payment = ({ navigation }) => {
+    
     return (
         <SafeAreaView style={styles.container}>
             <Text></Text>
