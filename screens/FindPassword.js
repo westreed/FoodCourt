@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import functions from '../constants/functions';
-import CheckButton3 from '../components/CheckButton3';
+import CheckButton4 from '../components/CheckButton4';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import CheckSvg from '../assets/icons/check-circle-svgrepo-com.svg';
 import CircleSvg from '../assets/icons/circle-svgrepo-com.svg';
@@ -37,7 +37,7 @@ const FindPassword = ({ navigation }) => {
                         <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>비밀번호찾기</Text>
                     </View>
                 </View>
-            </View>  
+            </View>
         )
     }
     function renderTitle() {
@@ -62,6 +62,13 @@ const FindPassword = ({ navigation }) => {
                         onChangeText={text => setEmail(text)}
                         placeholder="학교이메일을 입력해주세요."
                         multiline={false}
+                    />
+                </View>
+                <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
+                    <CheckButton4
+                        buttonTitle="다음으로"
+                        email={email}
+                        navigation={navigation}
                     />
                 </View>
             </View>
