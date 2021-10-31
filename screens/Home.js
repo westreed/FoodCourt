@@ -8,14 +8,17 @@ import {
     TouchableHighlight,
     Image,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    ScrollView
 } from "react-native";
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import TicketSvg from '../assets/icons/ticket-svgrepo-com.svg';
 import QRCodeSvg from '../assets/icons/qr-svgrepo-com.svg';
 import firestore from '@react-native-firebase/firestore';
 import { SIZES, COLORS, FONTS } from '../constants'
 
 const Home = ({ navigation }) => {
+    const bottomHeight = useBottomTabBarHeight();
     const [categories, setCategories] = React.useState(null);
     const [foodList, setFoodList] = React.useState(null);
     const [refresh, setRefresh] = React.useState(true); //스크롤을 아래로 쭉 땡겨서 refresh할 때
@@ -54,7 +57,7 @@ const Home = ({ navigation }) => {
     }
     function renderHeader() {
         return (
-            <View style={{flexDirection: 'column', height: "20%", backgroundColor: COLORS.blue1, justifyContent: 'center', ...styles.shadow}}>
+            <View style={{flexDirection: 'column', height: SIZES.height*20/100, backgroundColor: COLORS.blue1, justifyContent: 'center', ...styles.shadow}}>
                 <View style={{alignItems: 'center', flexDirection: 'row'}}>
                     <View style={{flex: 1, alignItems: 'center', left: 20}}>
                         <Text style={{...FONTS.h2, color:COLORS.white, fontWeight: 'bold'}}>순천대학교 푸드코트</Text>
@@ -157,7 +160,6 @@ const Home = ({ navigation }) => {
                                 <ViewCategory category={item} />
                             </View>
                         </View>
-                        
                     </View>
                 </TouchableHighlight>
             )
@@ -167,7 +169,7 @@ const Home = ({ navigation }) => {
             return <ActivityIndicator />;
         }
         return (
-            <View style={{marginTop: "4%", marginLeft: "4%", marginRight: "4%", marginBottom:200}}>
+            <View style={{marginTop: "4%", marginLeft: "4%", marginRight: "4%",}}>
                 <Text style={{paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
                 <View style={{alignItems: "center"}}>
                     <FlatList
@@ -176,7 +178,7 @@ const Home = ({ navigation }) => {
                         showsVerticalScrollIndicator={false}
                         keyExtractor={item => `${item.id}`}
                         renderItem={renderItem}
-                        //contentContainerStyle={{ paddingBottom: "8%" }}
+                        style={{marginBottom: bottomHeight*4}}
                         //numColumns={3}
                         refreshing={refresh}
                         onRefresh={() => {
@@ -198,7 +200,7 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.white2
+        backgroundColor: COLORS.white2,
     },
     shadow: {
         shadowColor: COLORS.blue1,

@@ -177,7 +177,7 @@ const Setting = ({ navigation }) => {
                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                     <Text style={{...FONTS.body4}}>혹시 푸드코트 위치를 모르시나요? </Text>
                     <TouchableOpacity
-                        onPress={() => navigation.goBack()}
+                        onPress={() => navigation.navigate("FoodMap")}
                     >
                         <Text style={{...FONTS.body4, color:COLORS.orange}}>위치확인하기</Text>
                     </TouchableOpacity>
