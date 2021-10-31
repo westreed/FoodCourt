@@ -1,5 +1,4 @@
 import React, {useRef, useEffect} from "react";
-import { useState } from "react";
 import {
     SafeAreaView,
     View,
@@ -78,19 +77,13 @@ const Category = ({ route, navigation }) => {
                     style={{
                         flex:1,
                         left: SIZES.padding,
-                        //right: SIZES.padding,
-                        //alignItems: 'center',
                         justifyContent: 'center',
-                        //backgroundColor: COLORS.gray2
                     }}
                 >
                     <View
                         style={{
                             height: 30,
-                            //alignItems: 'center',
                             justifyContent: 'center',
-                            //paddingHorizontal: SIZES.padding,
-                            //backgroundColor: COLORS.gray2
                         }}
                     >
                         <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>{categories?.name}</Text>
@@ -179,7 +172,7 @@ const Category = ({ route, navigation }) => {
                         marginTop: 7,
                         marginBottom: 7,
                     }}
-                    //onPress={() => onSelectCategory(item)}
+                    onPress={() => navigation.navigate("Payment", {item})}
                 >
                     <View
                         style={{

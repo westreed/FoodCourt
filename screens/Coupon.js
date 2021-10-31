@@ -14,14 +14,11 @@ import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-u
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
-const Payment = ({ route, navigation }) => {
+const Coupon = ({ navigation }) => {
     
-    const [food, setFood] = React.useState(route.params.item); //선택한 음식
-    console.log(food);
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Payment</Text>
-            <Text>{food.name}</Text>
+            <Text>Coupon</Text>
         </SafeAreaView>
     )
 }
@@ -33,4 +30,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Payment;
+export default Coupon;
