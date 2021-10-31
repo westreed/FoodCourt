@@ -9,6 +9,7 @@ import Register from './Register'
 import Certification from './Certification'
 import Payment from './Payment'
 import FindPassword from './FindPassword'
+import FoodMap from './FoodMap'
 
 export {
     Home,
@@ -22,4 +23,5 @@ export {
     Certification,
     Payment,
     FindPassword,
+    FoodMap,
 }

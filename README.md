@@ -47,7 +47,8 @@ react-native run-android
 ┌ react-native-svg : SVG 벡터 아이콘을 사용하기 위한 모듈. <br>
 └ react-native-svg-transformer : 종속모듈. <br>
 ─ react-native-keyboard-aware-scroll-view : 키보드 소환시 스크롤 화면으로 전환해주는 모듈. <br>
-─ react-native-naver-map : 네이버 지도 모듈. <br>
+┌ react-native-map : 구글 지도 모듈. <br>
+└ react-native-geolocation-service : 사용자의 현재위치 정보를 불러오는 모듈. <br>
 ─ react-native-qrcode : QR코드 생성 모듈. 미지원이라 변경될 수 있음. <br>
 ─ react-native-make : App 아이콘과 Splash 이미지를 관리하는 모듈. <br>
 

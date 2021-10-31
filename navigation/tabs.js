@@ -13,33 +13,6 @@ import ThreeDotsSvg from "../assets/icons/three-small-dots-svgrepo-com.svg";
 
 const Tab = createBottomTabNavigator();
 
-const CustomTabBar = (props) => {
-    if (isIphoneX()) {
-        return (
-            <View>
-                <View
-                    style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: 30,
-                        backgroundColor: COLORS.white
-                    }}
-                ></View>
-                <BottomTabBar
-                    {...props.props}
-                />
-            </View>
-        )
-    } else {
-        return (
-            <BottomTabBar
-                {...props.props}
-            />
-        )
-    }
-}
 
 const Tabs = () => {
     return (
@@ -47,6 +20,7 @@ const Tabs = () => {
             tabBarOptions={{
                 showLabel: true,
                 style: {
+                    height:50,
                     borderTopWidth: 0,
                     backgroundColor: "white",
                     elevation: 0,
@@ -54,11 +28,6 @@ const Tabs = () => {
                     borderTopRightRadius:40,
                 }
             }}
-            tabBar={(props) => (
-                <CustomTabBar
-                    props={props}
-                />
-            )}
         >
             <Tab.Screen
                 name="홈"

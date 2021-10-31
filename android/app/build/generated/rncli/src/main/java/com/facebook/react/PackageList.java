@@ -25,8 +25,12 @@ import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 // react-native-camera
 import org.reactnative.camera.RNCameraPackage;
+// react-native-geolocation-service
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-maps
+import com.airbnb.android.react.maps.MapsPackage;
 // react-native-permissions
 import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-reanimated
@@ -89,7 +93,9 @@ public class PackageList {
       new ReactNativeFirebaseAuthPackage(),
       new ReactNativeFirebaseFirestorePackage(),
       new RNCameraPackage(),
+      new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
+      new MapsPackage(),
       new RNPermissionsPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
