@@ -15,7 +15,8 @@ import {
     Certification,
     Payment,
     FindPassword,
-    FoodMap
+    FoodMap,
+    Coupon,
 } from '../screens';
 import Tabs from './tabs';
 
@@ -58,6 +59,7 @@ const Routes = () => {
                 <Stack.Screen name="Payment" component={Payment} />
                 <Stack.Screen name="FindPassword" component={FindPassword} />
                 <Stack.Screen name="FoodMap" component={FoodMap} />
+                <Stack.Screen name="Coupon" component={Coupon} />
             </Stack.Navigator>
         </NavigationContainer>
     );
