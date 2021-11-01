@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     Alert,
     TextInput,
+    ScrollView,
 } from "react-native";
 
 import functions from '../constants/functions';
@@ -75,11 +76,11 @@ const FindPassword = ({ navigation }) => {
         )
     }
     return (
-        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.container}>
             {renderHeader()}
             {renderTitle()}
             {renderContent()}
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 

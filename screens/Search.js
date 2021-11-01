@@ -12,42 +12,57 @@ import {
 
 import { SIZES, COLORS, FONTS } from '../constants';
 import firestore from '@react-native-firebase/firestore';
+import functions from '../constants/functions';
 import SearchSvg from '../assets/icons/search-svgrepo-com.svg'
 import MagnetSvg from '../assets/icons/magnet-svgrepo-com.svg'
 import RingSvg from '../assets/icons/spin5-svgrepo-com.svg'
+import {AuthContext} from '../navigation/AuthProvider';
 
 const Search = ({ navigation }) => {
+    const {user} = useContext(AuthContext);
+
     const [searching, setSearching] = React.useState(false);
-    const [searchText, setSearchText] = React.useState('');
+    const [searchText, setSearchText] = React.useState(''); //검색어
 
     const [categoryFood, setCategoryFood] = React.useState([]); //카테고리 안 메뉴 데이터
     const [searchFood, setSearchFood] = React.useState('');
 
-    useEffect(() => {
-        //다시 이 화면이 활성화 됬을 때 작동함
-        navigation.addListener('focus', () => {
-            setSearching(false);
-            setSearchText('');
-        });
-    });
+    const [notReset, setNotReset] = React.useState(false);
 
-    function searchFunction(){
-        console.log('categoryFood의 데이터');
-        console.log(categoryFood);
+    // useEffect(() => {
+    //     //다시 이 화면이 활성화 됬을 때 작동함
+    //     navigation.addListener('focus', () => {
+    //         if(notReset == false){
+    //             setSearching(false);
+    //             setSearchText('');
+    //         }
+    //         else{
+    //             console.log('갱신금지 변수 작동');
+    //             setNotReset(false);
+    //         }
+    //     });
+    // }, []);
+
+    useEffect(() => {
+        searchFunction();
+    },[searchText]);
+
+    async function searchFunction(){
         if (searchText != ''){
             console.log("검색 시작");
-            firestore()
-                .collection('foodCourtMenu')
-                .doc('foodMenuList')
-                .onSnapshot(documentSnapshot => {
-                    if(documentSnapshot.exists){
-                        setCategoryFood(documentSnapshot.get('foodMenuList'));
-                        setSearching(true)
-                    }
-                });
-            if(searching){
-                let menu = categoryFood.filter(a => (a.name.includes(searchText)));
-                setSearchFood(menu)
+            await firestore()
+            .collection('foodCourtMenu')
+            .doc('foodMenuList')
+            .onSnapshot(documentSnapshot => {
+                if(documentSnapshot.exists){
+                    setCategoryFood(documentSnapshot.get('foodMenuList'));
+                }
+            });
+            if(categoryFood){
+                let menu = await categoryFood.filter(a => (a.name.includes(searchText)));
+                setSearchFood(menu);
+                console.log('검색결과', categoryFood);
+                setSearching(true);
             }
         }
     }
@@ -112,7 +127,7 @@ const Search = ({ navigation }) => {
                         marginTop: 7,
                         marginBottom: 7,
                     }}
-                    //onPress={() => onSelectCategory(item)}
+                    onPress={() => {setNotReset(true); functions.paymentStep(navigation, user, item);}}
                 >
                     <View
                         style={{
@@ -178,7 +193,7 @@ const Search = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            {searching ? renderSearch() : renderText()}
+            {searchText ? renderSearch() : renderText()}
         </SafeAreaView>
     )
 }
