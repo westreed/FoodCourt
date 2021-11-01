@@ -8,12 +8,12 @@ import auth from '@react-native-firebase/auth';
 const CheckButton3 = ({buttonTitle, navigation}) => {
     const {user} = useContext(AuthContext);
     
-    function checkUser(){
+    async function checkUser(){
 
-        auth().currentUser.reload();
-        auth().currentUser.getIdToken(true);
+        await auth().currentUser.reload();
+        await auth().currentUser.getIdToken(true);
 
-        console.log('User : ', auth().currentUser);
+        console.log('인증계정 : ', auth().currentUser);
         if(auth().currentUser.emailVerified){return true}
         return false
     }

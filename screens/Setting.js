@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     Image,
     FlatList,
+    ScrollView,
 } from "react-native";
 
 import RightArrowSvg from '../assets/icons/right-arrow-svgrepo-com.svg';
@@ -40,6 +41,7 @@ const Setting = ({ navigation }) => {
         .get()
         .then((documentSnapshot) => {
             if( documentSnapshot.exists ) {
+                console.log('firebase', user);
                 console.log('User Data', documentSnapshot.data());
                 setUserData(documentSnapshot.data());
             }
@@ -71,7 +73,7 @@ const Setting = ({ navigation }) => {
                             onPress={() => logout()}
                         >   
                             <View style={{flexDirection:'row'}}>
-                                <Text style={{ ...FONTS.h2, fontWeight:'bold', paddingRight:10 }}>{userData ? userData.name : '오류'} 님</Text>
+                                <Text style={{ ...FONTS.h2, fontWeight:'bold', paddingRight:10 }}>{user.displayName} 님</Text>
                                 <SignOutSvg width={30} height={30} fill={COLORS.gray1}/>
                             </View>
                             <View style={{width: "50%", height:5, backgroundColor: COLORS.blue1}}></View>
@@ -186,12 +188,12 @@ const Setting = ({ navigation }) => {
         )
     }
     return (
-        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.container}>
             {renderHeader()}
             {renderLogin()}
             {renderMypage()}
             {renderContent()}
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 

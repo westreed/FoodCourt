@@ -64,8 +64,15 @@ const Category = ({ route, navigation }) => {
     }
 
     function paymentStep(item){
-        console.log(user);
-        if(user == null){
+        if(item.soldout == true){
+            Alert.alert(
+                "Soldout", "해당 메뉴는 품절되었습니다.",[
+                    { text: "확인"}
+                ],
+                { cancelable: false }
+            );
+        }
+        else if(user == null){
             Alert.alert(
                 "로그인", "로그인 후 이용가능합니다.",[
                     { text: "확인", onPress: () => navigation.navigate("Login") }
