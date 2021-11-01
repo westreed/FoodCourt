@@ -9,7 +9,6 @@ import {
     TextInput,
 } from "react-native";
 
-import FormButton from '../components/FormButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
