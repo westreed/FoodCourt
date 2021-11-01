@@ -27,13 +27,14 @@ const Routes = () => {
     const {user, setUser} = useContext(AuthContext);
     const [initializing, setInitializing] = useState(true);
 
-    const onAuthStateChanged = (user) => {
+    const onUserChanged = (user) => {
         setUser(user);
         if (initializing) setInitializing(false);
+        console.log("onUserChanged");
     };
 
     useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        const subscriber = auth().onUserChanged(onUserChanged);
         return subscriber; // unsubscribe on unmount
     }, []);
 

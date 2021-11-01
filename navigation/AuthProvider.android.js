@@ -57,6 +57,13 @@ export const AuthProvider = ({children}) => {
                                     { cancelable: false }
                                 );
                             }
+                            else if(e.code == 'auth/network-request-failed'){
+                                Alert.alert(
+                                    "로그인 실패", "네트워크 접속에 실패했습니다. (시간 초과, 연결 중단 또는 연결할 수 없는 호스트)",
+                                    [{ text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
                         }
                     }
                 },
@@ -65,29 +72,35 @@ export const AuthProvider = ({children}) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password)
                         .then(() => {
-                        //Once the user creation has happened successfully, we can add the currentUser into firestore
-                        //with the appropriate details.
-                        let user = auth().currentUser
-                        user.sendEmailVerification()
-                        .then(() => {
-                            Alert.alert(
-                                "이메일 인증", "입력하신 이메일로 인증번호를 보냈어요!",[
-                                    { text: "확인", onPress: () => navigation.navigate("Certification") }
-                                ],
-                                { cancelable: false }
-                            );
-                        })
-                        firestore().collection('users').doc(auth().currentUser.uid)
-                        .set({
-                            name: name,
-                            email: email,
-                            createdAt: firestore.Timestamp.fromDate(new Date()),
-                            userImg: null,
-                        })
-                        //ensure we catch any errors at this stage to advise us if something does go wrong
-                        .catch(error => {
-                            console.log('Something went wrong with added user to firestore: ', error);
-                        })
+                            //Once the user creation has happened successfully, we can add the currentUser into firestore
+                            //with the appropriate details.
+                            let user = auth().currentUser
+                            user.sendEmailVerification()
+                            .then(() => {
+                                Alert.alert(
+                                    "이메일 인증", "입력하신 이메일로 인증번호를 보냈어요!",[
+                                        { text: "확인", onPress: () => navigation.navigate("Certification") }
+                                    ],
+                                    { cancelable: false }
+                                );
+                            })
+
+                            //firebase 사용자정보 업데이트
+                            const update = {displayName: name,};
+                            auth().currentUser.updateProfile(update);
+
+                            //firesotre에 따로 업로드
+                            firestore().collection('users').doc(auth().currentUser.uid)
+                            .set({
+                                name: name,
+                                email: email,
+                                createdAt: firestore.Timestamp.fromDate(new Date()),
+                                userImg: null,
+                            })
+                            //ensure we catch any errors at this stage to advise us if something does go wrong
+                            .catch(error => {
+                                console.log('Something went wrong with added user to firestore: ', error);
+                            })
                         })
                         //we need to catch the whole sign up process if it fails too.
                         .catch(error => {
@@ -109,6 +122,13 @@ export const AuthProvider = ({children}) => {
                             else if (error.code == 'auth/weak-password'){
                                 Alert.alert(
                                     "회원가입 실패", "패스워드 양식이 맞지 않습니다.",
+                                    [{ text: "확인"}],
+                                    { cancelable: false }
+                                );
+                            }
+                            else if(error.code == 'auth/network-request-failed'){
+                                Alert.alert(
+                                    "회원가입 실패", "네트워크 접속에 실패했습니다. (시간 초과, 연결 중단 또는 연결할 수 없는 호스트)",
                                     [{ text: "확인"}],
                                     { cancelable: false }
                                 );
