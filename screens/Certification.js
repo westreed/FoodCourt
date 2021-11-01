@@ -5,7 +5,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Alert
+    ScrollView,
 } from "react-native";
 
 import CheckButton3 from '../components/CheckButton3';
@@ -57,11 +57,11 @@ const Certification = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.container}>
             {renderHeader()}
             {renderTitle()}
             {renderCertification()}
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 

@@ -1,4 +1,6 @@
-
+import {
+    Alert
+} from "react-native";
 
 function checkCollegeEmail(email){
     if (email.includes('scnu.ac.kr') || email.includes('naver')){return true}
@@ -17,4 +19,32 @@ function checkPassword(password){
     return true
 }
 
-export default {checkCollegeEmail, checkPassword};
+function paymentStep(navigation, user, item){
+    if(item.soldout == true){
+        Alert.alert(
+            "Soldout", "해당 메뉴는 품절되었습니다.",[
+                { text: "확인"}
+            ],
+            { cancelable: false }
+        );
+    }
+    else if(user == null){
+        Alert.alert(
+            "로그인", "로그인 후 이용가능합니다.",[
+                { text: "확인", onPress: () => navigation.navigate("Login") }
+            ],
+            { cancelable: false }
+        );
+    }
+    else if(user.emailVerified == false){
+        Alert.alert(
+            "로그인", "인증된 계정만 이용할 수 있습니다.",[
+                { text: "확인" }
+            ],
+            { cancelable: false }
+        );
+    }
+    else{navigation.navigate("Payment", {item})}
+}
+
+export default {checkCollegeEmail, checkPassword, paymentStep};

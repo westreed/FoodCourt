@@ -8,13 +8,14 @@ import {
     Image,
     FlatList,
     ActivityIndicator,
-    Alert
 } from "react-native";
 
 import firestore from '@react-native-firebase/firestore';
+import functions from '../constants/functions';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { images, SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
+
 
 const itemWidth = 78;
 const Category = ({ route, navigation }) => {
@@ -61,34 +62,6 @@ const Category = ({ route, navigation }) => {
         setSelectFood(menu)
         console.log("CategoryTab menu:", menu);
         setCategories(category)
-    }
-
-    function paymentStep(item){
-        if(item.soldout == true){
-            Alert.alert(
-                "Soldout", "해당 메뉴는 품절되었습니다.",[
-                    { text: "확인"}
-                ],
-                { cancelable: false }
-            );
-        }
-        else if(user == null){
-            Alert.alert(
-                "로그인", "로그인 후 이용가능합니다.",[
-                    { text: "확인", onPress: () => navigation.navigate("Login") }
-                ],
-                { cancelable: false }
-            );
-        }
-        else if(user.emailVerified == false){
-            Alert.alert(
-                "로그인", "인증된 계정만 이용할 수 있습니다.",[
-                    { text: "확인" }
-                ],
-                { cancelable: false }
-            );
-        }
-        else{navigation.navigate("Payment", {item})}
     }
 
     function renderHeader() {
@@ -203,7 +176,7 @@ const Category = ({ route, navigation }) => {
                         marginTop: 7,
                         marginBottom: 7,
                     }}
-                    onPress={() => paymentStep(item)}
+                    onPress={() => functions.paymentStep(navigation, user, item)}
                 >
                     <View
                         style={{

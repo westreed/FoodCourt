@@ -57,21 +57,24 @@ const Home = ({ navigation }) => {
     }
     function renderHeader() {
         return (
-            <View style={{flexDirection: 'column', height: SIZES.height*20/100, backgroundColor: COLORS.blue1, justifyContent: 'center', ...styles.shadow}}>
-                <View style={{alignItems: 'center', flexDirection: 'row'}}>
-                    <View style={{flex: 1, alignItems: 'center', left: 20}}>
-                        <Text style={{...FONTS.h2, color:COLORS.white, fontWeight: 'bold'}}>순천대학교 푸드코트</Text>
+            <View>
+                <View style={{flexDirection: 'column', height: SIZES.height*20/100, backgroundColor: COLORS.blue1, justifyContent: 'center', ...styles.shadow}}>
+                    <View style={{alignItems: 'center', flexDirection: 'row'}}>
+                        <View style={{flex: 1, alignItems: 'center', left: 20}}>
+                            <Text style={{...FONTS.h2, color:COLORS.white, fontWeight: 'bold'}}>순천대학교 푸드코트</Text>
+                        </View>
+                        <TouchableOpacity
+                            style={{right: 20}}
+                            onPress={() => navigation.navigate("QRScan")}
+                        >
+                            <QRCodeSvg width={30} height={30} fill={COLORS.white}/>
+                            </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={{right: 20}}
-                        onPress={() => navigation.navigate("QRScan")}
-                    >
-                        <QRCodeSvg width={30} height={30} fill={COLORS.white}/>
-                        </TouchableOpacity>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={{...FONTS.h4, color:COLORS.white, fontWeight: 'bold'}}>2021 졸업작품 프로젝트</Text>
+                    </View>
                 </View>
-                <View style={{alignItems: 'center'}}>
-                    <Text style={{...FONTS.h4, color:COLORS.white, fontWeight: 'bold'}}>2021 졸업작품 프로젝트</Text>
-                </View>
+                <Text style={{marginTop: "4%", marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
             </View>
         )
     }
@@ -169,29 +172,27 @@ const Home = ({ navigation }) => {
             return <ActivityIndicator />;
         }
         return (
-            <View style={{marginTop: "4%", marginLeft: "4%", marginRight: "4%",}}>
-                <Text style={{paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
-                <View style={{alignItems: "center"}}>
-                    <FlatList
-                        data={categories}
-                        //horizontal={false}
-                        showsVerticalScrollIndicator={false}
-                        keyExtractor={item => `${item.id}`}
-                        renderItem={renderItem}
-                        style={{marginBottom: bottomHeight*4}}
-                        //numColumns={3}
-                        refreshing={refresh}
-                        onRefresh={() => {
-                            setRefresh(true)
-                        }}
-                    />
-                </View>
+            <View>
+                <FlatList
+                    ListHeaderComponent={renderHeader()}
+                    data={categories}
+                    //horizontal={false}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={renderItem}
+                    style={{}}
+                    //numColumns={3}
+                    refreshing={refresh}
+                    onRefresh={() => {
+                        setRefresh(true)
+                    }}
+                />
             </View>
         )
     }
     return (
         <SafeAreaView style={styles.container}>
-            {renderHeader()}
+            {/* {renderHeader()} */}
             {renderMain()}
         </SafeAreaView>
     )
