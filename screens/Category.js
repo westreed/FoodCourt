@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react";
+import React, {useRef, useEffect, useContext} from "react";
 import {
     SafeAreaView,
     View,
@@ -7,15 +7,18 @@ import {
     TouchableOpacity,
     Image,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    Alert
 } from "react-native";
 
 import firestore from '@react-native-firebase/firestore';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
-import { images, SIZES, COLORS, FONTS } from '../constants'
+import { images, SIZES, COLORS, FONTS } from '../constants';
+import {AuthContext} from '../navigation/AuthProvider';
 
 const itemWidth = 78;
 const Category = ({ route, navigation }) => {
+    const {user} = useContext(AuthContext);
 
     const flatList = useRef(null);
     //const [loading, setLoading] = React.useState(true)
@@ -58,6 +61,27 @@ const Category = ({ route, navigation }) => {
         setSelectFood(menu)
         console.log("CategoryTab menu:", menu);
         setCategories(category)
+    }
+
+    function paymentStep(item){
+        console.log(user);
+        if(user == null){
+            Alert.alert(
+                "로그인", "로그인 후 이용가능합니다.",[
+                    { text: "확인", onPress: () => navigation.navigate("Login") }
+                ],
+                { cancelable: false }
+            );
+        }
+        else if(user.emailVerified == false){
+            Alert.alert(
+                "로그인", "인증된 계정만 이용할 수 있습니다.",[
+                    { text: "확인" }
+                ],
+                { cancelable: false }
+            );
+        }
+        else{navigation.navigate("Payment", {item})}
     }
 
     function renderHeader() {
@@ -172,7 +196,7 @@ const Category = ({ route, navigation }) => {
                         marginTop: 7,
                         marginBottom: 7,
                     }}
-                    onPress={() => navigation.navigate("Payment", {item})}
+                    onPress={() => paymentStep(item)}
                 >
                     <View
                         style={{
