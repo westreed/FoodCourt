@@ -5,6 +5,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    TouchableHighlight,
     Image,
     TextInput,
     Modal,
@@ -17,7 +18,6 @@ import CheckBox from '@react-native-community/checkbox';
 import functions from '../constants/functions';
 import { BlurView } from "@react-native-community/blur";
 import CheckButton from '../components/CheckButton';
-import CheckButton2 from '../components/CheckButton2';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import CheckSvg from '../assets/icons/check-circle-svgrepo-com.svg';
 import CircleSvg from '../assets/icons/circle-svgrepo-com.svg';
@@ -83,6 +83,11 @@ const Register = ({ navigation }) => {
             setSelection3(false)
             setSelection4(false)
         }
+
+        function checkAgree(check1, check2){
+            if (check1 == true && check2 == true){return true}
+            else{return false}
+        }
         return (
             <View>
                 {/* 내용 */}
@@ -136,12 +141,22 @@ const Register = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
-                    <CheckButton
-                        buttonTitle="다음으로"
-                        check1={isSelected1}
-                        check2={isSelected2}
-                        onPress={() => setAgree(true)}
-                    />
+                    <TouchableOpacity
+                        style={styles.shadow}
+                        onPress={() => (
+                            checkAgree(isSelected1, isSelected2) ?
+                            setAgree(true) :
+                            Alert.alert(
+                                "약관 동의", "필수 약관은 동의해야 합니다.",
+                                [{ text: "확인"}],
+                                { cancelable: false }
+                            ))}
+                    >
+                        <CheckButton
+                            buttonTitle="다음으로"
+                            type={checkAgree(isSelected1, isSelected2)}
+                        />
+                    </TouchableOpacity>
                 </View>
 
                 <Modal
@@ -271,6 +286,10 @@ const Register = ({ navigation }) => {
         )
     }
     function renderRegister(){
+        function checkAgree(name, email, password, checkpass){
+            if (name.length > 0 && functions.checkCollegeEmail(email) && functions.checkPassword(password) && password == checkpass){return true}
+            return false
+        }
         return(
             <View>
                 {/* 내용 */}
@@ -336,14 +355,23 @@ const Register = ({ navigation }) => {
                     />
                 </View>
                 <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
-                    <CheckButton2
-                        buttonTitle="다음으로"
-                        name={isName}
-                        email={isEmail}
-                        password={isPassword}
-                        checkpass={isCheckPass}
-                        onPress={() => register(isName, isEmail, isPassword, navigation)}
-                    />
+                    <TouchableOpacity
+                        style={styles.shadow}
+                        onPress={() => (
+                            checkAgree(isName, isEmail, isPassword, isCheckPass) ?
+                            register(isName, isEmail, isPassword, navigation) :
+                            Alert.alert(
+                                "회원가입 실패", "양식에 맞춰서 모든 칸을 채워야 합니다.",
+                                [{ text: "확인"}],
+                                { cancelable: false }
+                            )
+                        )}
+                    >
+                        <CheckButton
+                            buttonTitle="다음으로"
+                            type={checkAgree(isName, isEmail, isPassword, isCheckPass)}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -371,6 +399,14 @@ const styles = StyleSheet.create({
     },
     checkbox: {
         alignSelf: "center",
+    },
+    shadow: {
+        backgroundColor: COLORS.brown,
+        shadowColor: COLORS.blue1, // IOS
+        shadowOffset: { width: 0, height: 5, }, // IOS
+        shadowOpacity: 0.34, // IOS
+        shadowRadius: 6.27, // IOS
+        elevation: 10, //ANDROID
     },
     label1: {
         margin: 8,

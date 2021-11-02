@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     SafeAreaView,
     View,
@@ -6,11 +6,15 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
+    Alert,
 } from "react-native";
 
-import CheckButton3 from '../components/CheckButton3';
+import CheckButton from '../components/CheckButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
+
+import {AuthContext} from '../navigation/AuthProvider';
+import auth from '@react-native-firebase/auth';
 
 const Certification = ({ navigation }) => {
     function renderHeader() {
@@ -43,14 +47,39 @@ const Certification = ({ navigation }) => {
         )
     }
     function renderCertification(){
+        const {user} = useContext(AuthContext);
+    
+        async function checkUser(){
+            await auth().currentUser.reload();
+
+            console.log('auth().currentUser : ', auth().currentUser);
+
+            if(auth().currentUser.emailVerified == true){
+                Alert.alert(
+                "인증 성공", "순천대학교 푸드코트앱에 가입하셨습니다!",
+                [{ text: "확인", onPress: () => navigation.navigate('Home') }],
+                { cancelable: false })
+            }
+            else{
+                Alert.alert(
+                "인증 실패", "인증이메일을 통해 인증을 진행해야 합니다.\n혹시 메일을 받지 못했다면, 다시 송신할 수 있습니다.",
+                [{ text: "확인"}, { text: "재전송", onPress: () => user.sendEmailVerification() }],
+                { cancelable: false })
+            }
+        }
         return(
             <View>
                 {/* 내용 */}
                 <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
-                    <CheckButton3
-                        buttonTitle="완료하기"
-                        navigation={navigation}
-                    />
+                    <TouchableOpacity
+                        style={styles.shadow}
+                        onPress={() => checkUser()}
+                    >
+                        <CheckButton
+                            buttonTitle="완료하기"
+                            type={false}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -79,6 +108,14 @@ const styles = StyleSheet.create({
     },
     checkbox: {
         alignSelf: "center",
+    },
+    shadow: {
+        backgroundColor: COLORS.brown,
+        shadowColor: COLORS.blue1, // IOS
+        shadowOffset: { width: 0, height: 5, }, // IOS
+        shadowOpacity: 0.34, // IOS
+        shadowRadius: 6.27, // IOS
+        elevation: 10, //ANDROID
     },
     label1: {
         margin: 8,
