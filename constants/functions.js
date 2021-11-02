@@ -1,6 +1,7 @@
 import {
     Alert
 } from "react-native";
+import firestore from '@react-native-firebase/firestore';
 
 function checkCollegeEmail(email){
     if (email.includes('scnu.ac.kr') || email.includes('naver')){return true}
@@ -47,4 +48,21 @@ function paymentStep(navigation, user, item){
     else{navigation.navigate("Payment", {item})}
 }
 
-export default {checkCollegeEmail, checkPassword, paymentStep};
+const getUser = async(uid) => {
+    await firestore()
+    .collection('users')
+    .doc(uid)
+    .get()
+    .then((documentSnapshot) => {
+        if( documentSnapshot.exists ) {
+            console.log('firebase', uid);
+            console.log('User Data', documentSnapshot.data());
+            return documentSnapshot.data();
+        }
+    })
+    .catch(error => {
+        console.log('getUser Error: ', error);
+    })
+}
+
+export default {checkCollegeEmail, checkPassword, paymentStep, getUser};

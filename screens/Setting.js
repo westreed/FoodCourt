@@ -20,6 +20,7 @@ import MapSignSvg from '../assets/icons/map-signs-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants'
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
+import functions from '../constants/functions';
 
 const Setting = ({ navigation }) => {
 
@@ -28,26 +29,26 @@ const Setting = ({ navigation }) => {
     const [loading, setLoading] = React.useState(true);
 
     useEffect(() => {
-        if(user){getUser();}
+        if(user){setUserData(functions.getUser(user.uid))}
         navigation.addListener("focus", () => setLoading(!loading));
     }, [navigation, loading]);
 
-    const getUser = async() => {
-        await firestore()
-        .collection('users')
-        .doc(user.uid)
-        .get()
-        .then((documentSnapshot) => {
-            if( documentSnapshot.exists ) {
-                console.log('firebase', user);
-                console.log('User Data', documentSnapshot.data());
-                setUserData(documentSnapshot.data());
-            }
-        })
-        .catch(error => {
-            console.log('getUser Error: ', error);
-        })
-    }
+    // const getUser = async() => {
+    //     await firestore()
+    //     .collection('users')
+    //     .doc(user.uid)
+    //     .get()
+    //     .then((documentSnapshot) => {
+    //         if( documentSnapshot.exists ) {
+    //             console.log('firebase', user);
+    //             console.log('User Data', documentSnapshot.data());
+    //             setUserData(documentSnapshot.data());
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.log('getUser Error: ', error);
+    //     })
+    // }
 
     function renderHeader() {
         return (

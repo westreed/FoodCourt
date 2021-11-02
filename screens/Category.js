@@ -31,8 +31,8 @@ const Category = ({ route, navigation }) => {
 
     useEffect(() => {
         if(refresh == true){
-        console.log("Category useEffect 작동", refresh);
-        const subscriber = firestore()
+            console.log("Category useEffect 작동", refresh);
+            firestore()
             .collection('foodCourtMenu')
             .doc('foodMenuList')
             .onSnapshot(documentSnapshot => {
