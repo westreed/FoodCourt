@@ -38,7 +38,8 @@ const Payment = ({ route, navigation }) => {
         .then((documentSnapshot) => {
             if( documentSnapshot.exists ) {
                 console.log('order', documentSnapshot.data());
-                return documentSnapshot.data();
+                setOrder(documentSnapshot.data().num);
+                //return documentSnapshot.data();
             }
         })
         .catch(error => {
@@ -46,8 +47,9 @@ const Payment = ({ route, navigation }) => {
         })
     }
     useEffect(() => {
-        const temp = orderNumber();
-        if (temp){setOrder(temp.num)};
+        orderNumber();
+        // const temp = orderNumber();
+        // if (temp){setOrder(temp.num)};
     }, []);
 
     function renderHeader() {
@@ -109,7 +111,9 @@ const Payment = ({ route, navigation }) => {
                 <View style={{marginTop:5, borderWidth: 2, borderRadius:20, height:30, justifyContent:'center'}}>
                     <View style={{flexDirection:'row', marginHorizontal:SIZES.padding, justifyContent:'space-between'}}>
                     <Text style={{...FONTS.body3}}>신용/체크카드</Text>
+                    <TouchableOpacity onPress={() => {}}>
                     <Text style={{...FONTS.body3}}>변경</Text>
+                    </TouchableOpacity>
                     </View>
                 </View>
             </View>

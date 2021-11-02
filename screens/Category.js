@@ -206,7 +206,7 @@ const Category = ({ route, navigation }) => {
                                 {item.name}
                             </Text>
                             <Text style={{...FONTS.body2}}>
-                                {item.price}원
+                                {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
                             </Text>
                         </View>
                     </View>
