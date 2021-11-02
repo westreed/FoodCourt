@@ -5,8 +5,6 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    TouchableHighlight,
-    Image,
     TextInput,
     Modal,
     Alert,
