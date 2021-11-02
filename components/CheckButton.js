@@ -22,7 +22,7 @@ export default CheckButton;
 const styles = StyleSheet.create({
     buttonContainer: {
         width: '100%',
-        height: SIZES.height / 15,
+        height: SIZES.height / 14,
         backgroundColor: COLORS.blue1,
         padding: 5,
         alignItems: 'center',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer2: {
         width: '100%',
-        height: SIZES.height / 15,
+        height: SIZES.height / 14,
         backgroundColor: COLORS.gray1,
         padding: 5,
         alignItems: 'center',

@@ -164,7 +164,7 @@ const Payment = ({ route, navigation }) => {
             return (
                 <TouchableOpacity
                     style={{flexDirection:'row', justifyContent:'space-between', marginVertical:SIZES.padding/4}}
-                    onPress={() => {setCard(item.id)}}
+                    onPress={() => {setCard(item.id); setIsModal(false);}}
                 >
                     <View style={{flexDirection:'row'}}>
                         <item.icon width={30} height={30} style={{marginRight:SIZES.padding/2}} />
