@@ -51,6 +51,8 @@ react-native run-android
 └ react-native-geolocation-service : 사용자의 현재위치 정보를 불러오는 모듈. <br>
 ─ react-native-qrcode : QR코드 생성 모듈. 미지원이라 변경될 수 있음. <br>
 ─ react-native-make : App 아이콘과 Splash 이미지를 관리하는 모듈. <br>
+┌ Buffer : Node.js 에서 제공하는 Binary 의 데이터를 담을 수 있는 Object. <br>
+└ buffer-crc32 : 이진데이터(버퍼)를 signed 혹은 unsigned 데이터로 출력해주는 모듈. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
