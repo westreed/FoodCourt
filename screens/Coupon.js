@@ -14,11 +14,12 @@ import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-u
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 
-const Coupon = ({ navigation }) => {
+const Coupon = ({ route, navigation }) => {
     
     return (
         <SafeAreaView style={styles.container}>
             <Text>Coupon</Text>
+            <Text>{route.params.couponNumber}</Text>
         </SafeAreaView>
     )
 }
