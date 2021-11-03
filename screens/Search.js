@@ -43,27 +43,35 @@ const Search = ({ navigation }) => {
     //     });
     // }, []);
 
-    useEffect(() => {
-        searchFunction();
+    useEffect( async() => {
+        await searchFunction();
     },[searchText]);
 
     async function searchFunction(){
-        if (searchText != ''){
-            console.log("검색 시작");
-            await firestore()
-            .collection('foodCourtMenu')
-            .doc('foodMenuList')
-            .onSnapshot(documentSnapshot => {
-                if(documentSnapshot.exists){
-                    setCategoryFood(documentSnapshot.get('foodMenuList'));
-                }
-            });
+        async function searching(categoryFood, searchText){
             if(categoryFood){
                 let menu = await categoryFood.filter(a => (a.name.includes(searchText)));
-                setSearchFood(menu);
+                await setSearchFood(menu);
                 console.log('검색결과', categoryFood);
-                setSearching(true);
+                await setSearching(true);
             }
+        }
+        if (searchText != ''){
+            console.log("검색 시작");
+            let tempFood = [];
+            await firestore().collection('foodmenu').get().then(function(querySnapshot) {
+                if (querySnapshot) {
+                    querySnapshot.forEach(function(doc){
+                        tempFood.push(doc.data());
+                    })
+                }
+            })
+            tempFood.sort(function(a,b){
+                if (a.id > b.id) return 1;
+                else return -1;
+            });
+            await setCategoryFood(tempFood);
+            await searching(categoryFood, searchText);
         }
     }
 
