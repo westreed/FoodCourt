@@ -26,10 +26,8 @@ import firestore from '@react-native-firebase/firestore';
 import CRC32 from 'buffer-crc32';
 import { Buffer } from 'buffer';
 import CheckButton from '../components/CheckButton';
-import functions from '../constants/functions';
 
 const Payment = ({ route, navigation }) => {
-    var map = new functions.HashMap();
 
     const {user} = useContext(AuthContext);
     const [isModal, setIsModal] = React.useState(false);

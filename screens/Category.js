@@ -29,22 +29,24 @@ const Category = ({ route, navigation }) => {
     const [categoryFood, setCategoryFood] = React.useState(route.params.foodList); //카테고리 안 메뉴 데이터
     const [refresh, setRefresh] = React.useState(false) //스크롤을 아래로 쭉 땡겨서 refresh할 때
 
-    useEffect(() => {
+    useEffect(async() => {
         if(refresh == true){
             console.log("Category useEffect 작동", refresh);
-            firestore()
-            .collection('foodCourtMenu')
-            .doc('foodMenuList')
-            .onSnapshot(documentSnapshot => {
-                if(documentSnapshot.exists){
-                    //const fieldPath = new firebase.firestore.FieldPath('address', 'zip');
-                    //console.log('Menu data: ', documentSnapshot.get('Menu'));
-                    //console.log('select Menu: ', selectFood);
-                    setCategoryFood(documentSnapshot.get('foodMenuList'));
-                    onSelectCategory(categories)
-                    setRefresh(false);
+            let tempFood = [];
+            await firestore().collection('foodmenu').get().then(function(querySnapshot) {
+                if (querySnapshot) {
+                    querySnapshot.forEach(function(doc){
+                        tempFood.push(doc.data());
+                    })
                 }
+            })
+            tempFood.sort(function(a,b){
+                if (a.id > b.id) return 1;
+                else return -1;
             });
+            setCategoryFood(tempFood);
+            onSelectCategory(categories);
+            setRefresh(false);
         }
     }, [refresh]);
 
