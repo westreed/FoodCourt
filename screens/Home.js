@@ -24,8 +24,9 @@ const Home = ({ navigation }) => {
     const [refresh, setRefresh] = React.useState(true); //스크롤을 아래로 쭉 땡겨서 refresh할 때
 
     useEffect(async() => {
+        navigation.addListener('focus', () => {setRefresh(true)})
         if(refresh == true){
-            console.log("useEffect 작동", refresh);
+            console.log("refresh 작동", refresh);
             let tempCategory = [];
             await firestore().collection('category').get().then(function(querySnapshot) {
                 if (querySnapshot) {
@@ -33,12 +34,12 @@ const Home = ({ navigation }) => {
                         tempCategory.push(doc.data());
                     })
                 }
-            })
-            tempCategory.sort(function(a,b){
+            }).catch(err => console.log('category', err));
+            await tempCategory.sort(function(a,b){
                 if (a.id > b.id) return 1;
                 else return -1;
             });
-            setCategories(tempCategory);
+            await setCategories(tempCategory);
 
             let tempFood = [];
             await firestore().collection('foodmenu').get().then(function(querySnapshot) {
@@ -47,13 +48,13 @@ const Home = ({ navigation }) => {
                         tempFood.push(doc.data());
                     })
                 }
-            })
-            tempFood.sort(function(a,b){
+            }).catch(err => console.log('foodmenu', err));
+            await tempFood.sort(function(a,b){
                 if (a.id > b.id) return 1;
                 else return -1;
             });
-            setFoodList(tempFood);
-            setRefresh(false)
+            await setFoodList(tempFood);
+            await setRefresh(false)
         }
     }, [refresh]);
 

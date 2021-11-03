@@ -248,6 +248,7 @@ const Payment = ({ route, navigation }) => {
                 foodExpiry : [time.year, time.month, time.day],
                 userUID : user.uid,
                 userName : user.displayName,
+                couponID : coupon,
                 couponUse : false,
                 couponGift : false,
             })
