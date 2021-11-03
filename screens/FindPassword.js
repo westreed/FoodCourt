@@ -59,7 +59,7 @@ const FindPassword = ({ navigation }) => {
                 .then(setCheck(true))
                 .catch(err => console.log(err));
                 if(check){
-                    console.log(email, '초기화 이메일을 보냄.')
+                    console.log(email, '초기화 이메일을 보냄.');
                     return (
                         Alert.alert(
                             "비밀번호 찾기", "입력하신 이메일로 초기화 메일을 보냈어요!",

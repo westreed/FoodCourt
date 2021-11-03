@@ -39,14 +39,14 @@ const Category = ({ route, navigation }) => {
                         tempFood.push(doc.data());
                     })
                 }
-            })
-            tempFood.sort(function(a,b){
+            }).catch(err => console.log(err));
+            await tempFood.sort(function(a,b){
                 if (a.id > b.id) return 1;
                 else return -1;
             });
-            setCategoryFood(tempFood);
-            onSelectCategory(categories);
-            setRefresh(false);
+            await setCategoryFood(tempFood);
+            await onSelectCategory(categories);
+            await setRefresh(false);
         }
     }, [refresh]);
 
