@@ -65,4 +65,46 @@ const getUser = async(uid) => {
     })
 }
 
-export default {checkCollegeEmail, checkPassword, paymentStep, getUser};
+//hashmap 선언하기
+function HashMap() {
+    this.map = new Object();
+}
+
+//hashmap으로써의 기능 추가
+HashMap.prototype = {
+    put: function (key, value) {
+        this.map[key] = value;
+    },
+    get: function (key) {
+        return this.map[key];
+    },
+    getAll: function () {
+        return this.map;
+    },
+    getKeys: function () {
+        let keys = new Array();
+        for (i in this.map) {
+            keys.push(i);
+        }
+        return keys;
+    },
+    clear: function () {
+        this.map = new Object();
+    },
+    remove: function (key) {
+        delete this.map[key];
+    },
+    containsKey: function (key) {
+        for (i in this.map) {
+            if (i == key) {
+                return true;
+            }
+        }
+        return false;
+    },
+    isEmpty: function () {
+        return (this.map, size() == 0);
+    }
+}
+
+export default {checkCollegeEmail, checkPassword, paymentStep, getUser, HashMap};

@@ -9,6 +9,7 @@ import {
     ScrollView,
     Modal,
     FlatList,
+    Alert,
 } from "react-native";
 
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
@@ -22,10 +23,15 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import { BlurView } from "@react-native-community/blur";
 import firestore from '@react-native-firebase/firestore';
+import CRC32 from 'buffer-crc32';
+import { Buffer } from 'buffer';
+import CheckButton from '../components/CheckButton';
+import functions from '../constants/functions';
 
 const Payment = ({ route, navigation }) => {
+    var map = new functions.HashMap();
 
-    const [isHide, setIsHide] = React.useState(true);
+    const {user} = useContext(AuthContext);
     const [isModal, setIsModal] = React.useState(false);
     
     const [food, setFood] = React.useState(route.params.item); //선택한 음식
@@ -71,11 +77,7 @@ const Payment = ({ route, navigation }) => {
         ]
 
     const orderNumber = async() => {
-        await firestore()
-        .collection('system')
-        .doc('order')
-        .get()
-        .then((documentSnapshot) => {
+        await firestore().collection('system').doc('order').get().then((documentSnapshot) => {
             if( documentSnapshot.exists ) {
                 console.log('order', documentSnapshot.data());
                 setOrder(documentSnapshot.data().num);
@@ -116,7 +118,7 @@ const Payment = ({ route, navigation }) => {
     function renderImage() {
         return (
             <View style={{alignItems:"center", marginHorizontal:SIZES.padding, marginBottom:SIZES.padding, ...styles.shadow}}>
-                <Image source={{uri:food.icon}} style={{width:"100%", height:SIZES.height/3}} />
+                <Image source={{uri:food.icon}} style={{width:"100%", height:SIZES.width/2}} />
             </View>
         )
     }
@@ -208,7 +210,6 @@ const Payment = ({ route, navigation }) => {
                             </View>
                         </View>
                         <FlatList
-                            //ListHeaderComponent={renderHeader()}
                             data={cardData}
                             showsVerticalScrollIndicator={false}
                             keyExtractor={item => `${item.id}`}
@@ -220,6 +221,62 @@ const Payment = ({ route, navigation }) => {
             </View>
         )
     }
+
+    function renderPayment(){
+        async function createCoupon(){
+            function getUnixTime() {
+                const seed = new Date().getTime();
+                return seed;
+            }
+            const seedData = getUnixTime().toString()+user.displayName+user.email;
+      
+            let buf = Buffer.from(seedData.toString(16));
+            let coupon = CRC32.unsigned(buf);
+            let couponNumber = coupon.toString(16);
+            console.log('Coupon ', couponNumber);
+            
+            //firesotre에 쿠폰 발행
+            await firestore().collection('system').doc('order').get().then((documentSnapshot) => {
+                if( documentSnapshot.exists ) {
+                    setOrder(documentSnapshot.data().num);
+                }
+            })
+            await firestore().collection('coupon').doc(couponNumber)
+            .set({
+                foodOrder : order,
+                foodName : food.name,
+                foodPrice : food.price,
+                foodDate : firestore.Timestamp.fromDate(new Date()),
+                foodExpiry : [time.year, time.month, time.day],
+                userUID : user.uid,
+                userName : user.displayName,
+                couponUse : false,
+                couponGift : false,
+            })
+            await firestore().collection('system').doc('order')
+            .set({num : order+1,})
+
+            return (
+                Alert.alert(
+                    `${food.name} 구매 성공!`, "구매하신 쿠폰은 푸드코트에서 사용하실 수 있습니다. 이 앱은 테스트버젼으로 결제모듈을 사용하지 않았습니다.",
+                    [{ text: "확인", onPress: () => navigation.navigate("Coupon", {couponNumber})}], { cancelable: false }
+                )
+            )
+        }
+        return(
+            <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
+                <TouchableOpacity
+                    style={styles.shadow}
+                    onPress={() => createCoupon()}
+                >
+                    <CheckButton
+                        buttonTitle="결제하기"
+                        type="true"
+                    />
+                </TouchableOpacity>
+            </View>
+        )
+    }
     return (
         <ScrollView style={styles.container}>
             {renderHeader()}
@@ -227,6 +284,7 @@ const Payment = ({ route, navigation }) => {
             {renderContent()}
             {renderPay()}
             {renderCard()}
+            {renderPayment()}
         </ScrollView>
     )
 }
@@ -237,9 +295,14 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white2
     },
     shadow: {
-        elevation: 5, 
-     },
-     absolute: {
+        backgroundColor: COLORS.brown,
+        shadowColor: COLORS.blue1, // IOS
+        shadowOffset: { width: 0, height: 5, }, // IOS
+        shadowOpacity: 0.34, // IOS
+        shadowRadius: 6.27, // IOS
+        elevation: 10, //ANDROID
+    },
+    absolute: {
         position: "absolute",
         top: 0,
         left: 0,
@@ -249,16 +312,15 @@ const styles = StyleSheet.create({
     modal: { 
         flex: 1,
         borderRadius: 30,
-        marginVertical: 100,
-        marginHorizontal: 60,
+        marginVertical: SIZES.height/6,
+        marginHorizontal: SIZES.width/6,
         padding: 5,
-        height: 500,
         backgroundColor: "white", 
-        shadowColor: "black", 
+        shadowColor: COLORS.brown, 
         shadowOffset: { width: 0, height: 2, }, 
         shadowOpacity: 0.25, 
         shadowRadius: 4, 
-        elevation: 5, 
+        elevation: 10,
      },
 })
 
