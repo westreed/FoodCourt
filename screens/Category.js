@@ -30,8 +30,37 @@ const Category = ({ route, navigation }) => {
     const [refresh, setRefresh] = React.useState(false) //스크롤을 아래로 쭉 땡겨서 refresh할 때
 
     useEffect(async() => {
+        async function sortCategory(array){
+            array.sort(function (a, b) {
+                if (a.id > b.id)
+                    return 1;
+                else
+                    return -1;
+            });
+            setCategories(array);
+        }
+
+        async function sortFood(array){
+            array.sort(function (a, b) {
+                if (a.id > b.id)
+                    return 1;
+                else
+                    return -1;
+            });
+            setCategoryFood(array);
+        }
         if(refresh == true){
             console.log("Category useEffect 작동", refresh);
+            let tempCategory = [];
+            await firestore().collection('category').get().then(function(querySnapshot) {
+                if (querySnapshot) {
+                    querySnapshot.forEach(function(doc){
+                        tempCategory.push(doc.data());
+                    })
+                }
+            }).catch(err => console.log('category', err));
+            await sortCategory(tempCategory);
+
             let tempFood = [];
             await firestore().collection('foodmenu').get().then(function(querySnapshot) {
                 if (querySnapshot) {
@@ -40,24 +69,20 @@ const Category = ({ route, navigation }) => {
                     })
                 }
             }).catch(err => console.log(err));
-            await tempFood.sort(function(a,b){
-                if (a.id > b.id) return 1;
-                else return -1;
-            });
-            await setCategoryFood(tempFood);
+            await sortFood(tempFood);
             await onSelectCategory(categories);
-            await setRefresh(false);
+            setRefresh(false);
         }
     }, [refresh]);
 
     
-    useEffect(() => { //리스트 이동 연출
-        if(flatList.current){
+    useEffect(async() => { //리스트 이동 연출
+        if(refresh == false && flatList.current){
             flatList.current.scrollToIndex({index:categories.id-1, viewOffset:(itemWidth-4)*2});
         }
     })
     
-    function onSelectCategory(category) {
+    async function onSelectCategory(category) {
         //filter restaurant
         //let menu = categoryFood.filter(a => a.categories.includes(category.id))
         let menu = categoryFood.filter(a => (a.categories) == (category.id));
@@ -232,9 +257,7 @@ const Category = ({ route, navigation }) => {
                         paddingHorizontal: 7,
                     }}
                     refreshing={refresh}
-                    onRefresh={() => {
-                        setRefresh(true)
-                    }}
+                    onRefresh={() => {setRefresh(true)}}
                 />
             </View>
         )
