@@ -244,6 +244,7 @@ const Payment = ({ route, navigation }) => {
                 foodOrder : order,
                 foodName : food.name,
                 foodPrice : food.price,
+                foodIcon : food.icon,
                 foodDate : firestore.Timestamp.fromDate(new Date()),
                 foodExpiry : [time.year, time.month, time.day],
                 userUID : user.uid,

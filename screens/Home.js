@@ -93,14 +93,14 @@ const Home = ({ navigation }) => {
                 if (menu.length > 0){
                     if (menu.length <= 3){
                         return (
-                            <View>
+                            <View style={{width: SIZES.width*55/100,}}>
                                 {menu.map((item, index) => (
                                     <View
                                         key={`${index}`}
-                                        style={{paddingLeft: "8%", flexDirection: 'row'}}
+                                        style={{paddingLeft: SIZES.padding/2, flexDirection: 'row'}}
                                     >
                                         <TicketSvg width={25} height={25} fill={COLORS.gray1} />
-                                        <Text style={{...FONTS.body3}}> {item.name} </Text>
+                                        <Text style={{...FONTS.body3}} numberOfLines={1}> {item.name} </Text>
                                     </View>
                                 ))}
                             </View>
@@ -114,10 +114,10 @@ const Home = ({ navigation }) => {
                                         return(
                                             <View
                                                 key={`${index}`}
-                                                style={{paddingLeft: "8%", flexDirection: 'row'}}
+                                                style={{paddingLeft: SIZES.padding/2, flexDirection: 'row'}}
                                             >
                                                 <TicketSvg width={25} height={25} fill={COLORS.gray1} />
-                                                <Text style={{...FONTS.body3}}> {item.name} </Text>
+                                                <Text style={{...FONTS.body3}} numberOfLines={1}> {item.name} </Text>
                                             </View>
                                         )
                                     }
@@ -128,7 +128,7 @@ const Home = ({ navigation }) => {
                 }
                 else{
                     return(
-                        <View style={{paddingLeft: "8%", flexDirection: 'row'}}>
+                        <View style={{paddingLeft: SIZES.padding/2, flexDirection: 'row'}}>
                             <TicketSvg width={25} height={25} fill={COLORS.gray1} />
                             <Text style={{...FONTS.body3}}> 아직 메뉴가 없네요. </Text>
                         </View>
@@ -187,12 +187,9 @@ const Home = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}
                     keyExtractor={item => `${item.id}`}
                     renderItem={renderItem}
-                    style={{}}
                     //numColumns={3}
                     refreshing={refresh}
-                    onRefresh={() => {
-                        setRefresh(true)
-                    }}
+                    onRefresh={() => {setRefresh(true)}}
                 />
             </View>
         )
