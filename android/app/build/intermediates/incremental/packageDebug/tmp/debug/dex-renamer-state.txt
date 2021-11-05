@@ -1,4 +1,4 @@
-#Mon Nov 01 11:22:17 KST 2021
+#Fri Nov 05 15:58:10 KST 2021
 path.4=classes_0.dex
 path.3=classes3.dex
 path.2=classes2.dex
@@ -26,6 +26,7 @@ renamed.16=classes17.dex
 path.18=classes_9.dex
 renamed.8=classes9.dex
 renamed.15=classes16.dex
+path.19=classes_15.dex
 renamed.14=classes15.dex
 renamed.13=classes14.dex
 renamed.12=classes13.dex
@@ -35,6 +36,7 @@ base.17=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\
 base.16=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_7.dex
 base.15=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_6.dex
 base.14=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_5.dex
+base.19=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_15.dex
 base.18=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_9.dex
 renamed.3=classes4.dex
 path.12=classes_3.dex
@@ -52,6 +54,7 @@ renamed.5=classes6.dex
 path.14=classes_5.dex
 renamed.4=classes5.dex
 path.15=classes_6.dex
+renamed.19=classes20.dex
 base.13=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_4.dex
 base.12=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_3.dex
 base.11=C\:\\Users\\USER\\Downloads\\foodcourt\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_2.dex

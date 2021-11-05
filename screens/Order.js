@@ -14,7 +14,6 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import functions from '../constants/functions';
-import { exp } from "react-native/Libraries/Animated/Easing";
 
 const Order = ({ navigation }) => {
     const {user} = useContext(AuthContext);
@@ -146,7 +145,11 @@ const Order = ({ navigation }) => {
                                 marginTop: 7,
                                 marginBottom: 7,
                             }}
-                            onPress={() => {const couponNumber = item.couponID.toString(16);navigation.navigate("Coupon", {couponNumber})}}
+                            onPress={() => {
+                                const couponNumber = item.couponID.toString(16);
+                                const couponStatus = true;
+                                navigation.navigate("Coupon", {couponNumber, couponStatus})
+                            }}
                         >
                             <View style={{ flexDirection: 'row', alignItems: "center",}}>
                                 <View style={{
@@ -170,7 +173,11 @@ const Order = ({ navigation }) => {
                         <View style={{flexDirection:'row', justifyContent:'center', marginBottom:SIZES.padding}}>
                             <TouchableOpacity
                                 style={{...styles.button, ...styles.shadow, backgroundColor:COLORS.blue1,}}
-                                onPress={() => {const couponNumber = item.couponID.toString(16);navigation.navigate("Coupon", {couponNumber})}}
+                                onPress={() => {
+                                    const couponNumber = item.couponID.toString(16);
+                                    const couponStatus = true;
+                                    navigation.navigate("Coupon", {couponNumber, couponStatus})
+                                }}
                             >
                                 <Text style={{...FONTS.body3, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
                             </TouchableOpacity>
@@ -208,47 +215,6 @@ const Order = ({ navigation }) => {
     }
 
     function renderExpiry(){
-        function foodStatus(item){
-            if(item.couponUse == true){
-                return (
-                    <View style={{
-                        position: "absolute",
-                        top:SIZES.padding/4,
-                        height: SIZES.width*24/100,
-                        width: "100%",
-                        backgroundColor: 'rgba(179, 179, 179 ,0.5)'
-                    }}>
-                        <View style={{
-                            flex: 1,
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}>
-                            <Text style={{...FONTS.body0, color:COLORS.red2}}>사용된 쿠폰</Text>
-                        </View>
-                    </View>
-                )
-            }
-            else{
-                return (
-                    <View style={{
-                        position: "absolute",
-                        top:SIZES.padding/4,
-                        height: SIZES.width*24/100,
-                        width: "100%",
-                        backgroundColor: 'rgba(179, 179, 179 ,0.5)'
-                    }}>
-                        <View style={{
-                            flex: 1,
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}>
-                            <Text style={{...FONTS.body0, color:COLORS.red2}}>유효기간이 지남</Text>
-                        </View>
-                    </View>
-                )
-            }
-        }
-        //const renderItem = ({ item }) => (
         function renderItem({item}){
             return (
                 <View>
@@ -256,12 +222,15 @@ const Order = ({ navigation }) => {
                         <TouchableOpacity
                             style={{
                                 height: SIZES.width*24/100,
-                                //alignItems: "center",
                                 justifyContent: "center",
                                 marginTop: 7,
                                 marginBottom: 7,
                             }}
-                            onPress={() => {const couponNumber = item.couponID.toString(16);navigation.navigate("Coupon", {couponNumber})}}
+                            onPress={() => {
+                                const couponNumber = item.couponID.toString(16);
+                                const couponStatus = false;
+                                navigation.navigate("Coupon", {couponNumber, couponStatus})
+                            }}
                         >
                             <View style={{ flexDirection: 'row', alignItems: "center",}}>
                                 <View style={{
@@ -276,9 +245,9 @@ const Order = ({ navigation }) => {
                                     />
                                 </View>
                                 <View style={{flexDirection: 'column',}}>
-                                    <Text style={{...FONTS.body2}}>{item.foodName}</Text>
-                                    <Text style={{...FONTS.body3}}>교환처 : 순천대학교 푸드코트</Text>
-                                    <Text style={{...FONTS.body3}}>유효기간 : ~{item.foodExpiry[0]}.{item.foodExpiry[1].toString().padStart(2,'0')}.{item.foodExpiry[2].toString().padStart(2,'0')}</Text>
+                                    <Text style={{...FONTS.body2, textDecorationLine:'line-through'}}>{item.foodName}</Text>
+                                    <Text style={{...FONTS.body3, textDecorationLine:'line-through'}}>교환처 : 순천대학교 푸드코트</Text>
+                                    <Text style={{...FONTS.body3, textDecorationLine:'line-through'}}>유효기간 : ~{item.foodExpiry[0]}.{item.foodExpiry[1].toString().padStart(2,'0')}.{item.foodExpiry[2].toString().padStart(2,'0')}</Text>
                                 </View>
                             </View>
                             
@@ -286,7 +255,11 @@ const Order = ({ navigation }) => {
                         <View style={{flexDirection:'row', justifyContent:'center', marginBottom:SIZES.padding}}>
                             <TouchableOpacity
                                 style={{...styles.button, ...styles.shadow, backgroundColor:COLORS.blue1,}}
-                                onPress={() => {const couponNumber = item.couponID.toString(16);navigation.navigate("Coupon", {couponNumber})}}
+                                onPress={() => {
+                                    const couponNumber = item.couponID.toString(16);
+                                    const couponStatus = false;
+                                    navigation.navigate("Coupon", {couponNumber, couponStatus})
+                                }}
                             >
                                 <Text style={{...FONTS.body3, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
                             </TouchableOpacity>
@@ -302,7 +275,6 @@ const Order = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    {foodStatus(item)}
                     <View style={{width:"100%", height:1, backgroundColor:COLORS.gray3}}></View>
                 </View>
             )
