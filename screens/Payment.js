@@ -124,7 +124,7 @@ const Payment = ({ route, navigation }) => {
     function renderContent() {
         return (
             <View style={{marginHorizontal:SIZES.padding+10}}>
-                <Text style={{...FONTS.body3, letterSpacing: -1}}>순천대학교 푸드코트</Text>
+                <Text style={{...FONTS.body3, letterSpacing: -1, color:COLORS.gray1}}>순천대학교 푸드코트</Text>
                 <Text style={{...FONTS.h2, fontWeight: 'bold'}}>{food.name}</Text>
                 <Text style={{...FONTS.h2, fontWeight: 'bold'}}>{food.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</Text>
                 <View style={{marginTop:SIZES.padding, flex:1, flexDirection:'row', justifyContent: 'space-between'}}>
@@ -259,7 +259,10 @@ const Payment = ({ route, navigation }) => {
             return (
                 Alert.alert(
                     `${food.name} 구매 성공!`, "구매하신 쿠폰은 푸드코트에서 사용하실 수 있습니다. 이 앱은 테스트버젼으로 결제모듈을 사용하지 않았습니다.",
-                    [{ text: "확인", onPress: () => navigation.navigate("Coupon", {couponNumber})}], { cancelable: false }
+                    [{ text: "확인", onPress: () => {
+                        const couponStatus = true;
+                        navigation.navigate("Coupon", {couponNumber, couponStatus});
+                    }}], { cancelable: false }
                 )
             )
         }

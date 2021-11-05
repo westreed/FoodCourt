@@ -22,6 +22,7 @@ MERGED from [:react-native-permissions] C:\Users\USER\Downloads\foodcourt\FoodCo
 MERGED from [:react-native-safe-area-context] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-safe-area-context\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-svg] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-svg\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-23:12
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:firebase-analytics:19.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\47a22d42accc6fe24601a71e457e4f8a\jetified-firebase-analytics-19.0.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\a3b83f9f60e311655205c272a719d00f\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -88,6 +89,7 @@ MERGED from [com.google.android.gms:play-services-basement:17.5.0] C:\Users\USER
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\55f8666bacaf9775715d5fb652b1d6ac\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.2.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e084e851385925ebf3e7b97973749a94\fragment-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e48ee18ed306833f7c2f5916a08b080b\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.webkit:webkit:1.4.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\72955b5c524977096294b3fd94ca590a\webkit-1.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\d3fca96bb4379e0d1a842188a39af196\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\5d3192adb20d9bf386886018ccfc00f4\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\7647bcaac81a96c69bff648e6b0c4123\sqlite-2.1.0\AndroidManifest.xml:17:1-24:12
@@ -176,6 +178,8 @@ application
 ADDED from C:\Users\USER\Downloads\foodcourt\FoodCourt\android\app\src\main\AndroidManifest.xml:7:5-25:19
 MERGED from C:\Users\USER\Downloads\foodcourt\FoodCourt\android\app\src\main\AndroidManifest.xml:7:5-25:19
 MERGED from C:\Users\USER\Downloads\foodcourt\FoodCourt\android\app\src\main\AndroidManifest.xml:7:5-25:19
+MERGED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-21:19
+MERGED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-21:19
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:11:5-20
 MERGED from [com.google.firebase:firebase-analytics:19.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\47a22d42accc6fe24601a71e457e4f8a\jetified-firebase-analytics-19.0.0\AndroidManifest.xml:7:5-20
@@ -328,6 +332,8 @@ MERGED from [:react-native-screens] C:\Users\USER\Downloads\foodcourt\FoodCourt\
 MERGED from [:react-native-screens] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-svg] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-svg\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-svg\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.64.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\cd1f1e395a63b30683caa8e2a29685d3\jetified-react-native-0.64.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-analytics:19.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\47a22d42accc6fe24601a71e457e4f8a\jetified-firebase-analytics-19.0.0\AndroidManifest.xml:5:5-44
@@ -460,6 +466,8 @@ MERGED from [androidx.fragment:fragment:1.2.1] C:\Users\USER\.gradle\caches\tran
 MERGED from [androidx.fragment:fragment:1.2.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e084e851385925ebf3e7b97973749a94\fragment-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e48ee18ed306833f7c2f5916a08b080b\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e48ee18ed306833f7c2f5916a08b080b\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.4.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\72955b5c524977096294b3fd94ca590a\webkit-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.4.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\72955b5c524977096294b3fd94ca590a\webkit-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\d3fca96bb4379e0d1a842188a39af196\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\d3fca96bb4379e0d1a842188a39af196\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\5d3192adb20d9bf386886018ccfc00f4\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
@@ -618,6 +626,22 @@ ADDED from [:react-native-camera] C:\Users\USER\Downloads\foodcourt\FoodCourt\no
 		ADDED from [:react-native-camera] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-camera\android\build\intermediates\library_manifest\generalDebug\AndroidManifest.xml:16:9-33
 	android:name
 		ADDED from [:react-native-camera] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-camera\android\build\intermediates\library_manifest\generalDebug\AndroidManifest.xml:15:9-57
+provider#com.reactnativecommunity.webview.RNCWebViewFileProvider
+ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
+	android:authorities
+		ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-64
+	android:exported
+		ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
+	android:name
+		ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-83
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-19:63
+	android:resource
+		ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:17-60
+	android:name
+		ADDED from [:react-native-webview] C:\Users\USER\Downloads\foodcourt\FoodCourt\node_modules\react-native-webview\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-67
 activity#com.google.firebase.auth.internal.GenericIdpActivity
 ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\ba7ac2cbd19833a342f190b04e872d60\jetified-firebase-auth-21.0.1\AndroidManifest.xml:27:9-44:20
 	android:excludeFromRecents
