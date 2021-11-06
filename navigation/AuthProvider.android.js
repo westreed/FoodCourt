@@ -46,7 +46,7 @@ export const AuthProvider = ({children}) => {
                             else if (e.code == 'auth/wrong-password'){
                                 Alert.alert(
                                     "로그인 실패", "잘못된 비밀번호입니다. 비밀번호를 잊은 경우, '비밀번호 찾기'를 이용하세요.",
-                                    [{ text: "비밀번호찾기", onPress: () => console.log("그렇다는데")}, { text: "확인"}],
+                                    [{ text: "비밀번호찾기", onPress: () => navigation.navigate("FindPassword")}, { text: "확인"}],
                                     { cancelable: false }
                                 );
                             }
