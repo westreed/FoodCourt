@@ -19,7 +19,7 @@ import auth from '@react-native-firebase/auth';
 const Certification = ({ navigation }) => {
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%" }}>
+            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%", alignItems:'center' }}>
                 <TouchableOpacity //back button
                     style={{
                         width: 30,

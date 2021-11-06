@@ -108,7 +108,7 @@ const Search = ({ navigation }) => {
                 <View style={{
                     position: "absolute",
                     top: -8,
-                    height: SIZES.width*24/100+15,
+                    height: SIZES.width*20/100+15,
                     width: "100%",
                     backgroundColor: 'rgba(179, 179, 179 ,0.5)'
                 }}>
@@ -129,7 +129,7 @@ const Search = ({ navigation }) => {
             <View>
                 <TouchableOpacity
                     style={{
-                        height: SIZES.width*24/100,
+                        height: SIZES.width*20/100,
                         //alignItems: "center",
                         justifyContent: "center",
                         marginTop: 7,
@@ -141,11 +141,12 @@ const Search = ({ navigation }) => {
                         style={{
                             flexDirection: 'row',
                             alignItems: "center",
+                            paddingHorizontal: SIZES.padding/2,
                         }}
                     >
                         <View style={{
-                            width: SIZES.width*20/100,
-                            height: SIZES.width*20/100,
+                            width: SIZES.width*18/100,
+                            height: SIZES.width*18/100,
                             marginRight: 10,
                         }}>
                             <Image
@@ -161,10 +162,10 @@ const Search = ({ navigation }) => {
                         <View style={{
                             flexDirection: 'column',
                         }}>
-                            <Text style={{...FONTS.body2}}>
+                            <Text style={{...FONTS.body3}}>
                                 {item.name}
                             </Text>
-                            <Text style={{...FONTS.body2}}>
+                            <Text style={{...FONTS.body3}}>
                                 {item.price}원
                             </Text>
                         </View>
@@ -191,9 +192,6 @@ const Search = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}
                     keyExtractor={item => `${item.id}`}
                     renderItem={renderItem}
-                    contentContainerStyle={{
-                        paddingHorizontal: 7,
-                    }}
                 />
             </View>
         )

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import RefreshSvg from '../assets/icons/refresh-svgrepo-com.svg';
+import SignInSvg from '../assets/icons/sign-in-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
@@ -28,60 +29,62 @@ const Order = ({ navigation }) => {
     var map = new functions.HashMap(); //불러온 쿠폰 데이터 저장소
 
     useEffect(async() => {
-        navigation.addListener('focus', () => {setRefresh(true)});
-        if(refresh == true){
-            const today = new Date();
-            console.log(today);
-            let tempFood = [];
-            await firestore().collection('foodmenu').get().then(function(querySnapshot) {
-                if (querySnapshot) {
-                    querySnapshot.forEach(function(doc){
-                        tempFood.push(doc.data());
-                    })
-                }
-            }).catch(err => console.log('foodmenu', err));
-            tempFood.sort(function(a,b){
-                if (a.id > b.id) return 1;
-                else return -1;
-            });
-            setFoodList(tempFood);
-
-            var coupon = [];
-            var expiry = [];
-            await firestore().collection('coupon')
-            .where("userUID", "==", user.uid)
-            .get()
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    // doc.data() is never undefined for query doc snapshots
-                    const tempCoupon = doc.data();
-                    const expiryDate = new Date(tempCoupon.foodExpiry[0], tempCoupon.foodExpiry[1], tempCoupon.foodExpiry[2]);
-                    map.put(doc.id, tempCoupon);
-                    if (tempCoupon.couponUse == false && today <= expiryDate){
-                        coupon.push(tempCoupon);
-                        console.log("사용가능 :",doc.id, " => ", tempCoupon);
-                    }else{
-                        expiry.push(tempCoupon);
-                        console.log("사용불가 :",doc.id, " => ", tempCoupon);
+        if(user){
+            navigation.addListener('focus', () => {setRefresh(true)});
+            if(refresh == true){
+                const today = new Date();
+                console.log(today);
+                let tempFood = [];
+                await firestore().collection('foodmenu').get().then(function(querySnapshot) {
+                    if (querySnapshot) {
+                        querySnapshot.forEach(function(doc){
+                            tempFood.push(doc.data());
+                        })
                     }
+                }).catch(err => console.log('foodmenu', err));
+                tempFood.sort(function(a,b){
+                    if (a.id > b.id) return 1;
+                    else return -1;
                 });
-            })
-            coupon.sort(function(a,b){
-                if (a.foodDate > b.foodDate) return 1;
-                else return -1;
-            });
-            //console.log('coupon', coupon);
-            setCouponList(coupon);
-            setExpiryList(expiry);
-            setRefresh(false)
-            await flatList.current.scrollToOffset(0);
-            //console.log("HashMap", map.getAll());
+                setFoodList(tempFood);
+
+                var coupon = [];
+                var expiry = [];
+                await firestore().collection('coupon')
+                .where("userUID", "==", user.uid)
+                .get()
+                .then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        // doc.data() is never undefined for query doc snapshots
+                        const tempCoupon = doc.data();
+                        const expiryDate = new Date(tempCoupon.foodExpiry[0], tempCoupon.foodExpiry[1], tempCoupon.foodExpiry[2]);
+                        map.put(doc.id, tempCoupon);
+                        if (tempCoupon.couponUse == false && today <= expiryDate){
+                            coupon.push(tempCoupon);
+                            console.log("사용가능 :",doc.id, " => ", tempCoupon);
+                        }else{
+                            expiry.push(tempCoupon);
+                            console.log("사용불가 :",doc.id, " => ", tempCoupon);
+                        }
+                    });
+                })
+                coupon.sort(function(a,b){
+                    if (a.foodDate > b.foodDate) return 1;
+                    else return -1;
+                });
+                //console.log('coupon', coupon);
+                setCouponList(coupon);
+                setExpiryList(expiry);
+                setRefresh(false)
+                await flatList.current.scrollToOffset(0);
+                //console.log("HashMap", map.getAll());
+            }
         }
     }, [refresh]);
 
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', top:"5%", paddingBottom:"10%" }}>
+            <View style={{ flexDirection: 'row', top:"5%", paddingBottom:"10%", alignItems:'center' }}>
                 <View style={{marginHorizontal: SIZES.padding/2 }}>
                     <View style={{height: 30}}>
                         <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>주문내역</Text>
@@ -91,7 +94,7 @@ const Order = ({ navigation }) => {
                     style={{marginLeft:SIZES.padding/2}}
                     onPress={() => (setRefresh(true))}
                 >
-                    <RefreshSvg width={25} height={25} fill={COLORS.orange} />
+                    <RefreshSvg width={25} height={25} fill={COLORS.blue1} />
                 </TouchableOpacity>
             </View>
         )
@@ -105,15 +108,15 @@ const Order = ({ navigation }) => {
                         style={{flex:1, alignItems:'center'}}
                         onPress={() => (setTab(0), setRefresh(true))}
                     >
-                        <Text style={{...FONTS.h3, fontWeight:'bold', letterSpacing:1}}>사용가능한 쿠폰</Text>
-                        <View style={{width: (SIZES.width/2-SIZES.padding), height:5, backgroundColor: (tab == 0) ? COLORS.blue1 : COLORS.white2}}></View>
+                        <Text style={{...FONTS.h4, fontWeight:'bold', letterSpacing:1}}>사용가능한 쿠폰</Text>
+                        <View style={{width: (SIZES.width/2-SIZES.padding*2), height:5, backgroundColor: (tab == 0) ? COLORS.blue1 : COLORS.white2}}></View>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{flex:1, alignItems:'center'}}
                         onPress={() => (setTab(1), setRefresh(true))}
                     >
-                        <Text style={{...FONTS.h3, fontWeight:'bold', letterSpacing:1}}>사용/기간초과</Text>
-                        <View style={{width: (SIZES.width/2-SIZES.padding), height:5, backgroundColor: (tab == 1) ? COLORS.blue1 : COLORS.white2}}></View>
+                        <Text style={{...FONTS.h4, fontWeight:'bold', letterSpacing:1}}>사용/기간초과</Text>
+                        <View style={{width: (SIZES.width/2-SIZES.padding*2), height:5, backgroundColor: (tab == 1) ? COLORS.blue1 : COLORS.white2}}></View>
                     </TouchableOpacity>
                 </View>
                 <View style={{width:"100%", height:2, backgroundColor:COLORS.gray3}}></View>
@@ -139,7 +142,7 @@ const Order = ({ navigation }) => {
                     <View style={{marginHorizontal:SIZES.padding}}>
                         <TouchableOpacity
                             style={{
-                                height: SIZES.width*24/100,
+                                height: SIZES.width*20/100,
                                 //alignItems: "center",
                                 justifyContent: "center",
                                 marginTop: 7,
@@ -153,8 +156,8 @@ const Order = ({ navigation }) => {
                         >
                             <View style={{ flexDirection: 'row', alignItems: "center",}}>
                                 <View style={{
-                                    width: SIZES.width*20/100,
-                                    height: SIZES.width*20/100,
+                                    width: SIZES.width*18/100,
+                                    height: SIZES.width*18/100,
                                     marginRight: 10,
                                 }}>
                                     <Image
@@ -164,9 +167,9 @@ const Order = ({ navigation }) => {
                                     />
                                 </View>
                                 <View style={{flexDirection: 'column',}}>
-                                    <Text style={{...FONTS.body2}}>{item.foodName}</Text>
-                                    <Text style={{...FONTS.body3}}>교환처 : 순천대학교 푸드코트</Text>
-                                    <Text style={{...FONTS.body3}}>유효기간 : ~{item.foodExpiry[0]}.{item.foodExpiry[1].toString().padStart(2,'0')}.{item.foodExpiry[2].toString().padStart(2,'0')}</Text>
+                                    <Text style={{...FONTS.body3}}>{item.foodName}</Text>
+                                    <Text style={{...FONTS.body4}}>교환처 : 순천대학교 푸드코트</Text>
+                                    <Text style={{...FONTS.body4}}>유효기간 : ~{item.foodExpiry[0]}.{item.foodExpiry[1].toString().padStart(2,'0')}.{item.foodExpiry[2].toString().padStart(2,'0')}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
@@ -179,17 +182,17 @@ const Order = ({ navigation }) => {
                                     navigation.navigate("Coupon", {couponNumber, couponStatus})
                                 }}
                             >
-                                <Text style={{...FONTS.body3, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                style={{...styles.button, borderWidth: 1}}
+                                style={{...styles.button, borderWidth:1, borderColor:COLORS.gray1}}
                             >
-                                <Text style={{...FONTS.body3, fontWeight:'bold'}}>쿠폰 저장</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'black'}}>쿠폰 저장</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                style={{...styles.button, borderWidth: 1}}
-                            >
-                                <Text style={{...FONTS.body3, fontWeight:'bold'}}>구매 취소</Text>
+                                style={{...styles.button, borderWidth:1, borderColor:COLORS.gray1}}
+                                >
+                                    <Text style={{...FONTS.body4, fontWeight:'bold', color:'black'}}>구매 취소</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -221,7 +224,7 @@ const Order = ({ navigation }) => {
                     <View style={{marginHorizontal:SIZES.padding}}>
                         <TouchableOpacity
                             style={{
-                                height: SIZES.width*24/100,
+                                height: SIZES.width*20/100,
                                 justifyContent: "center",
                                 marginTop: 7,
                                 marginBottom: 7,
@@ -234,8 +237,8 @@ const Order = ({ navigation }) => {
                         >
                             <View style={{ flexDirection: 'row', alignItems: "center",}}>
                                 <View style={{
-                                    width: SIZES.width*20/100,
-                                    height: SIZES.width*20/100,
+                                    width: SIZES.width*18/100,
+                                    height: SIZES.width*18/100,
                                     marginRight: 10,
                                 }}>
                                     <Image
@@ -245,9 +248,9 @@ const Order = ({ navigation }) => {
                                     />
                                 </View>
                                 <View style={{flexDirection: 'column',}}>
-                                    <Text style={{...FONTS.body2, textDecorationLine:'line-through'}}>{item.foodName}</Text>
-                                    <Text style={{...FONTS.body3, textDecorationLine:'line-through'}}>교환처 : 순천대학교 푸드코트</Text>
-                                    <Text style={{...FONTS.body3, textDecorationLine:'line-through'}}>유효기간 : ~{item.foodExpiry[0]}.{item.foodExpiry[1].toString().padStart(2,'0')}.{item.foodExpiry[2].toString().padStart(2,'0')}</Text>
+                                    <Text style={{...FONTS.body3, textDecorationLine:'line-through'}}>{item.foodName}</Text>
+                                    <Text style={{...FONTS.body4, textDecorationLine:'line-through'}}>교환처 : 순천대학교 푸드코트</Text>
+                                    <Text style={{...FONTS.body4, textDecorationLine:'line-through'}}>유효기간 : ~{item.foodExpiry[0]}.{item.foodExpiry[1].toString().padStart(2,'0')}.{item.foodExpiry[2].toString().padStart(2,'0')}</Text>
                                 </View>
                             </View>
                             
@@ -261,17 +264,17 @@ const Order = ({ navigation }) => {
                                     navigation.navigate("Coupon", {couponNumber, couponStatus})
                                 }}
                             >
-                                <Text style={{...FONTS.body3, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, backgroundColor:COLORS.gray1}}
                             >
-                                <Text style={{...FONTS.body3, fontWeight:'bold', color:'white'}}>쿠폰 저장</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>쿠폰 저장</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, backgroundColor:COLORS.gray1}}
                             >
-                                <Text style={{...FONTS.body3, fontWeight:'bold', color:'white'}}>구매 취소</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>구매 취소</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -296,11 +299,26 @@ const Order = ({ navigation }) => {
             </View>
         )
     }
+    function renderLogin(){
+        return (
+            <View style={{ marginTop:SIZES.padding*4, alignItems:'center'}}>
+                <Text style={{...FONTS.h2, color:COLORS.orange}}>주문내역을 보시려면,</Text>
+                <Text style={{...FONTS.h2, color:COLORS.orange}}>먼저 로그인을 해주셔야 해요.</Text>
+                <TouchableOpacity
+                    style={{marginTop:SIZES.padding*2, flexDirection:'row', alignItems:'center'}}
+                    onPress={() => navigation.navigate("Login")}
+                >
+                    <Text style={{...FONTS.body2, color:COLORS.black3}}>로그인하기 </Text>
+                    <SignInSvg width={24} height={24} fill={COLORS.black3} />
+                </TouchableOpacity>
+            </View>
+        )
+    }
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
             {renderTab()}
-            {tab == 0 ? renderCoupon() : renderExpiry()}
+            {user ? tab == 0 ? renderCoupon() : renderExpiry() : renderLogin()}
         </SafeAreaView>
     )
 }
@@ -316,7 +334,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 5, }, // IOS
         shadowOpacity: 0.34, // IOS
         shadowRadius: 6.27, // IOS
-        elevation: 10, //ANDROID
+        elevation: 5, //ANDROID
     },
     absolute: {
         position: "absolute",
@@ -336,13 +354,13 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2, }, 
         shadowOpacity: 0.25, 
         shadowRadius: 4, 
-        elevation: 10,
+        elevation: 5,
      },
      button: {
         width:SIZES.width/3-SIZES.padding,
         marginHorizontal:SIZES.padding/4,
-        height:35,
-        borderRadius:20,
+        height:30,
+        borderRadius:10,
         alignItems:'center',
         justifyContent:'center'
      },

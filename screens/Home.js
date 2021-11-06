@@ -12,7 +12,7 @@ import {
     ScrollView
 } from "react-native";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import TicketSvg from '../assets/icons/ticket-svgrepo-com.svg';
+import TicketSvg from '../assets/icons/fiber_manual_record_black_48dp.svg';
 import QRCodeSvg from '../assets/icons/qr-svgrepo-com.svg';
 import firestore from '@react-native-firebase/firestore';
 import { SIZES, COLORS, FONTS } from '../constants'
@@ -81,7 +81,6 @@ const Home = ({ navigation }) => {
                         <Text style={{...FONTS.h4, color:COLORS.white, fontWeight: 'bold'}}>2021 졸업작품 프로젝트</Text>
                     </View>
                 </View>
-                <Text style={{marginTop: "4%", marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
             </View>
         )
     }
@@ -93,14 +92,14 @@ const Home = ({ navigation }) => {
                 if (menu.length > 0){
                     if (menu.length <= 3){
                         return (
-                            <View style={{width: SIZES.width*55/100,}}>
+                            <View style={{paddingLeft: SIZES.padding/2, flexDirection: 'row',}}>
                                 {menu.map((item, index) => (
                                     <View
                                         key={`${index}`}
-                                        style={{paddingLeft: SIZES.padding/2, flexDirection: 'row'}}
+                                        style={{marginRight: -15, width:40}}
                                     >
-                                        <TicketSvg width={25} height={25} fill={COLORS.gray1} />
-                                        <Text style={{...FONTS.body3}} numberOfLines={1}> {item.name} </Text>
+                                        <Image source={{ uri : item.icon }} resizeMode="cover" style={{borderRadius: 40, width:40, height:40, borderWidth:2, borderColor:COLORS.black3}}/>
+                                        {/* <Text style={{...FONTS.body4}} numberOfLines={1}> {item.name}</Text> */}
                                     </View>
                                 ))}
                             </View>
@@ -108,20 +107,23 @@ const Home = ({ navigation }) => {
                     }
                     else{
                         return (
-                            <View>
+                            <View style={{paddingLeft: SIZES.padding/2, flexDirection: 'row',}}>
                                 {menu.map((item, index) => {
                                     if (index <= 2) {
                                         return(
                                             <View
                                                 key={`${index}`}
-                                                style={{paddingLeft: SIZES.padding/2, flexDirection: 'row'}}
+                                                style={{marginRight: -15, width:40}}
                                             >
-                                                <TicketSvg width={25} height={25} fill={COLORS.gray1} />
-                                                <Text style={{...FONTS.body3}} numberOfLines={1}> {item.name} </Text>
+                                                <Image source={{ uri : item.icon }} resizeMode="cover" style={{borderRadius: 40, width:40, height:40, borderWidth:2, borderColor:COLORS.black3}}/>
+                                                {/* <Text style={{...FONTS.body5, color:"white"}} numberOfLines={1}> {item.name}</Text> */}
                                             </View>
                                         )
                                     }
                                 })}
+                                <View style={{paddingLeft: SIZES.padding/1.5, flexDirection: 'row', alignItems:'flex-end'}}>
+                                    <Text style={{...FONTS.body3, color:"white"}}>+{menu.length-3}</Text>
+                                </View>
                             </View>
                         )
                     }
@@ -159,34 +161,43 @@ const Home = ({ navigation }) => {
                                 source={{uri : item.icon}}
                                 resizeMode="cover"
                                 style={{
-                                    marginLeft: 20,
-                                    borderRadius: 20,
-                                    width: SIZES.width*24/100,
-                                    height: SIZES.width*24/100,
+                                    borderRadius: 10,
+                                    width: "100%",
+                                    height: "100%",
                                 }}
                             />
-                            <View style={{flexDirection: 'column'}}>
-                                <Text style={{...FONTS.h2, paddingLeft: "4%", fontWeight:'bold'}}> {item.name} </Text>
-                                <ViewCategory category={item} />
+                            <View style={{position:'absolute', justifyContent:'flex-end', height:"100%", width: SIZES.width*90/100,}}>
+                                <View style={{flexDirection:'row', alignItems:'center', padding:5, backgroundColor:'rgba(25,25,25,0.5)', borderRadius:10, }}>
+                                    <Text style={{...FONTS.h2, paddingLeft: SIZES.padding/3, fontWeight:'bold', color:COLORS.white2}}> {item.name} </Text>
+                                    <ViewCategory category={item} />
+                                </View>
                             </View>
                         </View>
                     </View>
                 </TouchableHighlight>
             )
         }
+        const renderListHeader = () => (
+            <Text style={{marginTop: "4%", marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
+        )
+        const renderFooter = () => (
+            <View style={{height:SIZES.padding*7}}></View>
+        )
         
         if (refresh) {
             return <ActivityIndicator />;
         }
+        
         return (
             <View>
                 <FlatList
-                    ListHeaderComponent={renderHeader()}
                     data={categories}
                     //horizontal={false}
                     showsVerticalScrollIndicator={false}
                     keyExtractor={item => `${item.id}`}
                     renderItem={renderItem}
+                    ListHeaderComponent={renderListHeader()}
+                    ListFooterComponent={renderFooter()}
                     //numColumns={3}
                     refreshing={refresh}
                     onRefresh={() => {setRefresh(true)}}
@@ -196,7 +207,7 @@ const Home = ({ navigation }) => {
     }
     return (
         <SafeAreaView style={styles.container}>
-            {/* {renderHeader()} */}
+            {renderHeader()}
             {renderMain()}
         </SafeAreaView>
     )
@@ -216,7 +227,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.34,
         shadowRadius: 3.27,
 
-        elevation: 10,
+        elevation: 5,
     },
     shadow2: {
         shadowColor: "#000",
@@ -228,7 +239,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.27,
 
         elevation: 5,
-    }
+    },
 })
 
 export default Home;

@@ -7,7 +7,8 @@ export const COLORS = {
     white2: '#F0F0F0',
     blue1: '#0066B3',
     blue2: '#0095D6',
-    orange: '#F78B1F',
+    blue3: '#7e9dd2',
+    orange: '#F5A962',
     green: '#00AC54',
     brown: '#BA8860',
     red: '#D81920',
@@ -16,8 +17,12 @@ export const COLORS = {
     gray1: '#77787B',
     gray2: '#6D6E71',
     gray3: '#E9E9EA',
+    gray4: '#bcbcbc',
     red: '#FF0000',
     red2: '#C94848',
+    black: '#000000',
+    black2: '#1d1d1d',
+    black3: '#2b2b2b',
 };
 
 export const SIZES = {
