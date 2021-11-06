@@ -23,7 +23,7 @@ const FindPassword = ({ navigation }) => {
     const [email, setEmail] = React.useState('');
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%" }}>
+            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%", alignItems:'center' }}>
                 <TouchableOpacity //back button
                     style={{
                         width: 30,

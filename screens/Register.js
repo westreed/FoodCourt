@@ -47,7 +47,7 @@ const Register = ({ navigation }) => {
 
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%" }}>
+            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%", alignItems:'center' }}>
                 <TouchableOpacity //back button
                     style={{
                         width: 30,
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 5, }, // IOS
         shadowOpacity: 0.34, // IOS
         shadowRadius: 6.27, // IOS
-        elevation: 10, //ANDROID
+        elevation: 5, //ANDROID
     },
     label1: {
         margin: 8,

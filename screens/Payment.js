@@ -93,7 +93,7 @@ const Payment = ({ route, navigation }) => {
 
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%" }}>
+            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%", alignItems:'center' }}>
                 <TouchableOpacity //back button
                     style={{
                         width: 30,
@@ -124,9 +124,9 @@ const Payment = ({ route, navigation }) => {
     function renderContent() {
         return (
             <View style={{marginHorizontal:SIZES.padding+10}}>
-                <Text style={{...FONTS.body3, letterSpacing: -1, color:COLORS.gray1}}>순천대학교 푸드코트</Text>
+                <Text style={{...FONTS.body3, letterSpacing:-1.2, color:COLORS.gray1}}>순천대학교 푸드코트</Text>
                 <Text style={{...FONTS.h2, fontWeight: 'bold'}}>{food.name}</Text>
-                <Text style={{...FONTS.h2, fontWeight: 'bold'}}>{food.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</Text>
+                <Text style={{...FONTS.h3, fontWeight: 'bold'}}>{food.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</Text>
                 <View style={{marginTop:SIZES.padding, flex:1, flexDirection:'row', justifyContent: 'space-between'}}>
                     <Text>교환처</Text>
                     <Text style={{fontWeight:'bold'}}>순천대학교 푸드코트</Text>
@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 5, }, // IOS
         shadowOpacity: 0.34, // IOS
         shadowRadius: 6.27, // IOS
-        elevation: 10, //ANDROID
+        elevation: 5, //ANDROID
     },
     absolute: {
         position: "absolute",

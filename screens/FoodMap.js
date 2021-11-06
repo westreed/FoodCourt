@@ -42,7 +42,7 @@ const FoodMap = ({ navigation }) => {
 
     function renderHeader() {
         return (
-            <View style={{ ...styles.absolute, flexDirection: 'row', marginTop:"5%", paddingBottom:"10%" }}>
+            <View style={{ ...styles.absolute, flexDirection: 'row', marginTop:"5%", paddingBottom:"10%", justifyContent:'center' }}>
                 <TouchableOpacity //back button
                     style={{
                         width: 30,

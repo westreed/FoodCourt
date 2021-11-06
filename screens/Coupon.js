@@ -15,7 +15,7 @@ import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-u
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-import QRCode from 'react-native-qrcode';
+// import QRCode from 'react-native-qrcode';
 
 const Coupon = ({ route, navigation }) => {
 
@@ -42,7 +42,7 @@ const Coupon = ({ route, navigation }) => {
 
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%" }}>
+            <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%", alignItems:'center' }}>
                 <TouchableOpacity //back button
                     style={{
                         width: 30,
@@ -100,7 +100,7 @@ const Coupon = ({ route, navigation }) => {
             {renderHeader()}
             {couponData ? renderImage() : false}
             {couponData ? renderContent() : false}
-            {renderQRCode()}
+            {/* {renderQRCode()} */}
         </ScrollView>
     )
 }
