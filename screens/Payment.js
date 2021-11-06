@@ -124,9 +124,16 @@ const Payment = ({ route, navigation }) => {
     function renderContent() {
         return (
             <View style={{marginHorizontal:SIZES.padding+10}}>
-                <Text style={{...FONTS.body3, letterSpacing:-1.2, color:COLORS.gray1}}>순천대학교 푸드코트</Text>
-                <Text style={{...FONTS.h2, fontWeight: 'bold'}}>{food.name}</Text>
-                <Text style={{...FONTS.h3, fontWeight: 'bold'}}>{food.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</Text>
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <View>
+                        <Text style={{...FONTS.body3, letterSpacing:-1.2, color:COLORS.gray1}}>순천대학교 푸드코트</Text>
+                        <Text style={{...FONTS.h2, fontWeight: 'bold'}}>{food.name}</Text>
+                        <Text style={{...FONTS.h3, fontWeight: 'bold'}}>{food.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</Text>
+                    </View>
+                    <View style={{justifyContent:'center'}}>
+                        <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/scnufood-4f431.appspot.com/o/etc%2F%EC%88%9C%EC%B2%9C%EB%8C%80%20%EB%A1%9C%EA%B3%A0%202.png?alt=media&token=c9b46e5d-761c-4157-b426-a21b612d9283'}} style={{width:30, height:30}} />
+                    </View>
+                </View>
                 <View style={{marginTop:SIZES.padding, flex:1, flexDirection:'row', justifyContent: 'space-between'}}>
                     <Text>교환처</Text>
                     <Text style={{fontWeight:'bold'}}>순천대학교 푸드코트</Text>

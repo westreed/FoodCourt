@@ -15,17 +15,19 @@ import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-u
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-// import QRCode from 'react-native-qrcode';
+import QRCode from 'react-native-qrcode-svg';
 
 const Coupon = ({ route, navigation }) => {
 
     const couponN = parseInt(route.params.couponNumber, 16);
+    const couponSt = route.params.couponStatus;
     const [couponData, setCouponData] = React.useState(null);
 
     useEffect(async() => {
         await navigation.addListener('focus', async() => {
             const today = new Date();
             console.log(today);
+            console.log('couponN :', couponN);
 
             await firestore().collection('coupon')
             .where("couponID", "==", couponN)
@@ -73,7 +75,7 @@ const Coupon = ({ route, navigation }) => {
         return (
             <View style={{marginHorizontal:SIZES.padding+10, flexDirection:'row', justifyContent:'space-between'}}>
                 <View>
-                    <Text style={{...FONTS.body3, letterSpacing: -1, color:COLORS.gray1}}>순천대학교 푸드코트</Text>
+                    <Text style={{...FONTS.body3, letterSpacing: -1.2, color:COLORS.gray1}}>순천대학교 푸드코트</Text>
                     <Text style={{...FONTS.h2, fontWeight: 'bold'}}>{couponData.foodName}</Text>
                 </View>
                 <View style={{justifyContent:'center'}}>
@@ -83,14 +85,74 @@ const Coupon = ({ route, navigation }) => {
         )
     }
 
+    function renderNotUse(){
+        if(couponSt == false){
+            return(
+                <View style={{
+                    position: "absolute",
+                    marginTop:SIZES.width/12,
+                    height: SIZES.width*20/100+15,
+                    width: "100%",
+                    backgroundColor: 'rgba(150, 150, 150, 0.5)'
+                }}>
+                    <View style={{
+                        flex: 1,
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}>
+                        {couponData.couponUse == false ?
+                            <Text style={{...FONTS.body0, fontWeight:'bold', color:COLORS.red2}}>유효기간이 지남</Text> :
+                            <Text style={{...FONTS.body0, fontWeight:'bold', color:COLORS.red2}}>사용된 쿠폰</Text>
+                        }
+                    </View>
+                </View>
+            )
+        }
+        return (
+            <View></View>
+        )
+    }
+
     function renderQRCode(){
+        const couponData_ = couponData.couponID.toString(16).toUpperCase();
+        const slicingData1 = couponData_.substring(0,2);
+        const slicingData2 = couponData_.substring(2,4);
+        const slicingData3 = couponData_.substring(4,6);
+        const slicingData4 = couponData_.substring(6,8);
+
         return (
             <View>
-                <QRCode
-                    value={couponN}
-                    size={200}
-                    bgColor='purple'
-                    fgColor='white'/>
+                <View style={{alignItems:'center',margin:SIZES.padding/2, backfaceVisibility:'visible'}}>
+                    <View style={{...styles.shadow, width:SIZES.width/3, height:SIZES.width/3}}>
+                        <QRCode
+                            value={couponN.toString()}
+                            size={SIZES.width/3}
+                        />
+                    </View>
+                    <View style={{marginTop:5,}}>
+                        <Text style={{...FONTS.body3}}>{slicingData1}-{slicingData2}-{slicingData3}-{slicingData4}</Text>
+                    </View>
+                </View>
+                {renderNotUse()}
+            </View>
+        )
+    }
+
+    function renderCoupon(){
+        return (
+            <View style={{marginHorizontal:SIZES.padding+10}}>
+                <View style={{marginTop:SIZES.padding, flex:1, flexDirection:'row', justifyContent: 'space-between'}}>
+                    <Text>교환처</Text>
+                    <Text style={{fontWeight:'bold'}}>순천대학교 푸드코트</Text>
+                </View>
+                <View style={{marginTop:SIZES.padding/2, flex:1, flexDirection:'row', justifyContent: 'space-between'}}>
+                    <Text>유효기간</Text>
+                    <Text style={{fontWeight:'bold'}}>~{couponData.foodExpiry[0]}.{couponData.foodExpiry[1].toString().padStart(2,'0')}.{couponData.foodExpiry[2].toString().padStart(2,'0')}</Text>
+                </View>
+                <View style={{marginTop:SIZES.padding/2, flex:1, flexDirection:'row', justifyContent: 'space-between'}}>
+                    <Text>주문번호</Text>
+                    <Text style={{fontWeight:'bold'}}>{couponData.foodOrder}</Text>
+                </View>
             </View>
         )
     }
@@ -100,7 +162,8 @@ const Coupon = ({ route, navigation }) => {
             {renderHeader()}
             {couponData ? renderImage() : false}
             {couponData ? renderContent() : false}
-            {/* {renderQRCode()} */}
+            {couponData ? renderQRCode() : false}
+            {couponData ? renderCoupon() : false}
         </ScrollView>
     )
 }
@@ -109,6 +172,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.white2
+    },
+    shadow: {
+        backgroundColor: COLORS.brown,
+        shadowColor: COLORS.blue1, // IOS
+        shadowOffset: { width: 0, height: 5, }, // IOS
+        shadowOpacity: 0.34, // IOS
+        shadowRadius: 6.27, // IOS
+        elevation: 5, //ANDROID
     },
 })
 

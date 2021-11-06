@@ -131,8 +131,7 @@ const Home = ({ navigation }) => {
                 else{
                     return(
                         <View style={{paddingLeft: SIZES.padding/2, flexDirection: 'row'}}>
-                            <TicketSvg width={25} height={25} fill={COLORS.gray1} />
-                            <Text style={{...FONTS.body3}}> 아직 메뉴가 없네요. </Text>
+                            <Text style={{...FONTS.body3, color:"white"}}> 아직 메뉴가 없네요. </Text>
                         </View>
                     )
                 }

@@ -24,13 +24,12 @@ const Order = ({ navigation }) => {
 
     const flatList = useRef(null);
     const [tab, setTab] = React.useState(0);
-    const [refresh, setRefresh] = React.useState(false) //스크롤을 아래로 쭉 땡겨서 refresh할 때
+    const [refresh, setRefresh] = React.useState(true) //스크롤을 아래로 쭉 땡겨서 refresh할 때
 
     var map = new functions.HashMap(); //불러온 쿠폰 데이터 저장소
 
     useEffect(async() => {
         if(user){
-            navigation.addListener('focus', () => {setRefresh(true)});
             if(refresh == true){
                 const today = new Date();
                 console.log(today);
