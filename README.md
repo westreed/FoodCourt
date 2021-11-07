@@ -1,12 +1,14 @@
-# Graduation Project (React-Native + Firebase)
+# 2021 졸업작품 프로젝트 (React-Native + Firebase)
 
-This repository was used as a graduation project and submitted before an interview.
+이 리포지토리는 졸업작품 프로젝트로 사용되었습니다.
 
-## What is this?
-* Through the application, students can order food tickets and use them in the food court.
-* Food courts can use this application instead of kiosks to reduce paper waste and improve waiting lines.
+## 앱의 목적
+* 학생들은 어플리케이션을 통해 음식쿠폰을 주문하고 푸드코트에서 사용할 수 있습니다.
+* 키오스크 대신 이 어플리케이션을 사용하여 종이 낭비를 줄이고 대기시간을 개선할 수 있습니다.
+* 기존 학식 정보를 제공해 주는 시스템의 불편함을 개선할 수 있습니다.
+* 학생들의 학식 접근을 높이기 위한 다양한 홍보 방식 및 피드백을 위한 공간을 제공할 수 있습니다.
 
-## Runbook
+## 환경
 * React-Native 0.64.1
 * Android Studio
 * Python
@@ -20,17 +22,17 @@ npm run android
 react-native run-android
 ```
 
-## Current Task
+## 작업 진척
 1. ~Create a Firebase Login Screen.~
 2. ~Improving the screen structure by building a login function.~
 3. ~Create a Signup Screen.~
 4. Create a Profile Settings Screen.
 5. ~Create a Food Order Screen.~
 6. ~Create a Search Screen.~
-7. Create a Order Screen.
+7. ~Create a Order Screen.~
 8. Fill in the contents of the Settings Screen.
 
-## Module in Use
+## 사용된 모듈
 ┌ react-navigation : RN 네비게이션 모듈로, 앱하단에 있는 네비게이션 바를 제작하는데 사용. <br>
 ├ @react-navigation/native <br>
 ├ @react-navigation/bottom-tabs : 하단탭 제작을 위한 모듈. <br>
@@ -45,11 +47,11 @@ react-native run-android
 ├ @react-native-community/checkbox : 체크박스를 구현하기 위한 모듈. <br>
 └ @react-native-community/blur : 화면을 블러처리하기 위한 모듈. <br>
 ┌ react-native-svg : SVG 벡터 아이콘을 사용하기 위한 모듈. <br>
-└ react-native-svg-transformer : 종속모듈. <br>
+├ react-native-svg-transformer : 종속모듈. <br>
+└ react-native-qrcode-svg : QR코드 생성 모듈. <br>
 ─ react-native-keyboard-aware-scroll-view : 키보드 소환시 스크롤 화면으로 전환해주는 모듈. <br>
 ┌ react-native-map : 구글 지도 모듈. <br>
 └ react-native-geolocation-service : 사용자의 현재위치 정보를 불러오는 모듈. <br>
-─ react-native-qrcode : QR코드 생성 모듈. 미지원이라 변경될 수 있음. <br>
 ─ react-native-make : App 아이콘과 Splash 이미지를 관리하는 모듈. <br>
 ┌ Buffer : Node.js 에서 제공하는 Binary 의 데이터를 담을 수 있는 Object. <br>
 └ buffer-crc32 : 이진데이터(버퍼)를 signed 혹은 unsigned 데이터로 출력해주는 모듈. <br>
