@@ -20,7 +20,7 @@ export const AuthProvider = ({children}) => {
                     if (email == '' || password == ''){
                         Alert.alert(
                             "로그인", "이메일과 비밀번호를 입력하세요.",[
-                                { text: "확인", onPress: () => console.log("그렇다는데") }
+                                { text: "확인" }
                             ],
                             { cancelable: false }
                         );
