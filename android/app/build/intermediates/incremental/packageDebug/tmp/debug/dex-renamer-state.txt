@@ -1,4 +1,4 @@
-#Fri Nov 05 22:36:45 KST 2021
+#Sun Nov 07 13:29:23 KST 2021
 base.2=C\:\\Programming\\React Native\\test\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 base.1=C\:\\Programming\\React Native\\test\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
 base.0=C\:\\Programming\\React Native\\test\\FoodCourt\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
