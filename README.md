@@ -23,14 +23,10 @@ react-native run-android
 ```
 
 ## 작업 진척
-1. ~Create a Firebase Login Screen.~
-2. ~Improving the screen structure by building a login function.~
-3. ~Create a Signup Screen.~
-4. Create a Profile Settings Screen.
-5. ~Create a Food Order Screen.~
-6. ~Create a Search Screen.~
-7. ~Create a Order Screen.~
-8. Fill in the contents of the Settings Screen.
+1. 주문내역에서 '쿠폰 저장' 및 '구매 취소'기능 제작하기
+2. 더보기 화면의 '마이페이지' 제작하기
+3. 더보기 화면의 '버전정보' 제작하기
+4. 스플래시 제작하기
 
 ## 사용된 모듈
 ┌ react-navigation : RN 네비게이션 모듈로, 앱하단에 있는 네비게이션 바를 제작하는데 사용. <br>
