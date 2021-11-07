@@ -11,6 +11,7 @@
 ## 환경
 * React-Native 0.64.1
 * Android Studio
+* Android SDK 29.0.3
 * Python
 * Node.js
 
