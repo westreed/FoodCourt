@@ -9,17 +9,13 @@ import {
     Image,
     FlatList,
     ActivityIndicator,
-    ScrollView
 } from "react-native";
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import TicketSvg from '../assets/icons/fiber_manual_record_black_48dp.svg';
 import QRCodeSvg from '../assets/icons/qr-svgrepo-com.svg';
 import firestore from '@react-native-firebase/firestore';
 import { SIZES, COLORS, FONTS } from '../constants';
 import SplashScreen from 'react-native-splash-screen';
 
 const Home = ({ navigation }) => {
-    const bottomHeight = useBottomTabBarHeight();
     const [categories, setCategories] = React.useState(null);
     const [foodList, setFoodList] = React.useState(null);
     const [refresh, setRefresh] = React.useState(true); //스크롤을 아래로 쭉 땡겨서 refresh할 때
@@ -206,10 +202,23 @@ const Home = ({ navigation }) => {
             </View>
         )
     }
+
+    function renderLoading(){
+        return (
+            <View>
+                <Text style={{marginTop: "4%", marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
+                <View style={{ marginTop:SIZES.padding*3, alignItems:'center'}}>
+                    <Text style={{...FONTS.h2, color:COLORS.orange}}>카테고리 데이터를</Text>
+                    <Text style={{...FONTS.h2, color:COLORS.orange}}>불러오고 있어요..</Text>
+                </View>
+            </View>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            {renderMain()}
+            {refresh ? renderLoading() : renderMain()}
         </SafeAreaView>
     )
 }

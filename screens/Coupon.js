@@ -1,19 +1,15 @@
 import React, {useContext, useEffect} from "react";
 import {
-    SafeAreaView,
     ScrollView,
     View,
     Text,
     StyleSheet,
     TouchableOpacity,
     Image,
-    TextInput,
 } from "react-native";
 
-import FormButton from '../components/FormButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
-import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -67,6 +63,9 @@ const Coupon = ({ route, navigation }) => {
         return (
             <View style={{alignItems:"center", marginHorizontal:SIZES.padding, marginBottom:SIZES.padding, ...styles.shadow}}>
                 <Image source={{uri:couponData.foodIcon}} style={{width:"100%", height:SIZES.width/2}} />
+                <View style={{position:'absolute', paddingTop:SIZES.width/2-30}}>
+                    <Text style={{...FONTS.body4, color:'white'}}>실제 음식과 이미지가 다를 수 있습니다.</Text>
+                </View>
             </View>
         )
     }

@@ -121,6 +121,9 @@ const Payment = ({ route, navigation }) => {
         return (
             <View style={{alignItems:"center", marginHorizontal:SIZES.padding, marginBottom:SIZES.padding, ...styles.shadow}}>
                 <Image source={{uri:food.icon}} style={{width:"100%", height:SIZES.width/2}} />
+                <View style={{position:'absolute', paddingTop:SIZES.width/2-30}}>
+                    <Text style={{...FONTS.body4, color:'white'}}>실제 음식과 이미지가 다를 수 있습니다.</Text>
+                </View>
             </View>
         )
     }
