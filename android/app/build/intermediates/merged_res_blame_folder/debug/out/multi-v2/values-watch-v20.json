@@ -1,7 +1,11 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "C:\\Users\\USER\\Downloads\\test\\FoodCourt\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
+=======
+            "outputFile": "C:\\Programming\\React Native\\test\\FoodCourt\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
+>>>>>>> 0d9c76d3bc4e18f5d2f701eb747b8eb564e9da69
             "map": [
                 {
                     "source": "C:\\Users\\USER\\.gradle\\caches\\transforms-2\\files-2.1\\4b5868a218f8e0fe022c3ea45ad9869d\\appcompat-1.1.0\\res\\values-watch-v20\\values-watch-v20.xml",
@@ -23,7 +27,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\USER\\.gradle\\caches\\transforms-2\\files-2.1\\492b5917a575563d9324a93290bc4f97\\jetified-play-services-auth-19.2.0\\res\\values-watch-v20\\values.xml",
+=======
+                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\492b5917a575563d9324a93290bc4f97\\jetified-play-services-auth-19.2.0\\res\\values-watch-v20\\values.xml",
+>>>>>>> 0d9c76d3bc4e18f5d2f701eb747b8eb564e9da69
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

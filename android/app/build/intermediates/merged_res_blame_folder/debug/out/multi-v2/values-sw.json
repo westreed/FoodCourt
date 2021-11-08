@@ -1,11 +1,36 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "C:\\Users\\USER\\Downloads\\test\\FoodCourt\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw\\values-sw.xml",
             "map": [
                 {
                     "source": "C:\\Users\\USER\\.gradle\\caches\\transforms-2\\files-2.1\\539b7be7a2b3a05a04064c89f6e7b6d2\\jetified-play-services-base-17.5.0\\res\\values-sw\\values.xml",
                     "from": {
+=======
+            "outputFile": "C:\\Programming\\React Native\\test\\FoodCourt\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw\\values-sw.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\11a797cebefefed665d4013bac2be5f6\\core-1.2.0\\res\\values-sw\\values-sw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "48",
+                        "startColumns": "4",
+                        "startOffsets": "5633",
+                        "endColumns": "100",
+                        "endOffsets": "5729"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\539b7be7a2b3a05a04064c89f6e7b6d2\\jetified-play-services-base-17.5.0\\res\\values-sw\\values.xml",
+                    "from": {
+>>>>>>> 0d9c76d3bc4e18f5d2f701eb747b8eb564e9da69
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
                         "startOffsets": "245,347,535,658,765,987,1110,1255,1394,1618,1722,1907,2032,2241,2426,2520,2621",
@@ -38,7 +63,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\USER\\.gradle\\caches\\transforms-2\\files-2.1\\819ec8c6af10e4a00a056b819af593de\\jetified-play-services-basement-17.5.0\\res\\values-sw\\values.xml",
+=======
+                    "source": "C:\\Users\\nks96\\.gradle\\caches\\transforms-2\\files-2.1\\819ec8c6af10e4a00a056b819af593de\\jetified-play-services-basement-17.5.0\\res\\values-sw\\values.xml",
+>>>>>>> 0d9c76d3bc4e18f5d2f701eb747b8eb564e9da69
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -52,6 +81,7 @@
                         "startOffsets": "3974",
                         "endColumns": "204",
                         "endOffsets": "4174"
+<<<<<<< HEAD
                     }
                 },
                 {
@@ -69,6 +99,8 @@
                         "startOffsets": "5633",
                         "endColumns": "100",
                         "endOffsets": "5729"
+=======
+>>>>>>> 0d9c76d3bc4e18f5d2f701eb747b8eb564e9da69
                     }
                 }
             ]
