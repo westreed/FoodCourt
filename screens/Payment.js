@@ -26,6 +26,7 @@ import firestore from '@react-native-firebase/firestore';
 import CRC32 from 'buffer-crc32';
 import { Buffer } from 'buffer';
 import CheckButton from '../components/CheckButton';
+import '../constants/globals.js'
 
 const Payment = ({ route, navigation }) => {
 
@@ -34,7 +35,7 @@ const Payment = ({ route, navigation }) => {
     
     const [food, setFood] = React.useState(route.params.item); //선택한 음식
     const [order, setOrder] = React.useState('NULL'); //주문번호
-    console.log(food);
+    const [refresh, setRefresh] = React.useState(false);
 
     const today = new Date();
     const curYear = today.getFullYear();
@@ -84,11 +85,14 @@ const Payment = ({ route, navigation }) => {
         .catch(error => {
             console.log('orderNumber Error: ', error);
         })
+        setRefresh(false)
     }
-    useEffect(() => {
-        orderNumber();
-        // const temp = orderNumber();
-        // if (temp){setOrder(temp.num)};
+    useEffect(async() => {
+        await navigation.addListener('focus', async() => {
+            setRefresh(true)
+            await orderNumber();
+            console.log(food);
+        })
     }, []);
 
     function renderHeader() {
@@ -233,45 +237,48 @@ const Payment = ({ route, navigation }) => {
                 const seed = new Date().getTime();
                 return seed;
             }
-            const seedData = getUnixTime().toString()+user.displayName+user.email;
-      
-            let buf = Buffer.from(seedData.toString(16));
-            let coupon = CRC32.unsigned(buf);
-            let couponNumber = coupon.toString(16);
-            console.log('Coupon ', couponNumber);
-            
-            //firesotre에 쿠폰 발행
-            await firestore().collection('system').doc('order').get().then((documentSnapshot) => {
-                if( documentSnapshot.exists ) {
-                    setOrder(documentSnapshot.data().num);
-                }
-            })
-            await firestore().collection('coupon').doc(couponNumber)
-            .set({
-                foodOrder : order,
-                foodName : food.name,
-                foodPrice : food.price,
-                foodIcon : food.icon,
-                foodDate : firestore.Timestamp.fromDate(new Date()),
-                foodExpiry : [time.year, time.month, time.day],
-                userUID : user.uid,
-                userName : user.displayName,
-                couponID : coupon,
-                couponUse : false,
-                couponGift : false,
-            })
-            await firestore().collection('system').doc('order')
-            .set({num : order+1,})
-
-            return (
-                Alert.alert(
-                    `${food.name} 구매 성공!`, "구매하신 쿠폰은 푸드코트에서 사용하실 수 있습니다. 이 앱은 테스트버젼으로 결제모듈을 사용하지 않았습니다.",
-                    [{ text: "확인", onPress: () => {
-                        const couponStatus = true;
-                        navigation.navigate("Coupon", {couponNumber, couponStatus});
-                    }}], { cancelable: false }
+            if (refresh == false && order != 'NULL'){
+                const seedData = getUnixTime().toString()+user.displayName+user.email;
+        
+                let buf = Buffer.from(seedData.toString(16));
+                let coupon = CRC32.unsigned(buf);
+                let couponNumber = coupon.toString(16);
+                console.log('Coupon ', couponNumber);
+                
+                //firesotre에 쿠폰 발행
+                await firestore().collection('system').doc('order').get().then((documentSnapshot) => {
+                    if( documentSnapshot.exists ) {
+                        setOrder(documentSnapshot.data().num);
+                    }
+                })
+                await firestore().collection('coupon').doc(couponNumber)
+                .set({
+                    foodOrder : order,
+                    foodName : food.name,
+                    foodPrice : food.price,
+                    foodIcon : food.icon,
+                    foodDate : firestore.Timestamp.fromDate(new Date()),
+                    foodExpiry : [time.year, time.month, time.day],
+                    userUID : user.uid,
+                    userName : user.displayName,
+                    couponID : coupon,
+                    couponUse : false,
+                    couponGift : false,
+                })
+                await firestore().collection('system').doc('order')
+                .set({num : order+1,})
+                orderRefresh = true;
+                return (
+                    Alert.alert(
+                        `${food.name} 구매 성공!`, "구매하신 쿠폰은 푸드코트에서 사용하실 수 있습니다. 이 앱은 테스트버젼으로 결제모듈을 사용하지 않았습니다.",
+                        [{ text: "확인", onPress: () => {
+                            const couponStatus = true;
+                            navigation.navigate("Coupon", {couponNumber, couponStatus});
+                        }}], { cancelable: false }
+                    )
                 )
-            )
+            }
+            else{console.log('아직 order번호를 로드하지 못했습니다.')}
         }
         return(
             <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>

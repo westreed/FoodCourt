@@ -15,6 +15,7 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import functions from '../constants/functions';
+import '../constants/globals.js'
 
 const Order = ({ navigation }) => {
     const {user} = useContext(AuthContext);
@@ -27,6 +28,17 @@ const Order = ({ navigation }) => {
     const [refresh, setRefresh] = React.useState(true) //스크롤을 아래로 쭉 땡겨서 refresh할 때
 
     var map = new functions.HashMap(); //불러온 쿠폰 데이터 저장소
+
+    useEffect(async() => {
+        await navigation.addListener('focus', async() => {
+            if(orderRefresh == true){
+                console.log('1orderRefresh', orderRefresh);
+                orderRefresh = false;
+                setRefresh(true);
+                console.log('2orderRefresh', orderRefresh);
+            }
+        })
+    })
 
     useEffect(async() => {
         if(user){
