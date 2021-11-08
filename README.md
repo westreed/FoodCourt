@@ -58,6 +58,8 @@ react-native run-android
 ┌ Buffer : Node.js 에서 제공하는 Binary 의 데이터를 담을 수 있는 Object. <br>
 └ buffer-crc32 : 이진데이터(버퍼)를 signed 혹은 unsigned 데이터로 출력해주는 모듈. <br>
 ─ react-native-easy-toast : Android의 Toast를 쉽게 구현해주는 모듈. <br>
+┌ react-native-make : 앱아이콘이나 스플래시 이미지 생성을 도와주는 모듈. <br>
+└ react-native-splash-screen : 스플래시 이미지를 언제 감출지 설정할 수 있는 모듈. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)

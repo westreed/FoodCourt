@@ -15,7 +15,8 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import TicketSvg from '../assets/icons/fiber_manual_record_black_48dp.svg';
 import QRCodeSvg from '../assets/icons/qr-svgrepo-com.svg';
 import firestore from '@react-native-firebase/firestore';
-import { SIZES, COLORS, FONTS } from '../constants'
+import { SIZES, COLORS, FONTS } from '../constants';
+import SplashScreen from 'react-native-splash-screen';
 
 const Home = ({ navigation }) => {
     const bottomHeight = useBottomTabBarHeight();
@@ -35,11 +36,11 @@ const Home = ({ navigation }) => {
                     })
                 }
             }).catch(err => console.log('category', err));
-            await tempCategory.sort(function(a,b){
+            tempCategory.sort(function(a,b){
                 if (a.id > b.id) return 1;
                 else return -1;
             });
-            await setCategories(tempCategory);
+            setCategories(tempCategory);
 
             let tempFood = [];
             await firestore().collection('foodmenu').get().then(function(querySnapshot) {
@@ -49,12 +50,13 @@ const Home = ({ navigation }) => {
                     })
                 }
             }).catch(err => console.log('foodmenu', err));
-            await tempFood.sort(function(a,b){
+            tempFood.sort(function(a,b){
                 if (a.id > b.id) return 1;
                 else return -1;
             });
-            await setFoodList(tempFood);
-            await setRefresh(false)
+            setFoodList(tempFood);
+            setRefresh(false)
+            SplashScreen.hide();
         }
     }, [refresh]);
 
