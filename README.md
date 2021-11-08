@@ -15,6 +15,11 @@
 * Python
 * Node.js
 
+node_modules 폴더가 없는 경우
+```js
+npm install
+```
+
 Test Run Command
 ```js
 npm run android
@@ -52,6 +57,7 @@ react-native run-android
 ─ react-native-make : App 아이콘과 Splash 이미지를 관리하는 모듈. <br>
 ┌ Buffer : Node.js 에서 제공하는 Binary 의 데이터를 담을 수 있는 Object. <br>
 └ buffer-crc32 : 이진데이터(버퍼)를 signed 혹은 unsigned 데이터로 출력해주는 모듈. <br>
+─ react-native-easy-toast : Android의 Toast를 쉽게 구현해주는 모듈. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
@@ -78,6 +84,7 @@ react-native run-android
 * [React Native에서 App 아이콘 & Splash 이미지 만들기](https://dev-yakuza.posstree.com/ko/react-native/react-native-make/)
 * [App Splash 스크린](https://dev-yakuza.posstree.com/ko/react-native/react-native-splash-screen/)
 * [Next Input Focus on React Native](https://dev.to/rvznkmrllh/next-input-focus-on-react-native-2cb9)
+* [Toast 메시지 구현하기](https://jw910911.tistory.com/96)
 
 ## Screenshot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)

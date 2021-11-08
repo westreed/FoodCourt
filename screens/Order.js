@@ -1,4 +1,4 @@
-import React, {useRef, useContext, useEffect} from "react";
+import React, {useRef, useContext, useEffect, useCallback} from "react";
 import {
     SafeAreaView,
     View,
@@ -14,11 +14,13 @@ import SignInSvg from '../assets/icons/sign-in-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-import functions from '../constants/functions';
+import Toast from 'react-native-easy-toast';
 import '../constants/globals.js'
 
 const Order = ({ navigation }) => {
     const {user} = useContext(AuthContext);
+    const toastRef = useRef();
+    
     const [foodList, setFoodList] = React.useState(null);
     const [couponList, setCouponList] = React.useState(null);
     const [expiryList, setExpiryList] = React.useState(null);
@@ -27,7 +29,14 @@ const Order = ({ navigation }) => {
     const [tab, setTab] = React.useState(0);
     const [refresh, setRefresh] = React.useState(true) //스크롤을 아래로 쭉 땡겨서 refresh할 때
 
-    var map = new functions.HashMap(); //불러온 쿠폰 데이터 저장소
+    // Toast 메세지 출력
+    const showDisableToast = useCallback(() => {
+        toastRef.current.show('아직 완성되지 않은 기능입니다. X﹏X');
+    }, []);
+
+    const showCouponToast = useCallback(() => {
+        toastRef.current.show('해당 기능은 이용할 수 없습니다.');
+    }, []);
 
     useEffect(async() => {
         await navigation.addListener('focus', async() => {
@@ -69,7 +78,6 @@ const Order = ({ navigation }) => {
                         // doc.data() is never undefined for query doc snapshots
                         const tempCoupon = doc.data();
                         const expiryDate = new Date(tempCoupon.foodExpiry[0], tempCoupon.foodExpiry[1], tempCoupon.foodExpiry[2]);
-                        map.put(doc.id, tempCoupon);
                         if (tempCoupon.couponUse == false && today <= expiryDate){
                             coupon.push(tempCoupon);
                             console.log("사용가능 :",doc.id, " => ", tempCoupon);
@@ -86,7 +94,8 @@ const Order = ({ navigation }) => {
                 //console.log('coupon', coupon);
                 setCouponList(coupon);
                 setExpiryList(expiry);
-                setRefresh(false)
+                setRefresh(false);
+                //제일 상단으로 스크롤
                 await flatList.current.scrollToOffset(0);
                 //console.log("HashMap", map.getAll());
             }
@@ -197,11 +206,13 @@ const Order = ({ navigation }) => {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, borderWidth:1, borderColor:COLORS.gray1}}
+                                onPress={showDisableToast}
                             >
                                 <Text style={{...FONTS.body4, fontWeight:'bold', color:'black'}}>쿠폰 저장</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, borderWidth:1, borderColor:COLORS.gray1}}
+                                onPress={showDisableToast}
                                 >
                                     <Text style={{...FONTS.body4, fontWeight:'bold', color:'black'}}>구매 취소</Text>
                             </TouchableOpacity>
@@ -279,11 +290,13 @@ const Order = ({ navigation }) => {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, backgroundColor:COLORS.gray1}}
+                                onPress={showCouponToast}
                             >
                                 <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>쿠폰 저장</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, backgroundColor:COLORS.gray1}}
+                                onPress={showCouponToast}
                             >
                                 <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>구매 취소</Text>
                             </TouchableOpacity>
@@ -330,6 +343,12 @@ const Order = ({ navigation }) => {
             {renderHeader()}
             {renderTab()}
             {user ? tab == 0 ? renderCoupon() : renderExpiry() : renderLogin()}
+            <Toast ref={toastRef}
+                positionValue={SIZES.height * 0.15}
+                fadeInDuration={200}
+                fadeOutDuration={1000}
+                style={{backgroundColor:'rgba(33, 87, 243, 0.8)'}}
+            />
         </SafeAreaView>
     )
 }
