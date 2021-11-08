@@ -77,6 +77,7 @@ react-native run-android
 * [React Native QRCode Generator](https://github.com/cssivision/react-native-qrcode)
 * [React Native에서 App 아이콘 & Splash 이미지 만들기](https://dev-yakuza.posstree.com/ko/react-native/react-native-make/)
 * [App Splash 스크린](https://dev-yakuza.posstree.com/ko/react-native/react-native-splash-screen/)
+* [Next Input Focus on React Native](https://dev.to/rvznkmrllh/next-input-focus-on-react-native-2cb9)
 
 ## Screenshot
 ![텍스트](https://github.com/westreed/FoodCourt/blob/master/screenshot.png)
