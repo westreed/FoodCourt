@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useRef, useContext, useEffect} from "react";
 import {
     SafeAreaView,
     View,
@@ -44,6 +44,19 @@ const Register = ({ navigation }) => {
 
     const [isModal, setIsModal] = React.useState(false);
     const [isModal2, setIsModal2] = React.useState(false);
+
+    const ref_input = [];
+    ref_input[0] = useRef(null);
+    ref_input[1] = useRef(null);
+    ref_input[2] = useRef(null);
+    ref_input[3] = useRef(null);
+  
+    const onFocusNext = (index) => {
+        if (ref_input[index] && index < ref_input.length) {
+            ref_input[index].current?.focus();
+            console.log('Focus 작동!');
+        }
+    };
 
     function renderHeader() {
         return (
@@ -301,7 +314,10 @@ const Register = ({ navigation }) => {
                         <Text style={styles.label1}>이름</Text>
                     </View>
                     <TextInput
-                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        ref={ref_input[0]}
+                        onSubmitEditing={() => {onFocusNext(1);}}
+                        returnKeyType="next"
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3, height:50}}
                         value={String(isName)}
                         onChangeText={text => setIsName(text)}
                         placeholder="이름을 입력해주세요."
@@ -314,7 +330,10 @@ const Register = ({ navigation }) => {
                         <Text style={styles.label1}>학교이메일</Text>
                     </View>
                     <TextInput
-                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        ref={ref_input[1]}
+                        onSubmitEditing={() => {onFocusNext(2);}}
+                        returnKeyType="next"
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3, height:50}}
                         value={String(isEmail)}
                         onChangeText={text => setIsEmail(text)}
                         placeholder="학교이메일을 입력해주세요."
@@ -327,14 +346,17 @@ const Register = ({ navigation }) => {
                         <Text style={styles.label1}>비밀번호 (8~20글자, 영문, 숫자, 특수문자)</Text>
                     </View>
                     <TextInput
-                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        ref={ref_input[2]}
+                        onSubmitEditing={() => {onFocusNext(3);}}
+                        returnKeyType="next"
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3, height:50}}
                         value={String(isPassword)}
                         onChangeText={text => setIsPassword(text)}
                         secureTextEntry={isHide}
                         placeholder="비밀번호를 입력해주세요."
                         multiline={false}
                     />
-                    <TouchableOpacity style={{position: 'absolute', top:50, left:SIZES.width-60}} onPress={() => setIsHide(!isHide)}>
+                    <TouchableOpacity style={{position: 'absolute', top:55, left:SIZES.width-60}} onPress={() => setIsHide(!isHide)}>
                         {isHide ? <ShowSvg width={20} height={20} fill={COLORS.gray1 }/> : <HideSvg width={20} height={20} fill={COLORS.gray1} />}
                     </TouchableOpacity>
                 </View>
@@ -344,7 +366,10 @@ const Register = ({ navigation }) => {
                         <Text style={styles.label1}>비밀번호 확인</Text>
                     </View>
                     <TextInput
-                        style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
+                        ref={ref_input[3]}
+                        onSubmitEditing={() => null}
+                        returnKeyType="done"
+                        style={{borderRadius: 10, backgroundColor: COLORS.gray3, height:50}}
                         value={String(isCheckPass)}
                         onChangeText={text => setIsCheckPass(text)}
                         secureTextEntry={true}
@@ -393,7 +418,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     checkboxContainer2: {
+        height: 40,
         flexDirection: "row",
+        alignItems:"center",
     },
     checkbox: {
         alignSelf: "center",

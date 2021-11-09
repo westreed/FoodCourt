@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useRef, useContext, useEffect} from "react";
 import {
     SafeAreaView,
     View,
@@ -21,6 +21,17 @@ const Login = ({ navigation }) => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const {login} = useContext(AuthContext);
+
+    const ref_input = [];
+    ref_input[0] = useRef(null);
+    ref_input[1] = useRef(null);
+  
+    const onFocusNext = (index) => {
+        if (ref_input[index] && index < ref_input.length) {
+            ref_input[index].current?.focus();
+            console.log('Focus 작동!');
+        }
+    };
 
     function renderHeader() {
         return (
@@ -56,6 +67,9 @@ const Login = ({ navigation }) => {
             <View>
                 <View style={{marginVertical:SIZES.padding/2, paddingHorizontal: SIZES.padding}}>
                     <TextInput
+                        ref={ref_input[0]}
+                        onSubmitEditing={() => {onFocusNext(1);}}
+                        returnKeyType="next"
                         style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
                         value={String(email)}
                         onChangeText={text => setEmail(text)}
@@ -65,6 +79,8 @@ const Login = ({ navigation }) => {
                 </View>
                 <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
                     <TextInput
+                        ref={ref_input[1]}
+                        returnKeyType="done"
                         style={{borderRadius: 10, backgroundColor: COLORS.gray3}}
                         value={String(password)}
                         onChangeText={text => setPassword(text)}

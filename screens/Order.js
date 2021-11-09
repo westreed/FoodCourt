@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     Image,
     FlatList,
+    Alert,
 } from "react-native";
 
 import RefreshSvg from '../assets/icons/refresh-svgrepo-com.svg';
@@ -27,7 +28,8 @@ const Order = ({ navigation }) => {
 
     const flatList = useRef(null);
     const [tab, setTab] = React.useState(0);
-    const [refresh, setRefresh] = React.useState(true) //스크롤을 아래로 쭉 땡겨서 refresh할 때
+    const [refresh, setRefresh] = React.useState(true); //스크롤을 아래로 쭉 땡겨서 refresh할 때
+    const [notScroll, setNotScroll] = React.useState(false);
 
     // Toast 메세지 출력
     const showDisableToast = useCallback(() => {
@@ -36,6 +38,10 @@ const Order = ({ navigation }) => {
 
     const showCouponToast = useCallback(() => {
         toastRef.current.show('해당 기능은 이용할 수 없습니다.');
+    }, []);
+
+    const showDeleteToast = useCallback(() => {
+        toastRef.current.show('쿠폰이 환불처리되었습니다.');
     }, []);
 
     useEffect(async() => {
@@ -96,7 +102,8 @@ const Order = ({ navigation }) => {
                 setExpiryList(expiry);
                 setRefresh(false);
                 //제일 상단으로 스크롤
-                await flatList.current.scrollToOffset(0);
+                if (notScroll == false){await flatList.current.scrollToOffset(0);}
+                else{setNotScroll(false);}
                 //console.log("HashMap", map.getAll());
             }
         }
@@ -153,6 +160,22 @@ const Order = ({ navigation }) => {
             <Text style={{...FONTS.h2, color:COLORS.orange}}>쿠폰이 없네요..?</Text>
         </View>
     )
+
+    async function counponCancel(id){
+        Alert.alert(
+            "구매 취소", "쿠폰을 환불하실 건가요?",[
+                { text: "네", onPress: () => {
+                    firestore().collection('coupon').doc(id).delete();
+                    showDeleteToast();
+                    console.log('쿠폰삭제', id);
+                    setNotScroll(true);
+                    setRefresh(true);
+                }},
+                { text: "아니오"}
+            ],
+            { cancelable: false }
+        );
+    }
 
     function renderCoupon(){
         //const renderItem = ({ item }) => (
@@ -212,7 +235,7 @@ const Order = ({ navigation }) => {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, borderWidth:1, borderColor:COLORS.gray1}}
-                                onPress={showDisableToast}
+                                onPress={() => counponCancel(item.couponID.toString(16))}
                                 >
                                     <Text style={{...FONTS.body4, fontWeight:'bold', color:'black'}}>구매 취소</Text>
                             </TouchableOpacity>
@@ -332,8 +355,9 @@ const Order = ({ navigation }) => {
                     style={{marginTop:SIZES.padding*2, flexDirection:'row', alignItems:'center'}}
                     onPress={() => navigation.navigate("Login")}
                 >
-                    <Text style={{...FONTS.body2, color:COLORS.black3}}>로그인하기 </Text>
-                    <SignInSvg width={24} height={24} fill={COLORS.black3} />
+                    <View style={{backgroundColor:COLORS.blue1, borderRadius:5, paddingHorizontal:10, paddingVertical:5}}>
+                        <Text style={{...FONTS.body3, color:COLORS.white}}>로그인</Text>
+                    </View>
                 </TouchableOpacity>
             </View>
         )
