@@ -60,6 +60,7 @@ react-native run-android
 ┌ react-native-make : 앱아이콘이나 스플래시 이미지 생성을 도와주는 모듈. <br>
 └ react-native-splash-screen : 스플래시 이미지를 언제 감출지 설정할 수 있는 모듈. <br>
 ─ react-native-image-picker : 갤러리나 카메라를 통해 이미지를 가져오는 모듈. <br>
+─ react-native-modal : 어 어썸한 모달을 구현할 수 있는 모듈. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)
