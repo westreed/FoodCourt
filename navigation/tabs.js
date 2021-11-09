@@ -26,6 +26,7 @@ const Tabs = () => {
                     elevation: 0,
                     borderTopLeftRadius:40,
                     borderTopRightRadius:40,
+                    marginTop: -50,
                 }
             }}
         >

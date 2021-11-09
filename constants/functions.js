@@ -32,7 +32,8 @@ function paymentStep(navigation, user, item){
     else if(user == null){
         Alert.alert(
             "로그인", "로그인 후 이용가능합니다.",[
-                { text: "확인", onPress: () => navigation.navigate("Login") }
+                { text: "로그인", onPress: () => navigation.navigate("Login")},
+                { text: "확인"}
             ],
             { cancelable: false }
         );
@@ -106,5 +107,6 @@ HashMap.prototype = {
         return (this.map, size() == 0);
     }
 }
+
 
 export default {checkCollegeEmail, checkPassword, paymentStep, getUser, HashMap};

@@ -312,6 +312,7 @@ const Payment = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginBottom: 50,
         backgroundColor: COLORS.white2
     },
     shadow: {

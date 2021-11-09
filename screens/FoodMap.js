@@ -54,7 +54,7 @@ const FoodMap = ({ navigation }) => {
                 </TouchableOpacity>
                 <View style={{ flex:1, left: SIZES.padding, }}>
                     <View style={{height: 30}}>
-                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>뒤로가기</Text>
+                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>위치확인하기</Text>
                     </View>
                 </View>
             </View>
