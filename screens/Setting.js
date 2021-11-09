@@ -21,7 +21,6 @@ import CameraSvg from '../assets/icons/dslr-camera-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants'
 import {AuthContext} from '../navigation/AuthProvider';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import functions from '../constants/functions';
 import Modal from "react-native-modal";
 import * as ImagePicker from 'react-native-image-picker';
@@ -37,11 +36,12 @@ const Setting = ({ navigation }) => {
 
     useEffect(() => {
         if(user){setUserData(functions.getUser(user.uid))}
+        console.log(auth().currentUser);
         navigation.addListener("focus", () => setLoading(!loading));
     }, [navigation, loading]);
 
     useEffect(() => {
-        if(user && pickerResponse){
+        if(user && pickerResponse && uri){
             setIsModal(false);
             const update = {photoURL: uri,};
             auth().currentUser.updateProfile(update);

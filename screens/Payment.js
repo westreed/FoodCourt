@@ -26,7 +26,7 @@ import firestore from '@react-native-firebase/firestore';
 import CRC32 from 'buffer-crc32';
 import { Buffer } from 'buffer';
 import CheckButton from '../components/CheckButton';
-import '../constants/globals.js'
+import '../constants/globals.js';
 
 const Payment = ({ route, navigation }) => {
 
@@ -122,7 +122,7 @@ const Payment = ({ route, navigation }) => {
             <View style={{alignItems:"center", marginHorizontal:SIZES.padding, marginBottom:SIZES.padding, ...styles.shadow}}>
                 <Image source={{uri:food.icon}} style={{width:"100%", height:SIZES.width/2}} />
                 <View style={{position:'absolute', paddingTop:SIZES.width/2-30}}>
-                    <Text style={{...FONTS.body4, color:'white'}}>실제 음식과 이미지가 다를 수 있습니다.</Text>
+                    <Text style={{...FONTS.body4, paddingHorizontal:5, color:COLORS.white2, backgroundColor:'rgba(0,0,0,0.5)'}}>실제 음식과 이미지가 다를 수 있습니다.</Text>
                 </View>
             </View>
         )
@@ -240,7 +240,8 @@ const Payment = ({ route, navigation }) => {
                 const seed = new Date().getTime();
                 return seed;
             }
-            if (refresh == false && order != 'NULL'){
+            if (orderStatus == false && refresh == false && order != 'NULL'){
+                orderStatus = true;
                 const seedData = getUnixTime().toString()+user.displayName+user.email;
         
                 let buf = Buffer.from(seedData.toString(16));
@@ -271,6 +272,7 @@ const Payment = ({ route, navigation }) => {
                 await firestore().collection('system').doc('order')
                 .set({num : order+1,})
                 orderRefresh = true;
+                orderStatus = false;
                 return (
                     Alert.alert(
                         `${food.name} 구매 성공!`, "구매하신 쿠폰은 푸드코트에서 사용하실 수 있습니다. 이 앱은 테스트버젼으로 결제모듈을 사용하지 않았습니다.",
@@ -281,7 +283,7 @@ const Payment = ({ route, navigation }) => {
                     )
                 )
             }
-            else{console.log('아직 order번호를 로드하지 못했습니다.')}
+            else{console.log('아직 구매처리가 끝나지 않았습니다.')}
         }
         return(
             <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>

@@ -11,12 +11,11 @@ import {
 } from "react-native";
 
 import RefreshSvg from '../assets/icons/refresh-svgrepo-com.svg';
-import SignInSvg from '../assets/icons/sign-in-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import Toast from 'react-native-easy-toast';
-import '../constants/globals.js'
+import '../constants/globals.js';
 
 const Order = ({ navigation }) => {
     const {user} = useContext(AuthContext);
@@ -133,14 +132,14 @@ const Order = ({ navigation }) => {
                 <View style={{flexDirection:'row'}}>
                     <TouchableOpacity
                         style={{flex:1, alignItems:'center'}}
-                        onPress={() => (setTab(0), setRefresh(true))}
+                        onPress={() => (setTab(0))}
                     >
                         <Text style={{...FONTS.h4, fontWeight:'bold', letterSpacing:1}}>사용가능한 쿠폰</Text>
                         <View style={{width: (SIZES.width/2-SIZES.padding*2), height:5, backgroundColor: (tab == 0) ? COLORS.blue1 : COLORS.white2}}></View>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{flex:1, alignItems:'center'}}
-                        onPress={() => (setTab(1), setRefresh(true))}
+                        onPress={() => (setTab(1))}
                     >
                         <Text style={{...FONTS.h4, fontWeight:'bold', letterSpacing:1}}>사용/기간초과</Text>
                         <View style={{width: (SIZES.width/2-SIZES.padding*2), height:5, backgroundColor: (tab == 1) ? COLORS.blue1 : COLORS.white2}}></View>

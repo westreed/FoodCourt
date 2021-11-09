@@ -64,7 +64,7 @@ const Coupon = ({ route, navigation }) => {
             <View style={{alignItems:"center", marginHorizontal:SIZES.padding, marginBottom:SIZES.padding, ...styles.shadow}}>
                 <Image source={{uri:couponData.foodIcon}} style={{width:"100%", height:SIZES.width/2}} />
                 <View style={{position:'absolute', paddingTop:SIZES.width/2-30}}>
-                    <Text style={{...FONTS.body4, color:'white'}}>실제 음식과 이미지가 다를 수 있습니다.</Text>
+                <Text style={{...FONTS.body4, paddingHorizontal:5, color:COLORS.white2, backgroundColor:'rgba(0,0,0,0.5)'}}>실제 음식과 이미지가 다를 수 있습니다.</Text>
                 </View>
             </View>
         )
