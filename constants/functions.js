@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SIZES, COLORS, FONTS } from '../constants'
 import Modal from "react-native-modal";
+import AnimatedLoader from 'react-native-animated-loader';
 import firestore from '@react-native-firebase/firestore';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 
@@ -163,6 +164,17 @@ function termsModal({
     );
 }
 
+function renderLoading(visible){
+    return (
+        <AnimatedLoader
+            visible={visible}
+            overlayColor="rgba(150,150,150,0.75)"
+            source={require("../assets/loadings/9844-loading-40-paperplane.json")}
+            animationStyle={{width: 200,height: 200}}
+            speed={1}
+        >
+        </AnimatedLoader>
+    )
+}
 
-
-export default {checkCollegeEmail, checkPassword, paymentStep, getUser, termsModal};
+export default {checkCollegeEmail, checkPassword, paymentStep, getUser, termsModal, renderLoading};

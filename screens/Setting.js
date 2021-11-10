@@ -10,20 +10,16 @@ import {
     Alert,
     Pressable,
 } from "react-native";
-
-import RightArrowSvg from '../assets/icons/right-arrow-svgrepo-com.svg';
-import SignInSvg from '../assets/icons/sign-in-svgrepo-com.svg';
-import SignOutSvg from '../assets/icons/sign-out-svgrepo-com.svg';
-import GallerySvg from '../assets/icons/portfolio-image-work-gallery-svgrepo-com.svg';
-import CameraSvg from '../assets/icons/dslr-camera-svgrepo-com.svg';
-
-
 import { SIZES, COLORS, FONTS } from '../constants'
 import {AuthContext} from '../navigation/AuthProvider';
 import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
 import functions from '../constants/functions';
 import Modal from "react-native-modal";
 import * as ImagePicker from 'react-native-image-picker';
+
+import GallerySvg from '../assets/icons/portfolio-image-work-gallery-svgrepo-com.svg';
+import CameraSvg from '../assets/icons/dslr-camera-svgrepo-com.svg';
 
 const Setting = ({ navigation }) => {
 
@@ -33,8 +29,9 @@ const Setting = ({ navigation }) => {
     const [isModal, setIsModal] = React.useState(false);
     const [isModal2, setIsModal2] = React.useState(false);
     const [isTerms, setIsTerms] = React.useState(0);
-    const [pickerResponse, setPickerResponse] = React.useState(null);
-    const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
+    const [profileLoading, setProfileLoading] = React.useState(false);
+    const [loading2, setLoading2] = React.useState(false);
+    //const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
 
     useEffect(() => {
         if(user){setUserData(functions.getUser(user.uid))}
@@ -43,13 +40,18 @@ const Setting = ({ navigation }) => {
     }, [navigation, loading]);
 
     useEffect(() => {
-        if(user && pickerResponse && uri){
-            setIsModal(false);
-            const update = {photoURL: uri,};
-            auth().currentUser.updateProfile(update);
-            console.log('유저프로필 사진 업데이트', uri);
+        if(profileLoading && user){
+            setProfileLoading(false);
+            let imageRef = storage().ref('/users/profile' + user.uid);
+            imageRef.getDownloadURL().then((url) => {
+                //from url you can fetched the uploaded image easily
+                const update = {photoURL: url,};
+                auth().currentUser.updateProfile(update);
+                console.log('유저프로필 사진 업데이트 :', url);
+            }).catch((e) => console.log('getting downloadURL of image error => ', e));
+            
         }
-    }, [pickerResponse])
+    }, [profileLoading]);
 
     function renderHeader() {
         return (
@@ -105,7 +107,7 @@ const Setting = ({ navigation }) => {
                 <View style={{alignItems:'center'}}>
                     <Image
                         source={{uri:user.photoURL}}
-                        style={{width:SIZES.width/4, height:SIZES.width/4, backgroundColor:COLORS.blue2, borderRadius:50, borderWidth:4, borderColor:'rgb(28,77,114)'}}
+                        style={{width:SIZES.width/4, height:SIZES.width/4, backgroundColor:'rgb(28,77,114)', borderRadius:50, borderWidth:4, borderColor:'rgb(28,77,114)'}}
                         resizeMode='cover'
                     />
                     <TouchableOpacity
@@ -230,7 +232,33 @@ const Setting = ({ navigation }) => {
             mediaType: 'photo',
             includeBase64: false,
         };
-        ImagePicker.launchImageLibrary(options, setPickerResponse);
+        ImagePicker.launchImageLibrary(options, (res) =>{
+            if(res.didCancel){
+                console.log('ImagePicker Cancel: 선택 취소.');
+            }else if(res.error){
+                console.log('ImagePicker Error:', res.error);
+            }else{
+                setIsModal(false);
+                try{
+                    setLoading2(true);
+                    const imageForm = 'users/profile' + user.uid;
+                    const uploadUri = res.assets[0].uri;
+                    console.log(imageForm, uploadUri);
+                    storage().ref(imageForm).putFile(uploadUri).then((snapshot) => {
+                        //You can check the image is now uploaded in the storage bucket
+                        console.log(`${imageForm} has been successfully uploaded.`);
+                        setLoading2(false);
+                        setProfileLoading(true);
+                    }).catch((e) => {
+                        console.log('uploading image error => ', e);
+                        setLoading2(false);
+                    });
+                } catch(e){
+                    console.log('ImagePicker UploadError:',e);
+                    setLoading2(false);
+                }
+            }
+        });
     }, []);
     
     const onCameraPress = React.useCallback(() => {
@@ -239,7 +267,33 @@ const Setting = ({ navigation }) => {
         mediaType: 'photo',
         includeBase64: false,
         };
-        ImagePicker.launchCamera(options, setPickerResponse);
+        ImagePicker.launchCamera(options, (res) =>{
+            if(res.didCancel){
+                console.log('ImagePicker Cancel: 선택 취소.');
+            }else if(res.error){
+                console.log('ImagePicker Error:', res.error);
+            }else{
+                setIsModal(false);
+                try{
+                    setLoading2(true);
+                    const imageForm = 'users/profile' + user.uid;
+                    const uploadUri = res.assets[0].uri;
+                    console.log(imageForm, uploadUri);
+                    storage().ref(imageForm).putFile(uploadUri).then((snapshot) => {
+                        //You can check the image is now uploaded in the storage bucket
+                        console.log(`${imageForm} has been successfully uploaded.`);
+                        setLoading2(false);
+                        setProfileLoading(true);
+                    }).catch((e) => {
+                        console.log('uploading image error => ', e);
+                        setLoading2(false);
+                    });
+                } catch(e){
+                    console.log('ImagePicker UploadError:',e);
+                    setLoading2(false);
+                }
+            }
+        });
     }, []);
     
     function ImagePickerModal({
@@ -288,6 +342,7 @@ const Setting = ({ navigation }) => {
                 onClose={() => setIsModal2(false)}
                 termsType={isTerms}
             />
+            {functions.renderLoading(loading2)}
         </ScrollView>
     )
 }
