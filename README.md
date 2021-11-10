@@ -42,8 +42,10 @@ react-native run-android
 └ react-native-camera : QR코드 스캐너 모듈을 사용하기 위한 종속모듈. <br>
 ┌ firebase : 파이어베이스 모듈. <br>
 ├ react-native-firebase <br>
-├ @react-native-firebase/app <br>
-└ @react-native-firebase/auth <br>
+├ @react-native-firebase/app : 파이어베이스 앱 모듈. <br>
+├ @react-native-firebase/auth : 파이어베이스의 사용자정보 관리 시스템에 접근하기 위한 모듈. <br>
+├ @react-native-firebase/firestore : 파이어베이스의 firestore DB에 접근하기 위한 모듈. <br>
+└ @react-native-firebase/storage : 파이어베이스의 Storage에 접근하기 위한 모듈. <br>
 ┌ @react-native-community/masked-view <br>
 ├ @react-native-community/checkbox : 체크박스를 구현하기 위한 모듈. <br>
 └ @react-native-community/blur : 화면을 블러처리하기 위한 모듈. <br>
@@ -61,6 +63,8 @@ react-native run-android
 └ react-native-splash-screen : 스플래시 이미지를 언제 감출지 설정할 수 있는 모듈. <br>
 ─ react-native-image-picker : 갤러리나 카메라를 통해 이미지를 가져오는 모듈. <br>
 ─ react-native-modal : 어 어썸한 모달을 구현할 수 있는 모듈. <br>
+┌ lottie-react-native : JSON으로 생성되는 Adobe After Effects 애니메이션을 렌더링하는 모듈. <br>
+└ react-native-animated-loader : 로딩 애니메이션을 위해 lottie를 사용하는 모듈. <br>
 
 ## Study Link
 * [Git과 GitHub](https://brunch.co.kr/@anonymdevoo/3)

@@ -77,7 +77,7 @@ const Search = ({ navigation }) => {
 
     function renderHeader(){
         return (
-            <View style={{ marginTop:"10%", paddingBottom:"10%" }}>
+            <View style={{ marginTop:"5%", paddingBottom:"10%" }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginHorizontal:SIZES.padding/2, height:50, borderRadius : 30, backgroundColor:COLORS.white }}>
                 <TextInput
                     style={{ marginLeft:20,}}
@@ -198,6 +198,7 @@ const Search = ({ navigation }) => {
     }
     return (
         <SafeAreaView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {searchText ? renderSearch() : renderText()}
         </SafeAreaView>

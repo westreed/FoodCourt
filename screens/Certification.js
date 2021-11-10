@@ -12,24 +12,12 @@ import {
 import CheckButton from '../components/CheckButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
-
-import {AuthContext} from '../navigation/AuthProvider';
 import auth from '@react-native-firebase/auth';
 
 const Certification = ({ navigation }) => {
     function renderHeader() {
         return (
             <View style={{ flexDirection: 'row', marginTop:"5%", paddingBottom:"10%", alignItems:'center' }}>
-                <TouchableOpacity //back button
-                    style={{
-                        width: 30,
-                        left: SIZES.padding/2,
-                        justifyContent: 'center'
-                    }}
-                    onPress={() => navigation.goBack()}
-                >
-                    <BackArrowSvg width={30} height={30} fill={'#000'}/>
-                </TouchableOpacity>
                 <View style={{ flex:1, left: SIZES.padding, }}>
                     <View style={{height: 30}}>
                         <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>회원가입</Text>
@@ -47,8 +35,6 @@ const Certification = ({ navigation }) => {
         )
     }
     function renderCertification(){
-        const {user} = useContext(AuthContext);
-    
         async function checkUser(){
             await auth().currentUser.reload();
 
@@ -63,7 +49,26 @@ const Certification = ({ navigation }) => {
             else{
                 Alert.alert(
                 "인증 실패", "인증이메일을 통해 인증을 진행해야 합니다.\n혹시 메일을 받지 못했다면, 다시 송신할 수 있습니다.",
-                [{ text: "확인"}, { text: "재전송", onPress: () => user.sendEmailVerification() }],
+                [{ text: "확인"}, { text: "재전송", onPress: () => {
+                    auth().currentUser.sendEmailVerification().then(() => {
+                        Alert.alert(
+                            "이메일 인증", "입력하신 이메일로 인증번호를 보냈어요!",[{ text: "확인" }],
+                            { cancelable: false }
+                        );
+                    }).catch(error => {
+                        if(error.code == 'auth/too-many-requests'){
+                            Alert.alert(
+                                "인증 오류", "비정상적인 활동으로 인해 해당 기기의 모든 요청을 차단했습니다. 나중에 다시 시도하세요.",[{ text: "확인" }],
+                                { cancelable: false }
+                            );
+                        }
+                        else{
+                            Alert.alert(
+                                "인증 오류", "알 수 없는 오류가 발생했습니다.",[{ text: "확인" }],
+                                { cancelable: false }
+                            );
+                        }
+                    }); }}],
                 { cancelable: false })
             }
         }
@@ -87,6 +92,7 @@ const Certification = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {renderTitle()}
             {renderCertification()}

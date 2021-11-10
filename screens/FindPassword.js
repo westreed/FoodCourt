@@ -109,6 +109,7 @@ const FindPassword = ({ navigation }) => {
     }
     return (
         <ScrollView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {renderTitle()}
             {renderContent()}

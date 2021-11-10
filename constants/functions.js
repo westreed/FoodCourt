@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    StatusBar,
     Alert,
     SafeAreaView,
     View,
@@ -10,7 +11,6 @@ import {
 import { SIZES, COLORS, FONTS } from '../constants'
 import Modal from "react-native-modal";
 import AnimatedLoader from 'react-native-animated-loader';
-import firestore from '@react-native-firebase/firestore';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 
 function checkCollegeEmail(email){
@@ -51,6 +51,7 @@ function paymentStep(navigation, user, item){
     else if(user.emailVerified == false){
         Alert.alert(
             "로그인", "인증된 계정만 이용할 수 있습니다.",[
+                { text: "인증하기", onPress: () => navigation.navigate("Certification")},
                 { text: "확인" }
             ],
             { cancelable: false }
@@ -59,22 +60,22 @@ function paymentStep(navigation, user, item){
     else{navigation.navigate("Payment", {item})}
 }
 
-const getUser = async(uid) => {
-    await firestore()
-    .collection('users')
-    .doc(uid)
-    .get()
-    .then((documentSnapshot) => {
-        if( documentSnapshot.exists ) {
-            console.log('firebase', uid);
-            console.log('User Data', documentSnapshot.data());
-            return documentSnapshot.data();
-        }
-    })
-    .catch(error => {
-        console.log('getUser Error: ', error);
-    })
-}
+// const getUser = async(uid) => {
+//     await firestore()
+//     .collection('users')
+//     .doc(uid)
+//     .get()
+//     .then((documentSnapshot) => {
+//         if( documentSnapshot.exists ) {
+//             console.log('firebase', uid);
+//             console.log('User Data', documentSnapshot.data());
+//             return documentSnapshot.data();
+//         }
+//     })
+//     .catch(error => {
+//         console.log('getUser Error: ', error);
+//     })
+// }
 
 function termsModal({
     isVisible,
@@ -177,4 +178,10 @@ function renderLoading(visible){
     )
 }
 
-export default {checkCollegeEmail, checkPassword, paymentStep, getUser, termsModal, renderLoading};
+import { useIsFocused } from '@react-navigation/native';
+function FocusAwareStatusBar(props) {
+    const isFocused = useIsFocused();
+    return isFocused ? <StatusBar {...props} /> : null;
+}
+
+export default {checkCollegeEmail, checkPassword, paymentStep, termsModal, renderLoading, FocusAwareStatusBar};

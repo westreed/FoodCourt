@@ -23,6 +23,7 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import { BlurView } from "@react-native-community/blur";
 import firestore from '@react-native-firebase/firestore';
+import functions from '../constants/functions';
 import CRC32 from 'buffer-crc32';
 import { Buffer } from 'buffer';
 import CheckButton from '../components/CheckButton';
@@ -301,6 +302,7 @@ const Payment = ({ route, navigation }) => {
     }
     return (
         <ScrollView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {renderImage()}
             {renderContent()}

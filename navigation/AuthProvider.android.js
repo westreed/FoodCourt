@@ -3,7 +3,7 @@ import {
     Alert
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+//import firestore from '@react-native-firebase/firestore';
 
 
 export const AuthContext = createContext();
@@ -75,32 +75,31 @@ export const AuthProvider = ({children}) => {
                             //Once the user creation has happened successfully, we can add the currentUser into firestore
                             //with the appropriate details.
                             let user = auth().currentUser
-                            user.sendEmailVerification()
-                            .then(() => {
+                            //firebase 사용자정보 업데이트
+                            const update = {displayName: name,};
+                            auth().currentUser.updateProfile(update);
+
+                            user.sendEmailVerification().then(() => {
                                 Alert.alert(
                                     "이메일 인증", "입력하신 이메일로 인증번호를 보냈어요!",[
                                         { text: "확인", onPress: () => navigation.navigate("Certification") }
                                     ],
                                     { cancelable: false }
                                 );
-                            })
-
-                            //firebase 사용자정보 업데이트
-                            const update = {displayName: name,};
-                            auth().currentUser.updateProfile(update);
+                            });
 
                             //firesotre에 따로 업로드
-                            firestore().collection('users').doc(auth().currentUser.uid)
-                            .set({
-                                name: name,
-                                email: email,
-                                createdAt: firestore.Timestamp.fromDate(new Date()),
-                                userImg: null,
-                            })
+                            // firestore().collection('users').doc(auth().currentUser.uid)
+                            // .set({
+                            //     name: name,
+                            //     email: email,
+                            //     createdAt: firestore.Timestamp.fromDate(new Date()),
+                            //     userImg: null,
+                            // })
                             //ensure we catch any errors at this stage to advise us if something does go wrong
-                            .catch(error => {
-                                console.log('Something went wrong with added user to firestore: ', error);
-                            })
+                            // .catch(error => {
+                            //     console.log('Something went wrong with added user to firestore: ', error);
+                            // })
                         })
                         //we need to catch the whole sign up process if it fails too.
                         .catch(error => {

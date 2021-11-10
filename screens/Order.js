@@ -13,6 +13,7 @@ import {
 import RefreshSvg from '../assets/icons/refresh-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
+import functions from '../constants/functions';
 import firestore from '@react-native-firebase/firestore';
 import Toast from 'react-native-easy-toast';
 import '../constants/globals.js';
@@ -363,6 +364,7 @@ const Order = ({ navigation }) => {
     }
     return (
         <SafeAreaView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {renderTab()}
             {user ? tab == 0 ? renderCoupon() : renderExpiry() : renderLogin()}

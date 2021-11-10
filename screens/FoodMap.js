@@ -12,6 +12,7 @@ import {
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
+import functions from '../constants/functions';
 import { SIZES, COLORS, FONTS, images } from '../constants';
 
 const FoodMap = ({ navigation }) => {

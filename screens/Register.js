@@ -283,6 +283,7 @@ const Register = ({ navigation }) => {
 
     return (
         <KeyboardAwareScrollView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {agree ? renderRegister() : renderAgree()}
         </KeyboardAwareScrollView>

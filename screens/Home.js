@@ -10,6 +10,7 @@ import {
     FlatList,
     ActivityIndicator,
 } from "react-native";
+import functions from '../constants/functions';
 import QRCodeSvg from '../assets/icons/qr-svgrepo-com.svg';
 import firestore from '@react-native-firebase/firestore';
 import { SIZES, COLORS, FONTS } from '../constants';
@@ -63,7 +64,7 @@ const Home = ({ navigation }) => {
     function renderHeader() {
         return (
             <View>
-                <View style={{flexDirection: 'column', height: SIZES.height*20/100, backgroundColor: COLORS.blue1, justifyContent: 'center', ...styles.shadow}}>
+                <View style={{flexDirection: 'column', height: SIZES.height*15/100, backgroundColor: COLORS.blue1, justifyContent: 'center', paddingBottom:SIZES.height*5/100, borderBottomLeftRadius:20, borderBottomRightRadius:20, ...styles.shadow}}>
                     <View style={{alignItems: 'center', flexDirection: 'row'}}>
                         <View style={{flex: 1, alignItems: 'center', left: 20}}>
                             <Text style={{...FONTS.h2, color:COLORS.white, fontWeight: 'bold'}}>순천대학교 푸드코트</Text>
@@ -217,6 +218,7 @@ const Home = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.blue1} barStyle="light-content" />
             {renderHeader()}
             {refresh ? renderLoading() : renderMain()}
         </SafeAreaView>

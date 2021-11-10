@@ -15,6 +15,7 @@ import FormButton from '../components/FormButton';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
+import functions from '../constants/functions';
 
 const Login = ({ navigation }) => {
 
@@ -111,6 +112,7 @@ const Login = ({ navigation }) => {
 
     return (
         <KeyboardAwareScrollView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {renderTitle()}
             {renderLogin()}

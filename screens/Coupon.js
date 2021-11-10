@@ -10,6 +10,7 @@ import {
 
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
+import functions from '../constants/functions';
 import firestore from '@react-native-firebase/firestore';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -158,6 +159,7 @@ const Coupon = ({ route, navigation }) => {
 
     return (
         <ScrollView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {couponData ? renderImage() : false}
             {couponData ? renderContent() : false}

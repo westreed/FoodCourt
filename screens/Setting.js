@@ -24,34 +24,43 @@ import CameraSvg from '../assets/icons/dslr-camera-svgrepo-com.svg';
 const Setting = ({ navigation }) => {
 
     const {user, logout} = useContext(AuthContext);
-    const [userData, setUserData] = React.useState(null);
+    //const [userData, setUserData] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [isModal, setIsModal] = React.useState(false);
     const [isModal2, setIsModal2] = React.useState(false);
     const [isTerms, setIsTerms] = React.useState(0);
-    const [profileLoading, setProfileLoading] = React.useState(false);
     const [loading2, setLoading2] = React.useState(false);
     //const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
 
-    useEffect(() => {
-        if(user){setUserData(functions.getUser(user.uid))}
-        console.log('user',auth().currentUser);
-        navigation.addListener("focus", () => setLoading(!loading));
-    }, [navigation, loading]);
+    // useEffect(() => {
+    //     if(user){setUserData(functions.getUser(user.uid))}
+    //     console.log('user',auth().currentUser);
+    //     navigation.addListener("focus", () => setLoading(!loading));
+    // }, [navigation, loading]);
 
-    useEffect(() => {
-        if(profileLoading && user){
-            setProfileLoading(false);
-            let imageRef = storage().ref('/users/profile' + user.uid);
-            imageRef.getDownloadURL().then((url) => {
-                //from url you can fetched the uploaded image easily
-                const update = {photoURL: url,};
-                auth().currentUser.updateProfile(update);
-                console.log('유저프로필 사진 업데이트 :', url);
-            }).catch((e) => console.log('getting downloadURL of image error => ', e));
+    // useEffect(() => {
+    //     if(profileLoading && user){
+    //         setProfileLoading(false);
+    //         let imageRef = storage().ref('users/profile' + user.uid);
+    //         imageRef.getDownloadURL().then((url) => {
+    //             //from url you can fetched the uploaded image easily
+    //             const update = {photoURL: url,};
+    //             auth().currentUser.updateProfile(update);
+    //             console.log('유저프로필 사진 업데이트 :', url);
+    //         }).catch((e) => console.log('getting downloadURL of image error => ', e));
             
-        }
-    }, [profileLoading]);
+    //     }
+    // }, [profileLoading]);
+
+    function refreshProfile(filename){
+        let imageRef = storage().ref(filename);
+        imageRef.getDownloadURL().then((url) => {
+            //from url you can fetched the uploaded image easily
+            const update = {photoURL: url,};
+            auth().currentUser.updateProfile(update);
+            console.log('유저프로필 사진 업데이트 :', url);
+        }).catch((e) => console.log('getting downloadURL of image error => ', e));
+    }
 
     function renderHeader() {
         return (
@@ -223,6 +232,22 @@ const Setting = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{height:1, backgroundColor:COLORS.gray3}}></View>
+                <View style={{marginTop:SIZES.padding/2, paddingHorizontal: SIZES.padding}}>
+                    <Text style={{...FONTS.h3, fontWeight:'bold', color:COLORS.blue1}}>졸업작품</Text>
+                </View>
+                <View style={{height:1, backgroundColor:COLORS.gray4}}></View>
+                <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
+                    <TouchableOpacity onPress={() => {}}>
+                        <Text style={{...FONTS.body4}}>2021 SCNU 졸업과제 프로젝트</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{height:1, backgroundColor:COLORS.gray3}}></View>
+                <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
+                    <TouchableOpacity onPress={() => {}}>
+                        <Text style={{...FONTS.body4}}>장세훈,이명훈,백선욱,김유산,김영천,장재혁,이혜빈,강혜지</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{height:1, backgroundColor:COLORS.gray3}}></View>
             </View>
         )
     }
@@ -247,8 +272,9 @@ const Setting = ({ navigation }) => {
                     storage().ref(imageForm).putFile(uploadUri).then((snapshot) => {
                         //You can check the image is now uploaded in the storage bucket
                         console.log(`${imageForm} has been successfully uploaded.`);
+                        console.log('snapshot :', snapshot);
                         setLoading2(false);
-                        setProfileLoading(true);
+                        refreshProfile(imageForm);
                     }).catch((e) => {
                         console.log('uploading image error => ', e);
                         setLoading2(false);
@@ -283,7 +309,7 @@ const Setting = ({ navigation }) => {
                         //You can check the image is now uploaded in the storage bucket
                         console.log(`${imageForm} has been successfully uploaded.`);
                         setLoading2(false);
-                        setProfileLoading(true);
+                        refreshProfile(imageForm);
                     }).catch((e) => {
                         console.log('uploading image error => ', e);
                         setLoading2(false);
@@ -324,12 +350,13 @@ const Setting = ({ navigation }) => {
     }
     return (
         <ScrollView style={styles.container}>
+            <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {renderTitle()}
             {renderProfileImg()}
             {renderLogin()}
-            {renderMap()}
             {renderPage()}
+            {renderMap()}
             <ImagePickerModal
                 isVisible={isModal}
                 onClose={() => setIsModal(false)}
