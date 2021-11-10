@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
 import auth from '@react-native-firebase/auth';
 import {AuthContext} from './AuthProvider';
+import {COLORS} from "../constants";
 
 import {
     Search,
@@ -44,7 +45,7 @@ const Routes = () => {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
-                    headerShown: false
+                    headerShown: false,
                 }}
                 initalRouteName={"Home"}
             >

@@ -64,7 +64,7 @@ const Home = ({ navigation }) => {
     function renderHeader() {
         return (
             <View>
-                <View style={{flexDirection: 'column', height: SIZES.height*15/100, backgroundColor: COLORS.blue1, justifyContent: 'center', paddingBottom:SIZES.height*5/100, borderBottomLeftRadius:20, borderBottomRightRadius:20, ...styles.shadow}}>
+                <View style={{flexDirection: 'column', height: SIZES.height*12/100, backgroundColor: COLORS.blue1, justifyContent: 'center', paddingBottom:SIZES.height*3/100, borderBottomLeftRadius:50, borderBottomRightRadius:50, marginBottom:-50, ...styles.shadow}}>
                     <View style={{alignItems: 'center', flexDirection: 'row'}}>
                         <View style={{flex: 1, alignItems: 'center', left: 20}}>
                             <Text style={{...FONTS.h2, color:COLORS.white, fontWeight: 'bold'}}>순천대학교 푸드코트</Text>
@@ -176,10 +176,10 @@ const Home = ({ navigation }) => {
             )
         }
         const renderListHeader = () => (
-            <Text style={{marginTop: "4%", marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
+            <Text style={{marginTop: SIZES.padding+50, marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
         )
         const renderFooter = () => (
-            <View style={{height:SIZES.padding*7}}></View>
+            <View style={{height:SIZES.padding*4}}></View>
         )
         
         if (refresh) {
@@ -207,7 +207,7 @@ const Home = ({ navigation }) => {
     function renderLoading(){
         return (
             <View>
-                <Text style={{marginTop: "4%", marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
+                <Text style={{marginTop: SIZES.padding+50, marginLeft: "4%",paddingBottom: 10, ...FONTS.h3, fontWeight: 'bold'}}>푸드코트 카테고리</Text>
                 <View style={{ marginTop:SIZES.padding*3, alignItems:'center'}}>
                     <Text style={{...FONTS.h2, color:COLORS.orange}}>카테고리 데이터를</Text>
                     <Text style={{...FONTS.h2, color:COLORS.orange}}>불러오고 있어요..</Text>

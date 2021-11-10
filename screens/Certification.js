@@ -10,9 +10,9 @@ import {
 } from "react-native";
 
 import CheckButton from '../components/CheckButton';
-import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import auth from '@react-native-firebase/auth';
+import functions from '../constants/functions';
 
 const Certification = ({ navigation }) => {
     function renderHeader() {
