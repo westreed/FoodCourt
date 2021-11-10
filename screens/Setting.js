@@ -31,12 +31,14 @@ const Setting = ({ navigation }) => {
     const [userData, setUserData] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [isModal, setIsModal] = React.useState(false);
+    const [isModal2, setIsModal2] = React.useState(false);
+    const [isTerms, setIsTerms] = React.useState(0);
     const [pickerResponse, setPickerResponse] = React.useState(null);
     const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
 
     useEffect(() => {
         if(user){setUserData(functions.getUser(user.uid))}
-        console.log(auth().currentUser);
+        console.log('user',auth().currentUser);
         navigation.addListener("focus", () => setLoading(!loading));
     }, [navigation, loading]);
 
@@ -118,7 +120,7 @@ const Setting = ({ navigation }) => {
         return (
             <View style={{alignItems:'center'}}>
                 <Image
-                    source={{uri:'https://firebasestorage.googleapis.com/v0/b/scnufood-4f431.appspot.com/o/etc%2Fface.png?alt=media&token=6c9b2a02-b8cd-440d-a704-aaebbff36629'}}
+                    source={{uri:'https://firebasestorage.googleapis.com/v0/b/scnufood-4f431.appspot.com/o/etc%2Fface.png?alt=media&token=9011df8c-f77c-446f-b158-d193c1ce14e1'}}
                     style={{width:SIZES.width/4, height:SIZES.width/4, backgroundColor:COLORS.blue2, borderRadius:50, borderWidth:4, borderColor:'rgb(28,77,114)'}}
                 />
                 <TouchableOpacity
@@ -208,13 +210,13 @@ const Setting = ({ navigation }) => {
                 </View>
                 <View style={{height:1, backgroundColor:COLORS.gray4}}></View>
                 <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
-                    <TouchableOpacity onPress={() => null}>
+                    <TouchableOpacity onPress={() => {setIsModal2(true); setIsTerms(0);}}>
                         <Text style={{...FONTS.body4}}>서비스 이용약관</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{height:1, backgroundColor:COLORS.gray3}}></View>
                 <View style={{marginVertical:SIZES.padding/2,paddingHorizontal: SIZES.padding}}>
-                    <TouchableOpacity onPress={() => null}>
+                    <TouchableOpacity onPress={() => {setIsModal2(true); setIsTerms(1);}}>
                         <Text style={{...FONTS.body4}}>개인정보 수집 및 이용</Text>
                     </TouchableOpacity>
                 </View>
@@ -251,15 +253,16 @@ const Setting = ({ navigation }) => {
             isVisible={isVisible}
             onBackButtonPress={onClose}
             onBackdropPress={onClose}
+            backdropTransitionOutTiming={0}
             style={{justifyContent: 'flex-end', margin: 0,}}>
             <SafeAreaView style={{backgroundColor: 'white', flexDirection: 'row', borderTopRightRadius: 30, borderTopLeftRadius: 30,}}>
-                <Pressable style={styles.button} onPress={onImageLibraryPress}>
+                <Pressable style={{flex: 1, justifyContent: 'center', alignItems: 'center',}} onPress={onImageLibraryPress}>
                     <GallerySvg style={{margin: 10}} width={30} height={30} fill={COLORS.blue2} />
-                    <Text style={styles.buttonText}>갤러리</Text>
+                    <Text style={{fontSize: 14, fontWeight: '600',}}>갤러리</Text>
                 </Pressable>
-                <Pressable style={styles.button} onPress={onCameraPress}>
+                <Pressable style={{flex: 1, justifyContent: 'center', alignItems: 'center',}} onPress={onCameraPress}>
                     <CameraSvg style={{margin: 10}} width={30} height={30} fill={COLORS.blue2} />
-                    <Text style={styles.buttonText}>카메라</Text>
+                    <Text style={{fontSize: 14, fontWeight: '600',}}>카메라</Text>
                 </Pressable>
             </SafeAreaView>
         </Modal>
@@ -279,6 +282,12 @@ const Setting = ({ navigation }) => {
                 onImageLibraryPress={onImageLibraryPress}
                 onCameraPress={onCameraPress}
             />
+            <functions.termsModal
+                isVisible={isModal2}
+                setIsVisible={setIsModal2}
+                onClose={() => setIsModal2(false)}
+                termsType={isTerms}
+            />
         </ScrollView>
     )
 }
@@ -295,20 +304,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.34, // IOS
         shadowRadius: 6.27, // IOS
         elevation: 5, //ANDROID
-    },
-    buttonIcon: {
-        width: 30,
-        height: 30,
-        margin: 10,
-    },
-    button: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonText: {
-        fontSize: 14,
-        fontWeight: '600',
     },
 })
 

@@ -119,7 +119,7 @@ const FindPassword = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginBottom: 50,
+        //marginBottom: 50,
         backgroundColor: COLORS.white2
     },
     checkboxContainer: {
