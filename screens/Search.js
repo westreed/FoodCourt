@@ -17,9 +17,10 @@ import SearchSvg from '../assets/icons/search-svgrepo-com.svg'
 import MagnetSvg from '../assets/icons/magnet-svgrepo-com.svg'
 import RingSvg from '../assets/icons/spin5-svgrepo-com.svg'
 import {AuthContext} from '../navigation/AuthProvider';
+import auth from '@react-native-firebase/auth';
 
 const Search = ({ navigation }) => {
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
 
     const [searching, setSearching] = React.useState(false);
     const [searchText, setSearchText] = React.useState(''); //검색어
@@ -135,7 +136,7 @@ const Search = ({ navigation }) => {
                         marginTop: 7,
                         marginBottom: 7,
                     }}
-                    onPress={() => {setNotReset(true); functions.paymentStep(navigation, user, item);}}
+                    onPress={() => {setNotReset(true); functions.paymentStep(navigation, auth().currentUser, item);}}
                 >
                     <View
                         style={{

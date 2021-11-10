@@ -1,2 +1,3 @@
-global.orderRefresh    = false;
-global.orderStatus     = false;
+
+global.orderRefresh     = false;
+global.orderStatus      = false;

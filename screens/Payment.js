@@ -23,6 +23,7 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import { BlurView } from "@react-native-community/blur";
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import functions from '../constants/functions';
 import CRC32 from 'buffer-crc32';
 import { Buffer } from 'buffer';
@@ -31,7 +32,7 @@ import '../constants/globals.js';
 
 const Payment = ({ route, navigation }) => {
 
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
     const [isModal, setIsModal] = React.useState(false);
     
     const [food, setFood] = React.useState(route.params.item); //선택한 음식
@@ -243,6 +244,7 @@ const Payment = ({ route, navigation }) => {
             }
             if (orderStatus == false && refresh == false && order != 'NULL'){
                 orderStatus = true;
+                const user = auth().currentUser;
                 const seedData = getUnixTime().toString()+user.displayName+user.email;
         
                 let buf = Buffer.from(seedData.toString(16));

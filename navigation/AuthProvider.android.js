@@ -3,6 +3,7 @@ import {
     Alert
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import '../constants/globals.js';
 //import firestore from '@react-native-firebase/firestore';
 
 
@@ -27,13 +28,15 @@ export const AuthProvider = ({children}) => {
                     }
                     else{
                         try {
-                            await auth().signInWithEmailAndPassword(email, password);
-                            Alert.alert(
-                                "로그인", "로그인에 성공했습니다.",[
-                                    { text: "확인", onPress: () => navigation.goBack() }
-                                ],
-                                { cancelable: false }
-                            );
+                            await auth().signInWithEmailAndPassword(email, password).then(() => {
+                                orderRefresh = true;
+                                Alert.alert(
+                                    "로그인", "로그인에 성공했습니다.",[
+                                        { text: "확인", onPress: () => navigation.goBack() }
+                                    ],
+                                    { cancelable: false }
+                                );
+                            });
                         } catch (e) {
                             console.log(e);
                             if (e.code == 'auth/invalid-email' || e.code == 'auth/user-not-found'){
@@ -70,16 +73,15 @@ export const AuthProvider = ({children}) => {
 
                 register: async (name, email, password, navigation) => {
                     try {
-                        await auth().createUserWithEmailAndPassword(email, password)
-                        .then(() => {
+                        await auth().createUserWithEmailAndPassword(email, password).then(() => {
                             //Once the user creation has happened successfully, we can add the currentUser into firestore
                             //with the appropriate details.
-                            let user = auth().currentUser
                             //firebase 사용자정보 업데이트
                             const update = {displayName: name,};
                             auth().currentUser.updateProfile(update);
 
-                            user.sendEmailVerification().then(() => {
+                            auth().currentUser.sendEmailVerification().then(() => {
+                                orderRefresh = true;
                                 Alert.alert(
                                     "이메일 인증", "입력하신 이메일로 인증번호를 보냈어요!",[
                                         { text: "확인", onPress: () => navigation.navigate("Certification") }
@@ -140,13 +142,16 @@ export const AuthProvider = ({children}) => {
                 },
                 logout: async () => {
                     try {
-                        await auth().signOut();
-                        Alert.alert(
-                            "로그아웃", "정상적으로 로그아웃이 되었어요!",[
-                                { text: "확인" }
-                            ],
-                            { cancelable: false }
-                        );
+                        await auth().signOut().then(() => {
+                            console.log('logout', auth().currentUser);
+                            orderRefresh = true;
+                            Alert.alert(
+                                "로그아웃", "정상적으로 로그아웃이 되었어요!",[
+                                    { text: "확인" }
+                                ],
+                                { cancelable: false }
+                            );
+                        });
                     } catch (e) {
                         console.log(e);
                     }

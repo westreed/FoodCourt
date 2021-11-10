@@ -14,12 +14,13 @@ import RefreshSvg from '../assets/icons/refresh-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
 import {AuthContext} from '../navigation/AuthProvider';
 import functions from '../constants/functions';
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import Toast from 'react-native-easy-toast';
 import '../constants/globals.js';
 
 const Order = ({ navigation }) => {
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
     const toastRef = useRef();
     
     const [foodList, setFoodList] = React.useState(null);
@@ -53,10 +54,10 @@ const Order = ({ navigation }) => {
                 console.log('2orderRefresh', orderRefresh);
             }
         })
-    })
+    });
 
     useEffect(async() => {
-        if(user){
+        if(auth().currentUser){
             if(refresh == true){
                 const today = new Date();
                 console.log(today);
@@ -77,7 +78,7 @@ const Order = ({ navigation }) => {
                 var coupon = [];
                 var expiry = [];
                 await firestore().collection('coupon')
-                .where("userUID", "==", user.uid)
+                .where("userUID", "==", auth().currentUser.uid)
                 .get()
                 .then(function(querySnapshot) {
                     querySnapshot.forEach(function(doc) {
@@ -107,6 +108,7 @@ const Order = ({ navigation }) => {
                 //console.log("HashMap", map.getAll());
             }
         }
+        else{setRefresh(false);}
     }, [refresh]);
 
     function renderHeader() {
@@ -367,7 +369,7 @@ const Order = ({ navigation }) => {
             <functions.FocusAwareStatusBar backgroundColor={COLORS.white2} barStyle="dark-content" />
             {renderHeader()}
             {renderTab()}
-            {user ? tab == 0 ? renderCoupon() : renderExpiry() : renderLogin()}
+            {auth().currentUser == null ? renderLogin() : (tab == 0 ? renderCoupon() : renderExpiry())}
             <Toast ref={toastRef}
                 positionValue={SIZES.height * 0.15}
                 fadeInDuration={200}

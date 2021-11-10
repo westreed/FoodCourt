@@ -74,12 +74,12 @@ const Setting = ({ navigation }) => {
         )
     }
     function renderTitle() {
-        if(user){ //로그인했을 때
+        if(auth().currentUser){ //로그인했을 때
             return (
                 <View style={{ marginTop:"5%", marginBottom:"5%", paddingHorizontal: SIZES.padding}}>
                     <Text style={{ ...FONTS.h2 }}>안녕하세요.</Text>
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{ ...FONTS.h2, color:COLORS.blue1, fontWeight:'bold' }}>{user.displayName}</Text>
+                        <Text style={{ ...FONTS.h2, color:COLORS.blue1, fontWeight:'bold' }}>{auth().currentUser.displayName}</Text>
                         <Text style={{ ...FONTS.h2 }}>님</Text>
                     </View>
                 </View>
@@ -98,7 +98,7 @@ const Setting = ({ navigation }) => {
 
     function renderProfileImg(){
         function changeImage(){
-            if(user){
+            if(auth().currentUser){
                 setIsModal(true);
             }
             else{
@@ -111,11 +111,11 @@ const Setting = ({ navigation }) => {
                 );
             }
         }
-        if(user && user.photoURL != null){
+        if(auth().currentUser && auth().currentUser.photoURL != null){
             return (
                 <View style={{alignItems:'center'}}>
                     <Image
-                        source={{uri:user.photoURL}}
+                        source={{uri:auth().currentUser.photoURL}}
                         style={{width:SIZES.width/4, height:SIZES.width/4, backgroundColor:'rgb(28,77,114)', borderRadius:50, borderWidth:4, borderColor:'rgb(28,77,114)'}}
                         resizeMode='cover'
                     />
@@ -144,10 +144,10 @@ const Setting = ({ navigation }) => {
         )
     }
     function renderLogin() {
-        if(user){ //로그인했을 때
+        if(auth().currentUser){ //로그인했을 때
             return (
                 <View style={{ marginTop:5, marginBottom:20, paddingHorizontal: SIZES.padding, alignItems: 'center' }}>
-                    <Text style={{...FONTS.h3, marginBottom:15,}}>{user.email}</Text>
+                    <Text style={{...FONTS.h3, marginBottom:15,}}>{auth().currentUser.email}</Text>
                     <TouchableOpacity //profile
                         style={{backgroundColor:COLORS.blue1, paddingHorizontal:15, paddingVertical:10,borderRadius:5, ...styles.shadow}}
                         onPress={() => logout()}
@@ -186,7 +186,7 @@ const Setting = ({ navigation }) => {
         )
     }
     function renderUserPage(){
-        if(user){
+        if(auth().currentUser){
             return (
                 <View>
                     <View style={{marginTop:SIZES.padding/2, paddingHorizontal: SIZES.padding}}>
@@ -266,7 +266,8 @@ const Setting = ({ navigation }) => {
                 setIsModal(false);
                 try{
                     setLoading2(true);
-                    const imageForm = 'users/profile' + user.uid;
+                    console.log('From ImagePicker :',auth().currentUser);
+                    const imageForm = 'users/profile' + auth().currentUser.uid;
                     const uploadUri = res.assets[0].uri;
                     console.log(imageForm, uploadUri);
                     storage().ref(imageForm).putFile(uploadUri).then((snapshot) => {
@@ -302,7 +303,8 @@ const Setting = ({ navigation }) => {
                 setIsModal(false);
                 try{
                     setLoading2(true);
-                    const imageForm = 'users/profile' + user.uid;
+                    console.log('From ImagePicker :',auth().currentUser);
+                    const imageForm = 'users/profile' + auth().currentUser.uid;
                     const uploadUri = res.assets[0].uri;
                     console.log(imageForm, uploadUri);
                     storage().ref(imageForm).putFile(uploadUri).then((snapshot) => {

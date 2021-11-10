@@ -10,6 +10,7 @@ import {
     ActivityIndicator,
 } from "react-native";
 
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '../constants/functions';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
@@ -19,7 +20,7 @@ import {AuthContext} from '../navigation/AuthProvider';
 
 const itemWidth = 78;
 const Category = ({ route, navigation }) => {
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
 
     const flatList = useRef(null);
     //const [loading, setLoading] = React.useState(true)
@@ -203,7 +204,7 @@ const Category = ({ route, navigation }) => {
                         marginTop: 7,
                         marginBottom: 7,
                     }}
-                    onPress={() => functions.paymentStep(navigation, user, item)}
+                    onPress={() => functions.paymentStep(navigation, auth().currentUser, item)}
                 >
                     <View
                         style={{
