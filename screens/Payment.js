@@ -91,7 +91,7 @@ const Payment = ({ route, navigation }) => {
     }
     useEffect(async() => {
         await navigation.addListener('focus', async() => {
-            setRefresh(true)
+            setRefresh(true);
             await orderNumber();
             console.log(food);
         })
@@ -245,19 +245,19 @@ const Payment = ({ route, navigation }) => {
             if (orderStatus == false && refresh == false && order != 'NULL'){
                 orderStatus = true;
                 const user = auth().currentUser;
-                const seedData = getUnixTime().toString()+user.displayName+user.email;
+                const seedData = getUnixTime().toString()+user.uid;
         
                 let buf = Buffer.from(seedData.toString(16));
                 let coupon = CRC32.unsigned(buf);
                 let couponNumber = coupon.toString(16);
                 console.log('Coupon ', couponNumber);
-                
-                //firesotre에 쿠폰 발행
+                //system orderNumber 불러오기
                 await firestore().collection('system').doc('order').get().then((documentSnapshot) => {
                     if( documentSnapshot.exists ) {
                         setOrder(documentSnapshot.data().num);
                     }
                 })
+                //firesotre에 쿠폰 발행
                 await firestore().collection('coupon').doc(couponNumber)
                 .set({
                     foodOrder : order,
