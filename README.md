@@ -28,11 +28,6 @@ npm run android
 react-native run-android
 ```
 
-## 작업 진척
-1. 주문내역에서 '구매 취소'기능 제작하기
-2. 더보기 화면의 '마이페이지' 제작하기
-3. ~스플래시 제작하기~
-
 ## 사용된 모듈
 ┌ react-navigation : RN 네비게이션 모듈로, 앱하단에 있는 네비게이션 바를 제작하는데 사용. <br>
 ├ @react-navigation/native <br>
