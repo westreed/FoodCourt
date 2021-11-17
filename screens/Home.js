@@ -17,6 +17,7 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import SplashScreen from 'react-native-splash-screen';
 
 const Home = ({ navigation }) => {
+    const [checkSplash, setCheckSplash] = React.useState(false);
     const [categories, setCategories] = React.useState(null);
     const [foodList, setFoodList] = React.useState(null);
     const [refresh, setRefresh] = React.useState(true); //스크롤을 아래로 쭉 땡겨서 refresh할 때
@@ -54,6 +55,7 @@ const Home = ({ navigation }) => {
             setFoodList(tempFood);
             setRefresh(false)
             SplashScreen.hide();
+            setCheckSplash(true);
         }
     }, [refresh]);
 
@@ -221,7 +223,7 @@ const Home = ({ navigation }) => {
             <functions.FocusAwareStatusBar backgroundColor={COLORS.blue1} barStyle="light-content" />
             {renderHeader()}
             {refresh ? renderLoading() : renderMain()}
-            {functions.renderLoading(refresh, true)}
+            {checkSplash ? functions.renderLoading(refresh, true) : <View></View>}
         </SafeAreaView>
     )
 }
