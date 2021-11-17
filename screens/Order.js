@@ -158,8 +158,8 @@ const Order = ({ navigation }) => {
     )
     const rnederEmpty = () => (
         <View style={{ marginTop:SIZES.padding*2, alignItems:'center'}}>
-            <Text style={{...FONTS.h2, color:COLORS.orange}}>(*￣3￣)</Text>
-            <Text style={{...FONTS.h2, color:COLORS.orange}}>식권이 없네요..?</Text>
+            {tab == 0 ? <Text style={{...FONTS.h2, color:COLORS.orange}}>(*￣3￣)</Text> : <Text style={{...FONTS.h2, color:COLORS.orange}}>(ﾉ*･ω･)ﾉ</Text>}
+            {tab == 0 ? <Text style={{...FONTS.h2, color:COLORS.orange}}>식권이 없네요..?</Text> : <Text style={{...FONTS.h2, color:COLORS.orange}}>아무것도 없네요.</Text>}
         </View>
     )
 
