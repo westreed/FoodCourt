@@ -14,8 +14,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '../constants/functions';
 import BackArrowSvg from '../assets/icons/back-arrow-direction-down-right-left-up-svgrepo-com.svg';
-import { images, SIZES, COLORS, FONTS } from '../constants';
-import {AuthContext} from '../navigation/AuthProvider';
+import { SIZES, COLORS, FONTS } from '../constants';
 
 
 const itemWidth = 78;
@@ -267,6 +266,7 @@ const Category = ({ route, navigation }) => {
             {renderHeader()}
             {renderCategoryList()}
             {renderFoodItem()}
+            {functions.renderLoading(refresh, true)}
         </SafeAreaView>
     )
 }

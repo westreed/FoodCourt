@@ -12,7 +12,6 @@ import {
 
 import RefreshSvg from '../assets/icons/refresh-svgrepo-com.svg';
 import { SIZES, COLORS, FONTS } from '../constants';
-import {AuthContext} from '../navigation/AuthProvider';
 import functions from '../constants/functions';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -257,7 +256,7 @@ const Order = ({ navigation }) => {
                     renderItem={renderItem}
                     ListFooterComponent={renderFooter}
                     ListEmptyComponent={rnederEmpty}
-                    refreshing={refresh}
+                    refreshing={false}
                     onRefresh={() => {setRefresh(true)}}
                 />
             </View>
@@ -341,9 +340,8 @@ const Order = ({ navigation }) => {
                     renderItem={renderItem}
                     ListFooterComponent={renderFooter}
                     ListEmptyComponent={rnederEmpty}
-                    style={{}}
-                    refreshing={refresh}
-                    onRefresh={() => {setRefresh(true)}}
+                    refreshing={false}
+                    onRefresh={() => setRefresh(true)}
                 />
             </View>
         )
@@ -376,6 +374,7 @@ const Order = ({ navigation }) => {
                 fadeOutDuration={1000}
                 style={{backgroundColor:'rgba(33, 87, 243, 0.8)'}}
             />
+            {functions.renderLoading(refresh, true)}
         </SafeAreaView>
     )
 }
