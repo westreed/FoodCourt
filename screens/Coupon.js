@@ -32,7 +32,7 @@ const Coupon = ({ route, navigation }) => {
             .then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     // doc.data() is never undefined for query doc snapshots
-                    console.log('쿠폰정보 로드됨 ', doc.data());
+                    console.log('식권정보 로드됨 ', doc.data());
                     setCouponData(doc.data());
                 });
             })
@@ -54,7 +54,7 @@ const Coupon = ({ route, navigation }) => {
                 </TouchableOpacity>
                 <View style={{ flex:1, left: SIZES.padding }}>
                     <View style={{height: 30}}>
-                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>쿠폰정보</Text>
+                        <Text style={{ ...FONTS.h2, fontWeight: 'bold' }}>식권정보</Text>
                     </View>
                 </View>
             </View>  
@@ -102,7 +102,7 @@ const Coupon = ({ route, navigation }) => {
                     }}>
                         {couponData.couponUse == false ?
                             <Text style={{...FONTS.body0, fontWeight:'bold', color:COLORS.red2}}>유효기간이 지남</Text> :
-                            <Text style={{...FONTS.body0, fontWeight:'bold', color:COLORS.red2}}>사용된 쿠폰</Text>
+                            <Text style={{...FONTS.body0, fontWeight:'bold', color:COLORS.red2}}>사용된 식권</Text>
                         }
                     </View>
                 </View>

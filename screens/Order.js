@@ -42,7 +42,7 @@ const Order = ({ navigation }) => {
     }, []);
 
     const showDeleteToast = useCallback(() => {
-        toastRef.current.show('쿠폰이 환불처리되었습니다.');
+        toastRef.current.show('식권이 환불처리되었습니다.');
     }, []);
 
     useEffect(async() => {
@@ -137,14 +137,14 @@ const Order = ({ navigation }) => {
                         style={{flex:1, alignItems:'center'}}
                         onPress={() => (setTab(0))}
                     >
-                        <Text style={{...FONTS.h4, fontWeight:'bold', letterSpacing:1}}>사용가능한 쿠폰</Text>
+                        <Text style={{...FONTS.h3, fontWeight:'bold', letterSpacing:1}}>사용가능한 식권</Text>
                         <View style={{width: (SIZES.width/2-SIZES.padding*2), height:5, backgroundColor: (tab == 0) ? COLORS.blue1 : COLORS.white2}}></View>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{flex:1, alignItems:'center'}}
                         onPress={() => (setTab(1))}
                     >
-                        <Text style={{...FONTS.h4, fontWeight:'bold', letterSpacing:1}}>사용/기간초과</Text>
+                        <Text style={{...FONTS.h3, fontWeight:'bold', letterSpacing:1}}>사용/기간초과</Text>
                         <View style={{width: (SIZES.width/2-SIZES.padding*2), height:5, backgroundColor: (tab == 1) ? COLORS.blue1 : COLORS.white2}}></View>
                     </TouchableOpacity>
                 </View>
@@ -159,17 +159,17 @@ const Order = ({ navigation }) => {
     const rnederEmpty = () => (
         <View style={{ marginTop:SIZES.padding*2, alignItems:'center'}}>
             <Text style={{...FONTS.h2, color:COLORS.orange}}>(*￣3￣)</Text>
-            <Text style={{...FONTS.h2, color:COLORS.orange}}>쿠폰이 없네요..?</Text>
+            <Text style={{...FONTS.h2, color:COLORS.orange}}>식권이 없네요..?</Text>
         </View>
     )
 
     async function counponCancel(id){
         Alert.alert(
-            "구매 취소", "쿠폰을 환불하실 건가요?",[
+            "구매 취소", "식권을 환불하실 건가요?",[
                 { text: "네", onPress: () => {
                     firestore().collection('coupon').doc(id).delete();
                     showDeleteToast();
-                    console.log('쿠폰삭제', id);
+                    console.log('식권삭제', id);
                     setNotScroll(true);
                     setRefresh(true);
                 }},
@@ -227,13 +227,13 @@ const Order = ({ navigation }) => {
                                     navigation.navigate("Coupon", {couponNumber, couponStatus})
                                 }}
                             >
-                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>식권 보기</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, borderWidth:1, borderColor:COLORS.gray1}}
                                 onPress={showDisableToast}
                             >
-                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'black'}}>쿠폰 저장</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'black'}}>식권 저장</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, borderWidth:1, borderColor:COLORS.gray1}}
@@ -311,13 +311,13 @@ const Order = ({ navigation }) => {
                                     navigation.navigate("Coupon", {couponNumber, couponStatus})
                                 }}
                             >
-                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>쿠폰 보기</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>식권 보기</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, backgroundColor:COLORS.gray1}}
                                 onPress={showCouponToast}
                             >
-                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>쿠폰 저장</Text>
+                                <Text style={{...FONTS.body4, fontWeight:'bold', color:'white'}}>식권 저장</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{...styles.button, backgroundColor:COLORS.gray1}}

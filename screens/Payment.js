@@ -257,7 +257,7 @@ const Payment = ({ route, navigation }) => {
                         setOrder(documentSnapshot.data().num);
                     }
                 })
-                //firesotre에 쿠폰 발행
+                //firesotre에 식권 발행
                 await firestore().collection('coupon').doc(couponNumber)
                 .set({
                     foodOrder : order,
@@ -278,7 +278,7 @@ const Payment = ({ route, navigation }) => {
                 orderStatus = false;
                 return (
                     Alert.alert(
-                        `${food.name} 구매 성공!`, "구매하신 쿠폰은 푸드코트에서 사용하실 수 있습니다. 이 앱은 테스트버젼으로 결제모듈을 사용하지 않았습니다.",
+                        `${food.name} 구매 성공!`, "구매하신 식권은 푸드코트에서 사용하실 수 있습니다. 이 앱은 테스트버젼으로 결제모듈을 사용하지 않았습니다.",
                         [{ text: "확인", onPress: () => {
                             const couponStatus = true;
                             navigation.navigate("Coupon", {couponNumber, couponStatus});
