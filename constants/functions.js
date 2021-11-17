@@ -165,11 +165,11 @@ function termsModal({
     );
 }
 
-function renderLoading(visible){
+function renderLoading(visible, clear){
     return (
         <AnimatedLoader
             visible={visible}
-            overlayColor="rgba(150,150,150,0.75)"
+            overlayColor={clear ? "transparent" : "rgba(150,150,150,0.75)"}
             source={require("../assets/loadings/9844-loading-40-paperplane.json")}
             animationStyle={{width: 200,height: 200}}
             speed={1}

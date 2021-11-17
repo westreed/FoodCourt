@@ -371,7 +371,7 @@ const Setting = ({ navigation }) => {
                 onClose={() => setIsModal2(false)}
                 termsType={isTerms}
             />
-            {functions.renderLoading(loading2)}
+            {functions.renderLoading(loading2, false)}
         </ScrollView>
     )
 }

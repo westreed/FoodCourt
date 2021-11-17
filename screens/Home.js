@@ -221,6 +221,7 @@ const Home = ({ navigation }) => {
             <functions.FocusAwareStatusBar backgroundColor={COLORS.blue1} barStyle="light-content" />
             {renderHeader()}
             {refresh ? renderLoading() : renderMain()}
+            {functions.renderLoading(refresh, true)}
         </SafeAreaView>
     )
 }
