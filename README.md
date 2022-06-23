@@ -52,12 +52,12 @@ react-native run-android
 └ react-native-geolocation-service : 사용자의 현재위치 정보를 불러오는 모듈. <br>
 ─ react-native-make : App 아이콘과 Splash 이미지를 관리하는 모듈. <br>
 ┌ Buffer : Node.js 에서 제공하는 Binary 의 데이터를 담을 수 있는 Object. <br>
-└ buffer-crc32 : 이진데이터(버퍼)를 signed 혹은 unsigned 데이터로 출력해주는 모듈. <br>
+└ buffer-crc32 : crc32 해쉬함수 모듈. <br>
 ─ react-native-easy-toast : Android의 Toast를 쉽게 구현해주는 모듈. <br>
 ┌ react-native-make : 앱아이콘이나 스플래시 이미지 생성을 도와주는 모듈. <br>
 └ react-native-splash-screen : 스플래시 이미지를 언제 감출지 설정할 수 있는 모듈. <br>
 ─ react-native-image-picker : 갤러리나 카메라를 통해 이미지를 가져오는 모듈. <br>
-─ react-native-modal : 어 어썸한 모달을 구현할 수 있는 모듈. <br>
+─ react-native-modal : 모달을 구현할 수 있는 모듈. <br>
 ┌ lottie-react-native : JSON으로 생성되는 Adobe After Effects 애니메이션을 렌더링하는 모듈. <br>
 └ react-native-animated-loader : 로딩 애니메이션을 위해 lottie를 사용하는 모듈. <br>
 
